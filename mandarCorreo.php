@@ -1,6 +1,6 @@
 
 <?php
-
+session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -9,7 +9,14 @@ require 'librerias/PHPMailer-master/src/PHPMailer.php';
 require 'librerias/PHPMailer-master/src/SMTP.php';
 
 $mail = new PHPMailer(true);
+$_SESSION['reg_nombre']   = $_POST['nombre'];
+$_SESSION['reg_email']    = $_POST['correo'];
+$_SESSION['reg_codigo'] = random_int(100000, 999999);
 
+$contraseñaUsu = $_POST['contraseña'];
+$hash_passwd = password_hash($contraseñaUsu, PASSWORD_DEFAULT);
+
+$_SESSION['contraseña'] = $hash_passwd;
 try {
 
     // Configuración SMTP
@@ -25,16 +32,19 @@ try {
     $mail->setFrom('casagoof@gmail.com', 'CasaGo');
 
     // Destinatario
-    $mail->addAddress('sergio17olvega@gmail.com');
+    $mail->addAddress($_SESSION['reg_email']);
 
     // Contenido
     $mail->isHTML(true);
-    $mail->Subject = 'Prueba CasaGo';
-    $mail->Body    = 'Correo enviado correctamente desde CasaGo';
+    $mail->Subject = 'Confirme su dirección de correo';
+    $mail->Body    = $_SESSION['reg_codigo'];
 
     $mail->send();
     echo "Correo enviado correctamente";
 
+    ?>
+    <?php
+    header("Location: ComprobarCorreo.php");
 } catch (Exception $e) {
     echo "Error al enviar: {$mail->ErrorInfo}";
 }

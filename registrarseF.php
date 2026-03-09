@@ -3,16 +3,18 @@
 session_start();
 include('cabecera.html');
 
-    $nombreUsu = $_POST['nombre'];
-    $correoUsu = $_POST['correo'];
-    $contraseñaUsu = $_POST['contraseña'];
+    $codigo = $_POST['codigo'];
 
-    $servidor = "localhost";
+
+    if($codigo == $_SESSION['reg_codigo']) {
+        $servidor = "localhost";
     $username= "casago";
     $contraseña = "casago";
     $database ="casago";
 
-
+    $nombreUsu = $_SESSION['reg_nombre'];
+    $correoUsu = $_SESSION['reg_email'];
+    $contraseñaUsu = $_SESSION['contraseña'];
     $conn = new mysqli($servidor, $username, $contraseña,$database);
 
     $sql = "SELECT nombre,id_usuario from usuarios where correo_electronico = '$correoUsu'";
@@ -23,9 +25,9 @@ include('cabecera.html');
     if ($filas == 1) {
         header('Location: yaRegistrado.php?error='. $nombreUsu);
     } else {
+        
         // hacemos hash y guardamos en bd siempre y cuando el hash no este hecho ya
-        $hash_passwd = password_hash($contraseñaUsu, PASSWORD_DEFAULT);
-        $actualizarCon = "INSERT into usuarios (nombre,correo_electronico,contraseña,rol) values ('$nombreUsu','$correoUsu','$hash_passwd','usuario')";
+        $actualizarCon = "INSERT into usuarios (nombre,correo_electronico,contraseña,rol) values ('$nombreUsu','$correoUsu','$contraseñaUsu','usuario')";
         $contraseñas = $conn->query($actualizarCon);
 
         echo "<h1>Usuario $nombreUsu, registrado correctamente</h1>";
@@ -41,3 +43,8 @@ include('cabecera.html');
     }
 
 $conn->close();
+    } else {
+        header('Location: errorRegistro.php');
+    }
+
+    

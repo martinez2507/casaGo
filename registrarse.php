@@ -19,7 +19,7 @@
     <div class="contLogin">
         <div class="contF">
             <h1>Registrese</h1>
-            <form action="registrarseF.php" method="post">
+            <form action="mandarCorreo.php" method="post">
                 <label>Introduzca nombre:</label>
                 <input type="text" name="nombre" id="nombre" required><br></br>
                 <label>Introduzca correo:</label>
