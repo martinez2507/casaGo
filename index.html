@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio CasaGo</title>
+
+    <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
+    <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header id="header">
+        <div class="logo">CasaGo</div>
+        <nav>
+            <a href="./login.php">Inicio</a>
+            <a href="#">Apartamentos</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+    <main>
+        <div class="buscador">
+            
+            <div class="dentroBuscador">
+                <h1>Vive unas vacaciones de ensueño</h1>
+                <div class="search-bar">
+                    
+                    <div class="field">
+                        <label>¿A dónde vas?</label>
+                        <input type="text" placeholder="Destino">
+                    </div>
+
+                    <div class="field">
+                        <label>Llegada</label>
+                        <input type="date">
+                    </div>
+
+                    <div class="field">
+                        <label>Salida</label>
+                        <input type="date">
+                    </div>
+
+                    <div class="field">
+                        <label>Huéspedes</label>
+                        <input type="number" min="1" placeholder="Personas">
+                    </div>
+
+                    <button class="btn-buscar">Buscar</button>
+
+                </div>
+            </div>
+            
+        </div>
+        <div class="destinosDestacados">
+            <h3>Destinos populares</h3>
+            <div class="cartas">
+                <div class="card" style="width: 18rem;">
+                    <img src="./img/cudillero2.jpg" class="card-img-top" alt="Cudillero" height="200">
+                <div class="card-body">
+                    <p class="card-text">Asturias</p>
+                </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <a href="./apartamento.php"><img src="./img/galicia.jpeg" class="card-img-top" alt="Galicia" height="200"></a>
+                <div class="card-body">
+                    <p class="card-text">Galicia</p>
+                </div>
+                </div>
+                <div class="card" style="width: 18rem;" >
+                    <img src="./img/valdaran3.jpg" class="card-img-top" alt="Val d ´Aran" height="200">
+                <div class="card-body">
+                    <p class="card-text">Cataluña</p>
+                </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="./img/huesca.jpg" class="card-img-top" alt="Huesca" height="200"> 
+                <div class="card-body">
+                    <p class="card-text">Aragón</p>
+                    
+                </div>
+            </div>
+            </div>
+            
+        </div>
+        <div class="ofertas">
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="./img/cudillero.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <a href="./errorRegistro.php"><img src="./img/cudillero.jpg" class="d-block w-100" alt="..."></a>
+                    
+                    </div>
+                    <div class="carousel-item">
+                    <img src="./img/cudillero.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </main>
+    <script src="./js/script.js"></script>
+</body>
+</html>

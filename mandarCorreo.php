@@ -33,11 +33,24 @@ try {
 
     // Destinatario
     $mail->addAddress($_SESSION['reg_email']);
-
+    $codigo = $_SESSION["reg_codigo"];
     // Contenido
     $mail->isHTML(true);
     $mail->Subject = 'Confirme su dirección de correo';
-    $mail->Body    = $_SESSION['reg_codigo'];
+    $mail->Body    = 'Hola,<br>
+
+                        Hemos recibido una solicitud para verificar tu cuenta.<br>
+
+                        Tu código de verificación es:<br>
+
+                        <h4>' . $codigo . '</h4><br>
+
+                        Introduce este código en la página de confirmación para continuar.<br>
+
+                        Si no has solicitado esta verificación, puedes ignorar este correo.<br>
+
+                        Un saludo,<br>
+                        Equipo de soporte.';
 
     $mail->send();
     echo "Correo enviado correctamente";

@@ -1,7 +1,169 @@
 
-* {
+*{
     box-sizing: border-box;
     margin: 0;
-    background-color: rgb(233, 233, 233);
 }
 
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+
+    background: transparent;
+    color: white;
+
+    transition: background 0.3s ease;
+}
+
+/* Cuando se hace scroll */
+#header.scrolled {
+    background: #1E88E5; /* el color que quieras */
+}
+
+.main {
+    display: block;
+}
+
+.buscador{
+    display: flex;
+    height: 60vh;
+    width: 100%;
+    z-index: 1;
+    background-image: url("../img/playaTarragona2.jpg");
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    
+}
+/* ORMULARIO FECHA */ 
+
+.field {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+    border-right: 1px solid #ddd;
+}
+
+.field label {
+    font-size: 12px;
+    color: #777;
+}
+
+.field input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.btn-buscar {
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    padding: 20px 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* título */
+/* formulario */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 790px;
+    position: sticky;
+    right: 500px;
+    margin-top: 20px;
+}
+
+.destinosDestacados{
+  margin-top: 30px;
+  display: block;
+  text-align: center;
+}
+
+.cartas {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ofertas {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    width: 120vh;
+    /* height: 50vh; */
+}
+
+/* LOGIN FORMULARIO */
+.fondoForm {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-image: url("../img/fondoFormulario.jpg");    
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: left;
+}
+
+.contLogin{
+    width: 30%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.9;
+    text-align: center;
+    padding: 15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+}
+
+.contLogin{
+    display: flex;
+    justify-content: center;
+}
+.contF{
+    /* margin-top:10%; */
+    text-align: center;
+    border: 1px solid black;
+    padding: 15px;
+    min-width: 300px;
+    
+    width: 10%;
+
+}
+.formu {
+    margin-top: 15px;
+    width: 80%;
+}
+
+button {
+    background-color: rgb(222, 222, 222);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
