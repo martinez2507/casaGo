@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 }
 
 
-$consulta = "SELECT * FROM imagenes_apartamento where id_apartamento ='5'";
+$consulta = "SELECT * FROM imagenes_apartamento where id_apartamento ='7'";
 
 $datos = $conn->query($consulta);
 
