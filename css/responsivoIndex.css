@@ -1,0 +1,33 @@
+@media screen and (max-width: 768px) {
+
+    .buscador {
+        padding: 15px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+        width: 80%;
+    }
+
+    .cartas{
+        gap: 10px;
+    }
+    .card1 {
+        display: none;
+    }
+
+    .ofertas {
+        width: 390px;
+    }
+    .pasos {
+        flex-direction: column;  
+        align-items: center;      
+        gap: 20px;              
+    }
+
+    .paso {
+        width: 90%;               
+        max-width: 400px;        
+    }
+}
