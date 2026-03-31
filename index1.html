@@ -26,11 +26,12 @@
             
             <div class="dentroBuscador">
                 <h1>Vive unas vacaciones de ensueño</h1>
-                <div class="search-bar">
+                <form action="busqueda.php" method="POST">
+                    <div class="search-bar">
                     
                     <div class="field">
                         <label>¿A dónde vas?</label>
-                        <input type="text" placeholder="Destino">
+                        <input type="text" placeholder="Destino" name="lugar">
                     </div>
 
                     <div class="field">
@@ -51,6 +52,8 @@
                     <button class="btn-buscar">Buscar</button>
 
                 </div>
+                </form>
+                
             </div>
             
         </div>

@@ -1,21 +1,5 @@
 <?php
-
-$servername = "localhost";
-$username = "casago";
-$password = "casago";
-$port = 3306;
-$database = "casago";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-// $conn = new mysqli($servername, $username, $password, port : 13306); Con esto nos saltamos el poner los parametros opcionales, sin eguir el orden
-
-// Check connection
-if ($conn->connect_error) {
-  die("Conexion fallida: " . $conn->connect_error);
-} else {
-
-}
-
+include("php/conexionBD.php");
 
 $consulta = "SELECT * FROM imagenes_apartamento where id_apartamento ='7'";
 
