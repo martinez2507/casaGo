@@ -1,0 +1,54 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.main-container {
+    display: flex;
+}
+
+.sidebar{
+    margin-left: 15%;
+    background-color: rgb(216, 216, 216);
+    border:  1px solid black;
+    padding: 15px;
+    margin-top: 5%;
+    height: 20%;
+}
+
+#filtros {
+    border: 1 px solid black;
+    margin-top: 15px;
+}
+.apartamentos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 15px;
+    margin-top: 5%;
+    margin-right: 15%;
+    background-color: red;
+    width: 80%;
+}
+
+.apartamento {
+    display: flex;
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.nomImg{
+    display: flex;
+    gap: 15px;
+}
+
+.detalles {
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+}
+
+.detales h5 {
+    margin: 20px;
+}
