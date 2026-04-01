@@ -38,25 +38,28 @@
     padding: 25px;
 }
 
-
+.titVal button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    cursor: pointer;
+}
 .nomImg{
     display: flex;
     gap: 15px;
     text-align: right;
 }
 
-h4 a {
-    text-decoration: none;
-    color: black;
-}
-
-h4 a:hover {
-    color: #1E88E5; 
-}
 .titVal {
     display: flex;
     justify-content: space-between;
 }
+
+.titVal button:hover {
+    color: #1E88E5; 
+}
+
 .imgApt {
     width: 250px;
     height: 250px;

@@ -58,7 +58,7 @@ $filas = $datos->num_rows;
 
         while ($filas = $datos->fetch_assoc()) {
     ?>
-    <form action="inicio.php" method="POST">
+    <form action="apartamento.php" method="POST">
         <div class="apartamento">
             <input type="hidden" name="id_apartamento" value="<?=$filas['id_apartamento']?>">
 
@@ -68,7 +68,7 @@ $filas = $datos->num_rows;
 
                 <div class="desc">
                     <div class="titVal">
-                        <h4><a href="./apartamento.php"><?=$filas['nombre']?></a></h4>
+                        <button type="submit"><h4><?=$filas['nombre']?></h4></button>
                         <?php 
                         $consulta = "SELECT ROUND(IFNULL(AVG(puntuacion), 0), 1) as media FROM valoraciones WHERE id_apartamento = {$filas['id_apartamento']}";
 
