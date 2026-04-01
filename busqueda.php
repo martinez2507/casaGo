@@ -21,11 +21,11 @@ $filas = $datos->num_rows;
     <title>Búsquedas en <?php echo $ciudad ?></title>
 
     <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
-    
-    
     <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
+
     <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/responsivoIndex.css">
     <link rel='stylesheet' type='text/css' media='screen' href='./css/busqueda.css'>
@@ -67,28 +67,30 @@ $filas = $datos->num_rows;
                 <img class="imgApt" src="<?=$filas['imagen_portada']?>">
 
                 <div class="desc">
-                    <h4><?=$filas['nombre']?></h4>
-                    <?php 
-                    $consulta = "SELECT ROUND(IFNULL(AVG(puntuacion), 0), 1) as media FROM valoraciones WHERE id_apartamento = {$filas['id_apartamento']}";
+                    <div class="titVal">
+                        <h4><a href="./apartamento.php"><?=$filas['nombre']?></a></h4>
+                        <?php 
+                        $consulta = "SELECT ROUND(IFNULL(AVG(puntuacion), 0), 1) as media FROM valoraciones WHERE id_apartamento = {$filas['id_apartamento']}";
 
-                    $datosVal = $conn->query($consulta);
+                        $datosVal = $conn->query($consulta);
 
-                    $totalFilas = $datosVal->num_rows;
+                        $totalFilas = $datosVal->num_rows;
 
-                    $puntuacion = 0;
-                    if ($datos && $datosVal->num_rows > 0) {
-                        $fila = $datosVal->fetch_assoc();
-                        $puntuacion = $fila['media'] ?? 0;
-                    } else {
                         $puntuacion = 0;
-                    }
-                    ?>
-                    <h5 class="valoracion"><?= $puntuacion > 0 ? "$puntuacion ⭐" : "Nuevo" ?></h5>
+                        if ($datos && $datosVal->num_rows > 0) {
+                            $fila = $datosVal->fetch_assoc();
+                            $puntuacion = $fila['media'] ?? 0;
+                        } else {
+                            $puntuacion = 0;
+                        }
+                        ?>
+                        <?= $puntuacion > 0 ?  "<span class='valoracion'>$puntuacion ⭐</span>" :"<span class='nuevo'>Nuevo</span>" ?>
+                    </div>
+
                     <div class="detalles">
                         <p><?=$filas['descripcion']?></p>
-                        <div><h5><?=$filas['precio_noche']?>€</h5></div>
-                        
                     </div>
+                    <div><h5><?=$filas['precio_noche']?>€</h5></div>
             </div>
 
                 

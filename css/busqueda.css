@@ -9,11 +9,12 @@
 
 .sidebar{
     margin-left: 10%;
-    background-color: rgb(0, 88, 252) !important;
+    background-color: rgb(206, 206, 206) !important;
     border:  1px solid black;
     padding: 15px;
     margin-top: 5%;
     height: 20%;
+    border-radius: 15px;
 }
 
 #filtros {
@@ -27,7 +28,6 @@
     padding: 15px;
     margin-top: 5%;
     margin-right: 50px;
-    background-color: rgb(0, 0, 255);
     width: 1200px;
 }
 
@@ -39,21 +39,33 @@
 }
 
 
-
 .nomImg{
     display: flex;
     gap: 15px;
-    background-color: black;
+    text-align: right;
+}
+
+h4 a {
+    text-decoration: none;
+    color: black;
+}
+
+h4 a:hover {
+    color: #1E88E5; 
+}
+.titVal {
+    display: flex;
+    justify-content: space-between;
 }
 .imgApt {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
 }
 .detalles {
     display: flex;
     justify-content: center;
     text-align: justify;
-    background-color: white;
 }
 
 .detalles h5 {
@@ -65,7 +77,16 @@
     color: white;
     padding: 5px;
     border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.nuevo {
+    background-color: #FF7043;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 .detalles p {
-    font-size: 5px !important;
+    font-size: 14px !important;
 }
