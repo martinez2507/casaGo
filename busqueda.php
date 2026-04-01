@@ -4,7 +4,7 @@ include("./php/conexionBD.php");
 
 $ciudad = $_POST['lugar'];
 
-$consulta = "SELECT* FROM apartamentos WHERE ciudad LIKE  '%$ciudad%' OR direccion LIKE '%$ciudad%'";
+$consulta = "SELECT * FROM apartamentos WHERE ciudad LIKE  '%$ciudad%' OR direccion LIKE '%$ciudad%'";
 
 $datos = $conn->query($consulta);
 
@@ -21,15 +21,16 @@ $filas = $datos->num_rows;
     <title>Búsquedas en <?php echo $ciudad ?></title>
 
     <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/responsivoIndex.css">
-    <link rel='stylesheet' type='text/css' media='screen' href='./css/busqueda.css'>
+    
+    
     <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/responsivoIndex.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/busqueda.css'>
 </head>
 <body>
-    <?php include("./header.php"); ?>
 <div class="main-container">
     <aside class="sidebar">
         <h3>Filtros</h3>
@@ -63,14 +64,30 @@ $filas = $datos->num_rows;
 
             <div class="nomImg">
 
-                <img width="300px" height="200px" src="<?=$filas['imagen_portada']?>">
+                <img class="imgApt" src="<?=$filas['imagen_portada']?>">
 
                 <div class="desc">
                     <h4><?=$filas['nombre']?></h4>
+                    <?php 
+                    $consulta = "SELECT ROUND(IFNULL(AVG(puntuacion), 0), 1) as media FROM valoraciones WHERE id_apartamento = {$filas['id_apartamento']}";
 
+                    $datosVal = $conn->query($consulta);
+
+                    $totalFilas = $datosVal->num_rows;
+
+                    $puntuacion = 0;
+                    if ($datos && $datosVal->num_rows > 0) {
+                        $fila = $datosVal->fetch_assoc();
+                        $puntuacion = $fila['media'] ?? 0;
+                    } else {
+                        $puntuacion = 0;
+                    }
+                    ?>
+                    <h5 class="valoracion"><?= $puntuacion > 0 ? "$puntuacion ⭐" : "Nuevo" ?></h5>
                     <div class="detalles">
-                        <?=$filas['descripcion']?>
-                        <h5><?=$filas['precio_noche']?>€</h5>
+                        <p><?=$filas['descripcion']?></p>
+                        <div><h5><?=$filas['precio_noche']?>€</h5></div>
+                        
                     </div>
             </div>
 
