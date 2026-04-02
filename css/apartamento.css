@@ -1,0 +1,65 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+
+.debajoGaleria {
+    display: flex;
+}
+
+.reservar{
+    position: sticky;
+    height: 100%;
+}
+
+.fechas {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: 15px;
+}
+
+.viajeros {
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: 15px;
+}
+
+.fondoForm{
+    position: relative;
+    right: 10%;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+    flex: 1;
+}
+
+#llegadaCampo{
+    border-right: 1px solid rgb(112, 112, 112);
+}
+.field label {
+    font-size: 12px;
+    color: #777;
+}
+
+.field input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.btn-buscar {
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    padding: 20px 25px;
+    cursor: pointer;
+    font-weight: bold;
+}

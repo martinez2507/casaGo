@@ -1,10 +1,24 @@
 <?php
 
+session_start();
 include("./php/conexionBD.php");
 
 $ciudad = $_POST['lugar'];
 
-$consulta = "SELECT * FROM apartamentos WHERE ciudad LIKE  '%$ciudad%' OR direccion LIKE '%$ciudad%'";
+$_SESSION['llegada'] = $_POST['llegada'];
+$_SESSION['salida'] = $_POST['salida'];
+$_SESSION['huespedes'] = $_POST['huespedes'];
+
+$consulta = "SELECT *
+FROM apartamentos a
+WHERE a.id_apartamento NOT IN (
+    SELECT r.id_apartamento
+    FROM reservas r
+    WHERE NOT (
+        r.fecha_fin < '{$_SESSION['salida']}'
+        OR r.fecha_inicio > '{$_SESSION['llegada']}'
+    )
+)";
 
 $datos = $conn->query($consulta);
 
@@ -18,7 +32,14 @@ $filas = $datos->num_rows;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Búsquedas en <?php echo $ciudad ?></title>
+    <?php
+    if($ciudad === '' || $ciudad === null){
+        echo "<title>Apartamentos en España</title>";
+    } else {
+        echo "<title>Búsquedas en $ciudad</title>";
+    }
+    ?>
+    
 
     <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
     <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
@@ -54,11 +75,17 @@ $filas = $datos->num_rows;
 
     <section class="apartamentos" id="resultadosApar">
         <?php
-        echo "<h2>Hay un total de $filas apartamentos en $ciudad.</h2>";
+
+        if($ciudad === '' || $ciudad === null){
+        echo "<h2>Hay un total de $filas apartamentos en España.</h2>";
+        } else {
+            echo "<h2>Hay un total de $filas apartamentos en $ciudad.</h2>";
+        }
+        
 
         while ($filas = $datos->fetch_assoc()) {
     ?>
-    <form action="apartamento.php" method="POST">
+    <form action="apartamento.php" method="POST" target="_blank">
         <div class="apartamento">
             <input type="hidden" name="id_apartamento" value="<?=$filas['id_apartamento']?>">
 
