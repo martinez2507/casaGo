@@ -11,22 +11,22 @@
     <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
+    <link rel="stylesheet" href="./librerias/alertifyjs/css/themes/default.min.css">
+    
 </head>
 <body>
-    <header id="header">
-        <div class="logo">CasaGo</div>
-        <nav>
-            <a href="./login.php">Inicio</a>
-            <a href="#">Apartamentos</a>
-            <a href="#">Contacto</a>
-        </nav>
-    </header>
+    <?php
+     session_start();
+    include 'cabecera.php'; 
+    ?>
     <main>
         <div class="buscador">
             
             <div class="dentroBuscador">
                 <h1>Vive unas vacaciones de ensueño</h1>
-                <form action="busqueda.php" method="POST">
+                <form action="busqueda.php" method="POST" id="formulario">
                     <div class="search-bar">
                     
                     <div class="field">
@@ -46,7 +46,7 @@
 
                     <div class="field">
                         <label>Huéspedes</label>
-                        <input type="number" min="1" placeholder="Personas" name="huespedes">
+                        <input type="number" min="1" placeholder="Personas" name="huespedes" >
                     </div>
 
                     <button class="btn-buscar">Buscar</button>
@@ -142,5 +142,24 @@
         <p>TFG &copy; 2026 CasaGo. Todos los derechos reservados.</p>
     </footer>
     <script src="./js/script.js"></script>
+    <script src="./librerias/alertifyjs/alertify.min.js"></script>
+    <script>
+        
+    </script>
+    <?php
+     if (isset($_SESSION['mensaje'])) {
+
+        $mensaje = $_SESSION['mensaje'];
+        $tipo = $_SESSION['tipo'];
+
+        echo "<script>
+            alertify.set('notifier','position', 'top-right');
+            alertify.$tipo('$mensaje');
+        </script>";
+
+        unset($_SESSION['mensaje']);
+        unset($_SESSION['tipo']);
+    }
+    ?>
 </body>
 </html>

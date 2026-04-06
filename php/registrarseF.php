@@ -44,7 +44,9 @@ include('cabecera.html');
 
 $conn->close();
     } else {
-        header('Location: errorRegistro.php');
+        header('Location: ../registrarse.php');
+        $_SESSION['tipo'] = "error";
+        $_SESSION['mensaje'] = "Error en el registro, código incorrecto";
     }
 
     

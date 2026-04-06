@@ -13,7 +13,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['reg_email'])) {
-    header("Location: registro.php");
+    header("Location: ../index.php");
     exit();
 }?>
 

@@ -4,9 +4,9 @@ session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'librerias/PHPMailer-master/src/Exception.php';
-require 'librerias/PHPMailer-master/src/PHPMailer.php';
-require 'librerias/PHPMailer-master/src/SMTP.php';
+require '../librerias/PHPMailer-master/src/Exception.php';
+require '../librerias/PHPMailer-master/src/PHPMailer.php';
+require '../librerias/PHPMailer-master/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 $_SESSION['reg_nombre']   = $_POST['nombre'];

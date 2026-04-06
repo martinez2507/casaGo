@@ -1,13 +1,22 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
 include("./php/conexionBD.php");
 
 $ciudad = $_POST['lugar'];
 
 $_SESSION['llegada'] = $_POST['llegada'];
 $_SESSION['salida'] = $_POST['salida'];
-$_SESSION['huespedes'] = $_POST['huespedes'];
+$_SESSION['huespedes'] = !empty($_POST['huespedes']) ? (int)$_POST['huespedes'] : 1;
+
+if ($salida <= $llegada) {
+
+    $_SESSION['mensaje'] = "La fecha de salida debe ser posterior a la de llegada";
+    $_SESSION['tipo'] = "error";
+
+    header("Location: index.php");
+    exit();
+}
 
 $consulta = "SELECT *
 FROM apartamentos a
@@ -18,8 +27,28 @@ WHERE a.id_apartamento NOT IN (
         r.fecha_fin < '{$_SESSION['salida']}'
         OR r.fecha_inicio > '{$_SESSION['llegada']}'
     )
-)";
+) AND a.capacidad >= {$_SESSION['huespedes']}";
 
+
+$consulta = "SELECT *
+FROM apartamentos a
+WHERE 1=1";
+
+if (!empty($_SESSION['llegada']) && !empty($_SESSION['salida'])) {
+    $consulta .= " AND a.id_apartamento NOT IN (
+        SELECT r.id_apartamento
+        FROM reservas r
+        WHERE NOT (
+            r.fecha_fin < '{$_SESSION['llegada']}'
+            OR r.fecha_inicio > '{$_SESSION['salida']}'
+        )
+    )";
+}
+
+$consulta .= " AND a.capacidad >= {$_SESSION['huespedes']}";
+
+// echo $consulta;
+// exit;
 $datos = $conn->query($consulta);
 
 $filas = $datos->num_rows;

@@ -45,7 +45,7 @@ if ($datos && $datos->num_rows > 0) {
                 if ($datos2 && $datos2->num_rows > 0) {
                     while ($fila2 = $datos2->fetch_assoc()) {
                         ?>
-                        <div class="imagen">
+                        <div class="item">
                             <img src="<?=$fila2['url_imagen']?>" alt="Imagen del apartamento">
                         </div>
                         <?php
@@ -82,17 +82,32 @@ if ($datos && $datos->num_rows > 0) {
                     
                     <?php
 
-                        $sqlPuntuacion = "SELECT ROUND(IFNULL(AVG(puntuacion), 0), 1) AS puntuacion_media FROM valoraciones WHERE id_apartamento = '$idApartamento'";
+                        // PUNTUACION
+                        $sqlPuntuacion = "SELECT 
+                            ROUND(AVG(puntuacion), 1) AS puntuacion_media,
+                            COUNT(*) AS total_valoraciones
+                            FROM valoraciones 
+                            WHERE id_apartamento = '$idApartamento'";
+
                         $resultadoPuntuacion = $conn->query($sqlPuntuacion);
                         $filaPuntuacion = $resultadoPuntuacion->fetch_assoc();
 
+                        if ($filaPuntuacion['total_valoraciones'] == 0) {
+                            echo "No tiene valoraciones aún";
+                        } else {
+                            echo "<span class='puntuacion'>".$filaPuntuacion['puntuacion_media']." ⭐</span>";
+                            echo "<span class='totalPuntuacion'>".$filaPuntuacion['total_valoraciones']." valoraciones</span>";
+                        }
+                        ?>
+
+                        <?php
+                        // COMENTARIOS
                         $sqlValoracion = "SELECT valoraciones.*, usuarios.nombre FROM valoraciones JOIN usuarios ON valoraciones.id_usuario = usuarios.id_usuario WHERE id_apartamento = '$idApartamento'";
                         $resultadoValoracion = $conn->query($sqlValoracion);
 
                         $filasV = $resultadoValoracion->num_rows;
-                        
                     ?>
-                    <span class="puntuacion"><?=$filaPuntuacion['puntuacion_media']?>⭐</span>
+                    
                     <div class="comentarios">
                         <?php
                         if ($resultadoValoracion && $resultadoValoracion->num_rows > 0) {
@@ -113,9 +128,11 @@ if ($datos && $datos->num_rows > 0) {
                                 </div>
                                 <?php
                             }
-                        } else {
-                            echo "<div class='comentario'>No hay comentarios</div>";
                         }
+
+                        // } else {
+                        //     echo "<div class='comentario'>No hay comentarios</div>";
+                        // }
                         ?>
                     </div>
                 </div>
@@ -161,3 +178,9 @@ if ($datos && $datos->num_rows > 0) {
         </div>
         
     </div>
+
+    <div id="modal" class="modal">
+        <span class="cerrar">&times;</span>
+        <img class="modal-contenido" id="imgGrande">
+    </div>
+    <script src="./js/modalImagenes.js"></script>

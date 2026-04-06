@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('cabecera.html');
+include('../cabecera.php');
 
     $correoUsu = $_POST['correo'];
     $contraseñaUsu = $_POST['contraseña'];
@@ -22,26 +22,34 @@ include('cabecera.html');
     if ($filas == 0) {
         $_SESSION['credenciales_correctas'] = false;
         unset($_SESSION['usuario']);
+        $_SESSION['tipo'] = "error";
+        $_SESSION['mensaje'] = "Usuario no encontrado";
     } else {
 
         $filas = $consultaUsu->fetch_assoc();
         if(password_verify($contraseñaUsu,$filas['contraseña'])) {
             $_SESSION['credenciales_correctas'] = true;
-            $_SESSION['usuario'] = $correoUsu;
-            $_SESSION['id_usuario'] = $filas['id'];
+            $_SESSION['usuario'] = $filas['nombre'];
+            $_SESSION['id_usuario'] = $filas['id_usuario'];
+            $_SESSION['mensaje'] = "Inicio de sesión exitoso";
+            $_SESSION['tipo'] = "success";
         } else {
             $_SESSION['credenciales_correctas'] = false;
-            
+            $_SESSION['tipo'] = "error";
+            $_SESSION['mensaje'] = "Contraseña incorrecta";
         }
 
     }
             
         
     if ($_SESSION['credenciales_correctas'] != true){
-        include('./credenciales_incorrectas.php');
+        header("Location: ../login.php");
+        exit();
+        
     } else {
-        $_SESSION['usuario'] = $correoUsu;
-        include('./credenciales_correctas.php');
+        $_SESSION['usuario'] = $filas['nombre'];
+        header("Location: ../index.php");
+        exit();
 
     }
 $conn->close();
