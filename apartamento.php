@@ -21,7 +21,7 @@ if ($datos && $datos->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio CasaGo</title>
+    <title><?=$fila['nombre']?></title>
 
     <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/apartamento.css">
@@ -34,39 +34,105 @@ if ($datos && $datos->num_rows > 0) {
 <body>
     <div class="principal">
         <div class="titulo">
-            <h2><?=$fila['nombre']?></h2>;
-            <h5><?=$fila['direccion']?></h5>;
+            <h2><?=$fila['nombre']?></h2>
+            <h5><?=$fila['direccion']?></h5>
             
         </div>
         <div class="galeria">
             <?php
                 $consulta2 = "SELECT * FROM imagenes_apartamento WHERE id_apartamento = '$idApartamento'";
-                $datos2 = $conn->query($consulta2);
-            ?>
+                $datos2 = $conn->query($consulta2); 
+                if ($datos2 && $datos2->num_rows > 0) {
+                    while ($fila2 = $datos2->fetch_assoc()) {
+                        ?>
+                        <div class="imagen">
+                            <img src="<?=$fila2['url_imagen']?>" alt="Imagen del apartamento">
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "<p>No hay imágenes disponibles para este apartamento.</p>";
+                }
+            ?>  
+
         </div>
         <?php
             $noches = (strtotime($_SESSION['salida']) - strtotime($_SESSION['llegada'])) / 86400;
-            $total = $noches * $fila['precio_noche'];
+            $total = ($noches * $fila['precio_noche']);
+
+            
         ?>
         <div class="debajoGaleria">
             
             <div class="izquierda">
-                <div class="detalles">
+                <div class="detalles fila">
                     <p><?=$fila['descripcion']?></p>
                 </div>
-                <div class="servicios"></div>
-                <div class="valoracion">
-                    <div class="puntuacion"></div>
-                    <div class="comentarios"></div>
+                <div class="servicios fila">
+                    <h4>Servicios de este apartamento</h4>
+                    <?php
+                    $servicios = explode(',', $fila['servicios']);
+                    foreach ($servicios as $servicio) {
+                        echo "<p>- " . trim($servicio) . "</p>";
+                    }
+                    ?>
+                </div>
+                <div class="valoracion fila">
+                    <h4>Valoración de este apartamento</h4>
+                    
+                    <?php
+
+                        $sqlPuntuacion = "SELECT ROUND(IFNULL(AVG(puntuacion), 0), 1) AS puntuacion_media FROM valoraciones WHERE id_apartamento = '$idApartamento'";
+                        $resultadoPuntuacion = $conn->query($sqlPuntuacion);
+                        $filaPuntuacion = $resultadoPuntuacion->fetch_assoc();
+
+                        $sqlValoracion = "SELECT valoraciones.*, usuarios.nombre FROM valoraciones JOIN usuarios ON valoraciones.id_usuario = usuarios.id_usuario WHERE id_apartamento = '$idApartamento'";
+                        $resultadoValoracion = $conn->query($sqlValoracion);
+
+                        $filasV = $resultadoValoracion->num_rows;
+                        
+                    ?>
+                    <span class="puntuacion"><?=$filaPuntuacion['puntuacion_media']?>⭐</span>
+                    <div class="comentarios">
+                        <?php
+                        if ($resultadoValoracion && $resultadoValoracion->num_rows > 0) {
+                            while ($filaValoracion = $resultadoValoracion->fetch_assoc()) {
+                                ?>
+                                <div class='comentario'>
+                                    <div class="usuario">
+                                        <i class='fa-solid fa-user'></i>
+                                        <p><?=$filaValoracion['nombre']?></p>
+                                    </div>
+                                    <div class="fechaVal">
+                                        <div class="puntIndividual"><?=$filaValoracion['puntuacion']?> / 10</div>
+                                        <p><?=$filaValoracion['fecha']?></p>
+                                    </div>
+                                    <div class="comentario-text">
+                                        <p><?=$filaValoracion['comentario']?></p>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                        } else {
+                            echo "<div class='comentario'>No hay comentarios</div>";
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="reservar">
                 <div class="fondoForm">
                     <form action="./php/reservar.php" method="POST">
-                        <h4><?= $total?>€ en total</h4>
-
-                        
-
+                        <h4>
+                            <?php
+                            if($total <= 0) {
+                                $total = "Añade fechas de instancia";
+                            } else {
+                                $total = $total . "€ en total";
+                            }
+                            echo $total;
+                            ?>
+                        </h4>
                         <div class="fechas">
                             <div class="field" id="llegadaCampo">
                                 <label>Llegada</label>
@@ -85,12 +151,10 @@ if ($datos && $datos->num_rows > 0) {
                                 <input type="number" placeholder="Número de viajeros" name="viajeros" min="1" value="<?=$_SESSION['huespedes'] ?? '1'; ?>">
                             </div>
                         </div>
-                        
-                        <!-- <input type="hidden" name="id_apartamento" value="<?=$idApartamento?>">
-                        <input type="date" name="llegada" id="llegada" value="<?=$_SESSION['llegada'] ?? ''; ?>">
-                        <input type="date" name="salida" id="salida" value="<?=$_SESSION['salida'] ?? ''; ?>">
-                        <input type="number"> -->
-                        <button class="btn-reservar">Reservar</button>
+                        <input type="hidden" name="precioT" value="<?=$total?>">
+                        <div class="boton">
+                            <button type="submit" class="btnFormu">Reservar</button>
+                        </div>
                     </form>
                 </div>
             </div>
