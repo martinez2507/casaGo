@@ -12,9 +12,6 @@
     <?php
     
     session_start();
-
-    
-    
     ?>
     <div class="contLogin">
         <div class="contF">

@@ -5,11 +5,11 @@ include("./php/conexionBD.php");
 
 $ciudad = $_POST['lugar'];
 
-$_SESSION['llegada'] = $_POST['llegada'];
-$_SESSION['salida'] = $_POST['salida'];
+$_SESSION['llegada'] = $_POST['llegada']?? '';
+$_SESSION['salida'] = $_POST['salida'] ?? '';
 $_SESSION['huespedes'] = !empty($_POST['huespedes']) ? (int)$_POST['huespedes'] : 1;
 
-if ($salida <= $llegada) {
+if ($_SESSION['salida'] <= $_SESSION['llegada']) {
 
     $_SESSION['mensaje'] = "La fecha de salida debe ser posterior a la de llegada";
     $_SESSION['tipo'] = "error";

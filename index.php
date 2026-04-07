@@ -88,33 +88,33 @@
             </div>
             
         </div>
-        <div class="ofertas">
-            <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <div class="ultimosApartamentos">
+            <h3>Últimos apartamentos añadidos</h3>
+            <div class="cartas">
+                <div class="card1" style="width: 18rem;">
+                    <img src="./img/galicia.jpeg" class="card-img-top" alt="Apartamento en Galicia" height="200">
+                <div class="card-body">
+                    <p class="card-text">Apartamento en Galicia</p>
                 </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active"> 
-                    <img src="./img/cudillero.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                    <a href="./errorRegistro.php"><img src="./img/cudillero.jpg" class="d-block w-100" alt="..."></a>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="./img/valdaran3.jpg" class="card-img-top" alt="Apartamento en Cataluña" height="200">
+                <div class="card-body">
+                    <p class="card-text">Apartamento en Cataluña</p>
+                </div>
+                </div>
+                <div class="card1" style="width: 18rem;" >
+                    <img src="./img/huesca.jpg" class="card-img-top" alt="Apartamento en Aragón" height="200">
+                <div class="card-body">
+                    <p class="card-text">Apartamento en Aragón</p>
+                </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="./img/cudillero2.jpg" class="card-img-top" alt="Apartamento en Asturias" height="200">
+                <div class="card-body">
+                    <p class="card-text">Apartamento en Asturias</p>
                     
-                    </div>
-                    <div class="carousel-item">
-                    <img src="./img/cudillero.jpg" class="d-block w-100" alt="...">
-                    </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
         <div class="funcionamiento">
