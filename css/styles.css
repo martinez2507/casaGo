@@ -20,7 +20,8 @@ html, body {
     align-items: center;
     z-index: 5;
 
-    background: transparent;
+    /* background: transparent; */
+    background-color: #FF7043;
     color: white;
     transition: background 0.3s ease;
 }
@@ -151,7 +152,7 @@ header.scrolled .yaIniciado:hover {
 }
 
 .destinosDestacados{
-  margin-top: 30px;
+  /* margin-top: 30px; */
   display: block;
   text-align: center;
   background-color: #ededed;

@@ -8,3 +8,60 @@ html, body {
     margin: 0;
     color: black;
 }
+.cabeceraPerfil {
+    background-color: #1E88E5;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}   
+
+.contenedorPerfil {
+    width: 95%;
+    max-width: 1600px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; /* Espacio entre cajas */
+    align-items: stretch; /* Esto hace que todas tengan la misma altura */
+}
+
+/* Centralizamos todo el diseño en una sola clase */
+.cajaPerfil {
+    flex: 1 1 350px;
+    min-width: 300px; 
+    max-width: 400px; 
+    padding: 25px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    background-color: white; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cajaPerfil h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.cajaPerfil .subApartamento {
+    background: none;
+    border: 1px solid #1E88E5;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.subApartamento:hover {
+    background-color: #FF7043;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

@@ -90,31 +90,25 @@
         </div>
         <div class="ultimosApartamentos">
             <h3>Últimos apartamentos añadidos</h3>
+            
             <div class="cartas">
-                <div class="card1" style="width: 18rem;">
-                    <img src="./img/galicia.jpeg" class="card-img-top" alt="Apartamento en Galicia" height="200">
-                <div class="card-body">
-                    <p class="card-text">Apartamento en Galicia</p>
-                </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="./img/valdaran3.jpg" class="card-img-top" alt="Apartamento en Cataluña" height="200">
-                <div class="card-body">
-                    <p class="card-text">Apartamento en Cataluña</p>
-                </div>
-                </div>
-                <div class="card1" style="width: 18rem;" >
-                    <img src="./img/huesca.jpg" class="card-img-top" alt="Apartamento en Aragón" height="200">
-                <div class="card-body">
-                    <p class="card-text">Apartamento en Aragón</p>
-                </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="./img/cudillero2.jpg" class="card-img-top" alt="Apartamento en Asturias" height="200">
-                <div class="card-body">
-                    <p class="card-text">Apartamento en Asturias</p>
-                    
-                </div>
+                <?php
+                include("php/conexionBD.php");
+                $consulta = "SELECT * FROM apartamentos ORDER BY id_apartamento DESC LIMIT 4";
+                $resultado = mysqli_query($conn, $consulta);
+                while ($apartamento = mysqli_fetch_assoc($resultado)) {
+
+                    echo '<div class="card" style="width: 18rem;">';
+                    echo '<form action="./apartamento.php" method="POST">';
+                    echo '<input type="hidden" name="id_apartamento" value="' . $apartamento['id_apartamento'] . '">';
+                    echo '<input type="image" src="' . $apartamento['imagen_portada'] . '" class="card-img-top" alt="' . $apartamento['nombre'] . '" height="200" style="display:block;">';
+                    echo '<div class="card-body">';
+                    echo '<p class="card-text">' . $apartamento['nombre'] . '</p>';
+                    echo '</div>';
+                    echo '</form>';
+                    echo '</div>';
+                }
+            ?>
             </div>
         </div>
         <div class="funcionamiento">

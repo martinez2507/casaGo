@@ -9,7 +9,8 @@ if(!isset($_SESSION['usuario'])) {
     exit;
 } else {
     session_destroy();
-    echo "<h1>Sesion cerrada correctamente</h1>";
+    header("Location: ../index.php");
+    exit;
 }
 
 
