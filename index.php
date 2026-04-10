@@ -25,7 +25,7 @@
         <div class="buscador">
             
             <div class="dentroBuscador">
-                <h1>Vive unas vacaciones de ensueño</h1>
+                <h1>Reserva unas vacaciones de ensueño</h1>
                 <form action="busqueda.php" method="POST" id="formulario">
                     <div class="search-bar">
                     
@@ -60,25 +60,25 @@
         <div class="destinosDestacados">
             <h3>Destinos populares</h3>
             <div class="cartas">
-                <div class="card1" style="width: 18rem;">
+                <div class="card " style="width: 18rem;">
                     <img src="./img/cudillero2.jpg" class="card-img-top" alt="Cudillero" height="200">
                 <div class="card-body">
                     <p class="card-text">Asturias</p>
                 </div>
                 </div>
-                <div class="card" style="width: 18rem;">
+                <div class="card card1" style="width: 18rem;">
                     <a href="./apartamento.php"><img src="./img/galicia.jpeg" class="card-img-top" alt="Galicia" height="200"></a>
                 <div class="card-body">
                     <p class="card-text">Galicia</p>
                 </div>
                 </div>
-                <div class="card1" style="width: 18rem;" >
+                <div class="card" style="width: 18rem;" >
                     <img src="./img/valdaran3.jpg" class="card-img-top" alt="Val d ´Aran" height="200">
                 <div class="card-body">
                     <p class="card-text">Cataluña</p>
                 </div>
                 </div>
-                <div class="card" style="width: 18rem;">
+                <div class="card card1" style="width: 18rem;">
                     <img src="./img/huesca.jpg" class="card-img-top" alt="Huesca" height="200"> 
                 <div class="card-body">
                     <p class="card-text">Aragón</p>

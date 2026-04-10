@@ -1,9 +1,11 @@
 <?php
 include("./php/conexionBD.php");
-
+include("cabecera.php");
 $idApartamento = $_POST['id_apartamento'];
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $consulta = "SELECT * FROM apartamentos  WHERE id_apartamento = '$idApartamento'";
 
@@ -30,6 +32,7 @@ if ($datos && $datos->num_rows > 0) {
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="./css/apartamento.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <div class="principal">
@@ -57,10 +60,11 @@ if ($datos && $datos->num_rows > 0) {
 
         </div>
         <?php
-            $noches = (strtotime($_SESSION['salida']) - strtotime($_SESSION['llegada'])) / 86400;
+        
+            $noches = (strtotime($_SESSION['salida'] ?? '') - strtotime($_SESSION['llegada'] ?? '')) / 86400;
             $total = ($noches * $fila['precio_noche']);
 
-            
+
         ?>
         <div class="debajoGaleria">
             
@@ -71,9 +75,18 @@ if ($datos && $datos->num_rows > 0) {
                 <div class="servicios fila">
                     <h4>Servicios de este apartamento</h4>
                     <?php
-                    $servicios = explode(',', $fila['servicios']);
-                    foreach ($servicios as $servicio) {
-                        echo "<p>- " . trim($servicio) . "</p>";
+                    $sqlServicios = "SELECT s.nombre_servicio 
+                                    FROM apartamentos a
+                                    JOIN apartamento_servicios asoc ON a.id_apartamento = asoc.id_apartamento
+                                    JOIN servicios s ON asoc.id_servicio = s.id_servicio
+                                    WHERE a.id_apartamento = '$idApartamento'";
+                    $resultadoServicios = $conn->query($sqlServicios);
+                    if ($resultadoServicios && $resultadoServicios->num_rows > 0) {
+                        while ($filaServicio = $resultadoServicios->fetch_assoc()) {
+                            echo "<p>- " . $filaServicio['nombre_servicio'] . "</p>";
+                        }
+                    } else {
+                        echo "<p>No hay servicios disponibles para este apartamento.</p>";
                     }
                     ?>
                 </div>
@@ -129,10 +142,6 @@ if ($datos && $datos->num_rows > 0) {
                                 <?php
                             }
                         }
-
-                        // } else {
-                        //     echo "<div class='comentario'>No hay comentarios</div>";
-                        // }
                         ?>
                     </div>
                 </div>
@@ -144,6 +153,7 @@ if ($datos && $datos->num_rows > 0) {
                             <?php
                             if($total <= 0) {
                                 $total = "Añade fechas de instancia";
+                                
                             } else {
                                 $total = $total . "€ en total";
                             }

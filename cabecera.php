@@ -1,6 +1,8 @@
 
 <header id="header">
-    <div class="logo">CasaGo</div>
+    <a href="./index.php">
+        <div class="logo">CasaGo</div>
+    </a>
     <nav class="user-menu">
         <?php
         if (session_status() === PHP_SESSION_NONE) {

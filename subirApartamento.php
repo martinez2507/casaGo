@@ -22,52 +22,60 @@
         <?php
         session_start();
         include 'cabecera.php';
+        include './php/conexionBD.php';
         ?>
         <div class="container mt-5">
-            <form action="guardar_apartamento.php" method="POST" enctype="multipart/form-data">
+            <form action="./php/guardar_apartamento.php" method="POST" enctype="multipart/form-data">
     
-        <div class="mb-3">
-            <label>Nombre del Apartamento:</label>
-            <input type="text" name="nombre" class="form-control" required>
-        </div>
+            <div class="mb-3">
+                <label>Nombre del Apartamento:</label>
+                <input type="text" name="nombre" class="form-control" required>
+            </div>
 
-        <div class="mb-3">
-            <label>Descripción:</label>
-            <input type="text" name="descripcion" class="form-control" required>
-        </div>
+            <div class="mb-3">
+                <label>Descripción:</label>
+                <input type="text" name="descripcion" class="form-control" required>
+            </div>
 
-        <div class="mb-3">
-            <label>Precio por noche:</label>
-            <input type="number" name="precio_noche" class="form-control" step="0.01" required>
-        </div>
+            <div class="mb-3">
+                <label>Precio por noche:</label>
+                <input type="number" name="precio_noche" class="form-control" step="0.01" required>
+            </div>
 
-        <div class="mb-3">
-            <label>Ciudad:</label>
-            <input type="text" name="ciudad" class="form-control" required>
-        </div>
+            <div class="mb-3">
+                <label>Ciudad:</label>
+                <input type="text" name="ciudad" class="form-control" required>
+            </div>
 
-        <div class="mb-3">
-            <label>Dirección:</label>
-            <input type="text" name="direccion" class="form-control" required>
-        </div>
+            <div class="mb-3">
+                <label>Dirección:</label>
+                <input type="text" name="direccion" class="form-control" required>
+            </div>
 
-        <div class="mb-3">
-            <label>Capacidad:</label>
-            <input type="number" name="capacidad" class="form-control" required>
-        </div>
+            <div class="mb-3">
+                <label>Capacidad:</label>
+                <input type="number" name="capacidad" class="form-control" required>
+            </div>
 
-        <div class="mb-3">
-            <label>Servicios:</label>
-            <input type="text" name="servicios" class="form-control"  placeholder="Separados por comas"required>
-        </div>
+            <div class="mb-3">
+                <?php
+                $res = mysqli_query($conn, "SELECT * FROM servicios");
+                while ($serv = mysqli_fetch_assoc($res)) {
+                    echo '<label>';
+                    // El nombre debe ser un array: servicios[]
+                    echo '<input type="checkbox" name="servicios[]" value="' . $serv['id_servicio'] . '"> ';
+                    echo $serv['nombre_servicio'];
+                    echo '</label><br>';
+                }?>
+            </div>
 
-        <div class="mb-3">
-            <label>Selecciona varias fotos:</label>
-            <input type="file" name="fotos[]" class="form-control" accept="image/*" multiple required>
-            <small class="text-muted">La primera foto se usará para la portada del apartamento.</small>
-        </div>
+            <div class="mb-3">
+                <label>Selecciona varias fotos:</label>
+                <input type="file" name="fotos[]" class="form-control" accept="image/*" multiple required>
+                <small class="text-muted">La primera foto se usará para la portada del apartamento.</small>
+            </div>
 
-        <button type="submit" class="btn btn-primary">Publicar Apartamento</button>
+            <button type="submit" class="btn btn-primary">Publicar Apartamento</button>
     </form>
         </div>
     </body>

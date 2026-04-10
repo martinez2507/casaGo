@@ -1,57 +1,74 @@
+
+
 <?php
 include 'conexionBD.php';
-$nombreApartamento = $_POST['nombre'];
+session_start();
+
+// 1. Recoger datos (Asegúrate de que los nombres coincidan con tu formulario)
+$nombre = $_POST['nombre'];
 $descripcion = $_POST['descripcion'];
-$precioNoche = $_POST['precio_noche'];
+$precio = $_POST['precio_noche'];
 $ciudad = $_POST['ciudad'];
 $direccion = $_POST['direccion'];
 $capacidad = $_POST['capacidad'];
-$servicios = $_POST['servicios'];
-$fotos = $_FILES['fotos'];
+$id_anfitrion = $_SESSION['id_usuario'];
 
-session_start();
-$idAnfitrion = $_SESSION['id_usuario'];
+// Recogemos el array de servicios (los checkboxes)
+$servicios_seleccionados = isset($_POST['servicios']) ? $_POST['servicios'] : [];
 
-// ismertamos el apartamento en la base de datos
-$sql = "INSERT INTO apartamentos (nombre, descripcion, precio_noche, ciudad, direccion, capacidad, servicios, id_anfitrion) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+// 2. INSERTAR EL APARTAMENTO
+// Eliminamos "servicios" del INSERT de apartamentos porque ahora van a su propia tabla
+$sql = "INSERT INTO apartamentos (nombre, descripcion, precio_noche, ciudad, direccion, capacidad, id_anfitrion) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param($nombre, $descripcion, $precio, $ciudad, $direccion, $capacidad, $servicios, $id_anfitrion);
+// Corregido: Las variables deben coincidir exactamente con las de arriba
+$stmt->bind_param("ssdssii", $nombre, $descripcion, $precio, $ciudad, $direccion, $capacidad, $id_anfitrion);
 $stmt->execute();
 
-// cogemos el id del apartamento recién insertado para asociar las fotos
 $id_apartamento = $conn->insert_id;
 
+// 3. INSERTAR LOS SERVICIOS (Tabla intermedia)
+if (!empty($servicios_seleccionados)) {
+    $sql_serv = "INSERT INTO apartamento_servicios (id_apartamento, id_servicio) VALUES (?, ?)";
+    $stmt_serv = $conn->prepare($sql_serv);
+    
+    foreach ($servicios_seleccionados as $id_servicio) {
+        $stmt_serv->bind_param("ii", $id_apartamento, $id_servicio);
+        $stmt_serv->execute();
+    }
+}
 
+// 4. SUBIDA DE FOTOS
 if (isset($_FILES['fotos'])) {
     $fotos = $_FILES['fotos'];
     $total = count($fotos['name']);
-    $portada_asignada = false;
 
     for ($i = 0; $i < $total; $i++) {
         if ($fotos['error'][$i] === UPLOAD_ERR_OK) {
             
+            $nombre_archivo = time() . "_" . $fotos['name'][$i]; // Añadimos timestamp para evitar nombres duplicados
             $tmp_name = $fotos['tmp_name'][$i];
-            
-            // Usamos tu lógica de ruta completa
-            $ruta_completa = "ruta/de/tu/servidor/" . $fotos['name'][$i]; 
+            $ruta_destino = "uploads/" . $nombre_archivo; // Ruta relativa para la DB
 
-            if (move_uploaded_file($tmp_name, $ruta_completa)) {
+            if (move_uploaded_file($tmp_name, $ruta_destino)) {
                 
-                // 1. INSERTAR SIEMPRE en la tabla de imágenes (todas van aquí)
-                $sql_todas = "INSERT INTO imagenes_apartamento (id_apartamento, ruta) VALUES (?, ?)";
-                $stmt_todas = $conn->prepare($sql_todas);
-                $stmt_todas->bind_param("is", $id_apartamento, $ruta_completa);
-                $stmt_todas->execute();
+                // Insertar en imagenes_apartamento (usando url_imagen como pediste)
+                $sql_img = "INSERT INTO imagenes_apartamento (id_apartamento, url_imagen) VALUES (?, ?)";
+                $stmt_img = $conn->prepare($sql_img);
+                $stmt_img->bind_param("is", $id_apartamento, $ruta_destino);
+                $stmt_img->execute();
 
-                // 2. ¿ES LA PRIMERA IMAGEN? La guardamos como portada en la tabla principal
+                // Si es la primera foto ($i == 0), actualizamos la portada del apartamento
                 if ($i === 0) {
-                    $sql_portada = "UPDATE apartamentos SET imagen_portada = ? WHERE id = ?";
-                    $stmt_portada = $conn->prepare($sql_portada);
-                    $stmt_portada->bind_param("si", $ruta_completa, $id_apartamento);
-                    $stmt_portada->execute();
+                    $sql_portada = "UPDATE apartamentos SET imagen_portada = ? WHERE id_apartamento = ?";
+                    $stmt_p = $conn->prepare($sql_portada);
+                    $stmt_p->bind_param("si", $ruta_destino, $id_apartamento);
+                    $stmt_p->execute();
                 }
             }
         }
     }
 }
+
+echo "Apartamento registrado con éxito.";
+?>

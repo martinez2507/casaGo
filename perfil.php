@@ -1,5 +1,6 @@
 <?php
     session_start();
+    
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,9 @@
     <link rel="stylesheet" href="./librerias/alertifyjs/css/themes/default.min.css">
     <link rel="stylesheet" href="./css/perfil.css">
 </head>
+<?php
+include 'cabecera.php';
+?>
 <body>
     <div class="cabeceraPerfil">
         <h1>Perfil de usuario</h1>
