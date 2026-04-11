@@ -9,6 +9,7 @@ html, body {
     color: black;
 }
 .cabeceraPerfil {
+    margin-top: 80px; /* Ajusta este valor al alto de tu header naranja */
     background-color: #1E88E5;
     color: white;
     padding: 20px;

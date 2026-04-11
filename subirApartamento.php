@@ -20,7 +20,9 @@
     <body>
 
         <?php
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         include 'cabecera.php';
         include './php/conexionBD.php';
         ?>
@@ -78,5 +80,7 @@
             <button type="submit" class="btn btn-primary">Publicar Apartamento</button>
     </form>
         </div>
+
+        <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
     </body>
 </html>

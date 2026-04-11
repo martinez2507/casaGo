@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/apartamento.css">
     <link rel="stylesheet" href="./css/responsivoIndex.css">
     <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
     
@@ -18,10 +19,13 @@
 <body>
 
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include 'cabecera.php';
 ?>
-<div class="container mt-5">
+<div class="principal">
+    <div class="container mt-5">
     <h1>Gestionar Apartamentos</h1>
     <p>Aquí puedes ver, editar o eliminar tus apartamentos publicados.</p>
 
@@ -55,3 +59,8 @@ include 'cabecera.php';
     }
     ?>
 </div>
+</div>
+
+<script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
+</body>
+</html>

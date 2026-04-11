@@ -10,7 +10,9 @@
 </head>
 <body>
     <?php 
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     
     if(isset($_SESSION['usuario'])) {
         echo "<h1>Usuario: " .$_SESSION['usuario'] . "</h1>";

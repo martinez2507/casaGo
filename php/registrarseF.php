@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 include('cabecera.html');
 
     $codigo = $_POST['codigo'];
@@ -40,6 +42,7 @@ include('cabecera.html');
         $_SESSION['credenciales_correctas'] = true;
         $_SESSION['usuario'] = $nombreUsu;
         $_SESSION['id_usuario'] = $filas['id_usuario'];
+        header('Location: ../index.php');
     }
 
 $conn->close();

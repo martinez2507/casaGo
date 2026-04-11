@@ -10,7 +10,7 @@ html, body {
     margin: 0;
 }
 body {
-    padding-top: 80px;
+    /* padding-top: 80px; */
 }
  a {
     text-decoration: none;
@@ -20,11 +20,14 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 20px;
+    height: 80px; /* FUERZA una altura fija igual al padding del body */
+    padding: 0 20px; /* Quitamos padding vertical para que no sume al alto */
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 5;
+    background-color: #FF7043;
+    color: white;
 
     /* background: transparent; */
     background-color: #FF7043;
@@ -54,9 +57,9 @@ body {
     gap: 15px;
 }
 .yaIniciado {
-    font-size: 1.1rem;
-    padding: 9px 18px; /* Más relleno para que sea imponente como en la foto */
-    border-radius: 10px; /* Bordes más redondeados */
+    font-size: 1rem;
+    padding: 5px 12px; /* Reducido para que quepa en los 80px del header */
+    border-radius: 10px;
     font-weight: bold;
 }
 /* El nombre de usuario */

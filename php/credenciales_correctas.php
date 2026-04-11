@@ -7,7 +7,11 @@
     <link rel='stylesheet' type='text/css' media='screen' href='./css/estilos.css'>
 </head>
 <body>
-   
+   <?php
+    if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+   ?>
     <h1>Inicio de sesión correcto <?= $_SESSION['usuario']?></h1>
 
 </body>

@@ -2,7 +2,9 @@
 
 <?php
 include 'conexionBD.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
 // 1. Recoger datos (Asegúrate de que los nombres coincidan con tu formulario)
 $nombre = $_POST['nombre'];
@@ -42,33 +44,51 @@ if (!empty($servicios_seleccionados)) {
 if (isset($_FILES['fotos'])) {
     $fotos = $_FILES['fotos'];
     $total = count($fotos['name']);
+    
+    // 1. Ruta física donde PHP moverá el archivo (desde la carpeta /php/)
+    $directorio_fisico = "../img/apartamentos/";
+
+    // Crear el directorio si no existe
+    if (!is_dir($directorio_fisico)) {
+        mkdir($directorio_fisico, 0777, true);
+    }
 
     for ($i = 0; $i < $total; $i++) {
         if ($fotos['error'][$i] === UPLOAD_ERR_OK) {
             
-            $nombre_archivo = time() . "_" . $fotos['name'][$i]; // Añadimos timestamp para evitar nombres duplicados
+            // 2. Generar nombre único para evitar que fotos con el mismo nombre se borren
+            $nombre_archivo = time() . "_" . $i . "_" . basename($fotos['name'][$i]);
             $tmp_name = $fotos['tmp_name'][$i];
-            $ruta_destino = "uploads/" . $nombre_archivo; // Ruta relativa para la DB
+            
+            // Ruta completa para mover el archivo (Carpeta + Nombre)
+            $ruta_para_mover = $directorio_fisico . $nombre_archivo;
+            
+            // 3. Ruta para guardar en la BD (la que usará el HTML para mostrar la foto)
+            $ruta_db = "./img/apartamentos/" . $nombre_archivo;
 
-            if (move_uploaded_file($tmp_name, $ruta_destino)) {
+            // Intentar mover el archivo
+            if (move_uploaded_file($tmp_name, $ruta_para_mover)) {
                 
-                // Insertar en imagenes_apartamento (usando url_imagen como pediste)
+                // Insertar en la tabla imagenes_apartamento
                 $sql_img = "INSERT INTO imagenes_apartamento (id_apartamento, url_imagen) VALUES (?, ?)";
                 $stmt_img = $conn->prepare($sql_img);
-                $stmt_img->bind_param("is", $id_apartamento, $ruta_destino);
+                $stmt_img->bind_param("is", $id_apartamento, $ruta_db);
                 $stmt_img->execute();
 
-                // Si es la primera foto ($i == 0), actualizamos la portada del apartamento
+                // Si es la primera foto ($i == 0), actualizar la portada principal
                 if ($i === 0) {
                     $sql_portada = "UPDATE apartamentos SET imagen_portada = ? WHERE id_apartamento = ?";
                     $stmt_p = $conn->prepare($sql_portada);
-                    $stmt_p->bind_param("si", $ruta_destino, $id_apartamento);
+                    $stmt_p->bind_param("si", $ruta_db, $id_apartamento);
                     $stmt_p->execute();
                 }
+            } else {
+                echo "Error: No se pudo mover el archivo " . $fotos['name'][$i];
             }
         }
     }
 }
 
-echo "Apartamento registrado con éxito.";
+header("Location: ../gestionApartamentos.php");
+exit();
 ?>

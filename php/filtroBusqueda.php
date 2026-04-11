@@ -1,7 +1,9 @@
 <?php
 
 include("conexionBD.php");
-
+if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 $precioMax = $_GET['precio'] ?? 2000;
 $extras = $_GET['extras'] ?? []; // Esto es un array gracias a name="extras[]"
 

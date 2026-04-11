@@ -81,6 +81,8 @@ $filas = $datos->num_rows;
     <link rel='stylesheet' type='text/css' media='screen' href='./css/busqueda.css'>
 </head>
 <body>
+    <?php
+    include 'cabecera.php';?>
 <div class="main-container">
     <aside class="sidebar">
         <h3>Filtros</h3>

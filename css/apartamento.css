@@ -9,6 +9,7 @@
     padding: 15px;
     margin-left: 10%;
     margin-right: 10%;
+    margin-top: 100px !important;
 }
 
 .galeria {
@@ -109,10 +110,11 @@
 
 /* FORMULARIO RESERVA */
 .reservar{
-    width: 425px; /* ancho fijo del formulario */
+    width: 425px;
     position: sticky;
-    top: 50px;
+    top: 110px; /* Esto lo mantiene separado del header naranja al bajar */
     margin-left: 20px;
+    z-index: 1;
 }
 
 .fechas {

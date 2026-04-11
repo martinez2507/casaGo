@@ -11,7 +11,9 @@
 //     if
 ?>
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if (!isset($_SESSION['reg_email'])) {
     header("Location: ../index.php");
     exit();

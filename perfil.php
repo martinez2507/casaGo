@@ -1,7 +1,3 @@
-<?php
-    session_start();
-    
-    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +13,9 @@
     <link rel="stylesheet" href="./css/perfil.css">
 </head>
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include 'cabecera.php';
 ?>
 <body>
