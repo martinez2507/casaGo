@@ -25,7 +25,6 @@
     ?>
     <main>
         <div class="buscador">
-            
             <div class="dentroBuscador">
                 <h1>Reserva unas vacaciones de ensueño</h1>
                 <form action="busqueda.php" method="POST" id="formulario">
@@ -60,33 +59,44 @@
             
         </div>
         <div class="destinosDestacados">
-            <h3>Destinos populares</h3>
-            <div class="cartas">
-                <div class="card " style="width: 18rem;">
-                    <img src="./img/cudillero2.jpg" class="card-img-top" alt="Cudillero" height="200">
-                <div class="card-body">
-                    <p class="card-text">Asturias</p>
+            <form class="destPopForm"action="./busquedaPopular.php" method="POST">
+                <h3>Destinos populares</h3>
+                <div class="cartas">
+                    <button type="submit" name="destino" value="Asturias" class="card-btn">
+                        <div class="card " style="width: 18rem;">
+                            <img src="./img/cudillero2.jpg" class="card-img-top" alt="Cudillero" height="200">
+                        <div class="card-body">
+                            <p class="card-text">Asturias</p>
+                        </div>
+                        </div>
+                    </button>
+                    <button type="submit" name="destino" value="Galicia" class="card-btn">
+                    <div class="card card1" style="width: 18rem;">
+                        <a href="./apartamento.php"><img src="./img/galicia.jpeg" class="card-img-top" alt="Galicia" height="200"></a>
+                    <div class="card-body">
+                        <p class="card-text">Galicia</p>
+                    </div>
+                    </div>
+                    </button>
+                    <button type="submit" name="destino" value="Cataluña" class="card-btn">
+                    <div class="card" style="width: 18rem;" >
+                        <img src="./img/valdaran3.jpg" class="card-img-top" alt="Val d ´Aran" height="200">
+                    <div class="card-body">
+                        <p class="card-text">Cataluña</p>
+                    </div>
+                    </div>
+                    </button>
+                    <button type="submit" name="destino" value="Huesca" class="card-btn">
+                    <div class="card card1" style="width: 18rem;">
+                        <img src="./img/huesca.jpg" class="card-img-top" alt="Huesca" height="200"> 
+                    <div class="card-body">
+                        <p class="card-text">Aragón</p>
+                        
+                    </div>
                 </div>
-                </div>
-                <div class="card card1" style="width: 18rem;">
-                    <a href="./apartamento.php"><img src="./img/galicia.jpeg" class="card-img-top" alt="Galicia" height="200"></a>
-                <div class="card-body">
-                    <p class="card-text">Galicia</p>
-                </div>
-                </div>
-                <div class="card" style="width: 18rem;" >
-                    <img src="./img/valdaran3.jpg" class="card-img-top" alt="Val d ´Aran" height="200">
-                <div class="card-body">
-                    <p class="card-text">Cataluña</p>
-                </div>
-                </div>
-                <div class="card card1" style="width: 18rem;">
-                    <img src="./img/huesca.jpg" class="card-img-top" alt="Huesca" height="200"> 
-                <div class="card-body">
-                    <p class="card-text">Aragón</p>
-                    
-                </div>
-            </div>
+                </button>
+            </form>
+            
             </div>
             
         </div>
@@ -134,9 +144,7 @@
             </div>
         </div>
     </main>
-    <footer>
-        <p>TFG &copy; 2026 CasaGo. Todos los derechos reservados.</p>
-    </footer>
+    <?php include 'footer.php';  ?>
     <script src="./js/script.js"></script>
     <script src="./librerias/alertifyjs/alertify.min.js"></script>
     <script>

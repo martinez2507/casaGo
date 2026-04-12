@@ -34,9 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    /**
-     * Función para construir el HTML de cada apartamento
-     */
     const renderizarApartamentos = (lista) => {
         // Si no hay resultados
         if (lista.length === 0) {
@@ -44,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Limpiamos y generamos las "cards"
         contenedorResultados.innerHTML = lista.map(apt => `
             <article class="apartamento-card">
                 <img src="${apt.imagen}" alt="${apt.titulo}" class="apt-img">
@@ -59,10 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </article>
         `).join('');
     };
-
-    /**
-     * Eventos de escucha (Listeners)
-     */
 
     // 1. Detectar cambios en checkboxes y slider de precio
     formulario.addEventListener('change', () => {

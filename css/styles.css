@@ -226,29 +226,48 @@ header.scrolled .yaIniciado:hover {
     padding: 20px;
 }
 
-/* Estilo base de la carta */
 .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Controla la velocidad de la animación */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
     cursor: pointer;
-    overflow: hidden; /* Evita que la imagen se salga de los bordes si tiene bordes redondeados */
+    overflow: hidden; 
     border-radius: 8px;
 }
 
-/* Efecto al pasar el mouse (Hover) */
 .card:hover {
-    transform: scale(1.05); /* Amplía la carta un 5% */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar profundidad */
-    z-index: 10; /* Asegura que la carta ampliada quede por encima de las demás */
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    z-index: 10; 
 }
 
-/* Opcional: Efecto extra solo en la imagen */
 .card-img-top {
     transition: transform 0.3s ease;
 }
 
 .card:hover .card-img-top {
-    filter: brightness(1.1); /* Aclara un poquito la imagen al pasar el mouse */
+    filter: brightness(1.1); 
 }
+
+.card-btn {
+    background: transparent;
+    border: none;
+    outline: none;       
+    box-shadow: none;    
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: block;     
+    appearance: none;    
+    -webkit-appearance: none;
+}
+
+.card-btn:focus, 
+.card-btn:active, 
+.card-btn:hover {
+    outline: none;
+    border: none;
+    background: none;
+}
+
 footer{
     background-color: #1E88E5;
     color: white;
