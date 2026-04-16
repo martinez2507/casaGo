@@ -35,7 +35,7 @@ include('../cabecera.php');
             $_SESSION['id_usuario'] = $filas['id_usuario'];
             $_SESSION['email'] = $filas['correo_electronico'];
             $_SESSION['rol'] = $filas['rol'];
-            $_SESSION['mensaje'] = "Inicio de sesión exitoso";
+            $_SESSION['mensaje'] = "Inicio de sesión correcto";
             $_SESSION['tipo'] = "success";
         } else {
             $_SESSION['credenciales_correctas'] = false;

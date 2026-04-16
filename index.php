@@ -25,6 +25,59 @@
     ?>
     <main>
         <div class="buscador">
+            <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./img/playaTarragona.jpg" class="d-block w-100" alt="Playa Tarragona">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./img/cudillero2.jpg" class="d-block w-100" alt="Cudillero">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./img/granada.jpg" class="d-block w-100" alt="Granada">
+                    </div>
+                </div>
+            </div>
+
+    <div class="dentroBuscador">
+        <h1>Reserva unas vacaciones de ensueño</h1>
+        <form action="busqueda.php" method="POST" id="formulario">
+            <div class="search-bar">
+                <div class="field">
+                    <label>¿A dónde vas?</label>
+                    <input type="text" placeholder="Destino" name="lugar">
+                </div>
+                <div class="field">
+                    <label>Llegada</label>
+                    <input type="date" name="llegada">
+                </div>
+                <div class="field">
+                    <label>Salida</label>
+                    <input type="date" name="salida">
+                </div>
+                <div class="field">
+                    <label>Huéspedes</label>
+                    <input type="number" min="1" placeholder="Personas" name="huespedes">
+                </div>
+                <button class="btn-buscar" type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
+        <!-- <div class="buscador">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./img/playaTarragona.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./img/cudillero2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./img/galicia.jpeg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+            </div>
             <div class="dentroBuscador">
                 <h1>Reserva unas vacaciones de ensueño</h1>
                 <form action="busqueda.php" method="POST" id="formulario">
@@ -57,7 +110,7 @@
                 
             </div>
             
-        </div>
+        </div> -->
         <div class="destinosDestacados">
             <form class="destPopForm"action="./busquedaPopular.php" method="POST">
                 <h3>Destinos populares</h3>

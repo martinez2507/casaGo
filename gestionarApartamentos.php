@@ -56,6 +56,32 @@ include 'cabecera.php';
             </div>
             <?php
         }
+    } else {
+        ?>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <i class="bi bi-house-add"></i>
+                        </div>
+                        
+                        <h2 class="fw-bold">Aún no tienes apartamentos</h2>
+                        <p class="text-muted mb-5">
+                            Parece que todavía no has publicado ningún alojamiento. 
+                            ¡Empieza ahora y llega a miles de viajeros!
+                        </p>
+
+                        <a href="subirApartamento.php" class="btn btn-primary btn-lg btn-lg-custom shadow">
+                            <i class="bi bi-plus-lg me-2"></i> Subir mi primer apartamento
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+<?php
     }
     ?>
 </div>

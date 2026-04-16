@@ -89,6 +89,6 @@ if (isset($_FILES['fotos'])) {
     }
 }
 
-header("Location: ../gestionApartamentos.php");
+header("Location: ../gestionarApartamentos.php");
 exit();
 ?>

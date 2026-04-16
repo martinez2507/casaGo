@@ -18,7 +18,7 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
             <ul>
                 <li><a href="index.php">Inicio</a></li>
                 <?php if (isset($_SESSION['id_usuario'])): ?>
-                    <li><a href="mis_reservas.php">Mis Reservas</a></li>
+                    <li><a href="reservas.php">Mis Reservas</a></li>
                 <?php endif; ?>
                 <li><a href="#">Sobre nosotros</a></li>
                 <li><a href="mailto:casagoof@gmail.com">Contacto</a></li>

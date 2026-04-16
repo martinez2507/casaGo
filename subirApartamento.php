@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gestionar Apartamentos</title>
+        <title>Sube tu apartamento</title>
 
         <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
         
@@ -82,5 +82,6 @@
         </div>
 
         <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
+        <script src="./js/subirApartamento.js"></script>
     </body>
 </html>

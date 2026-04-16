@@ -60,7 +60,8 @@ include 'cabecera.php';
 
         <div class="cajaPerfil">
             <h2>Configuración</h2>
-            <a href="./configuracion.php"><div class="subApartamento">Edita tu perfil <i class="fa-solid fa-arrow-right"></i></div></a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarUsu">
+            <div class="subApartamento" id="editarPerfil">Edita tu perfil <i class="fa-solid fa-arrow-right"></i></div>
         </div>
 
         <div class="cajaPerfil">
@@ -68,6 +69,41 @@ include 'cabecera.php';
             <a href="./reservas.php"><div class="subApartamento">Consulta tus reservas <i class="fa-solid fa-arrow-right"></i></div></a>
         </div>
 
-        <!-- Agrega más detalles del perfil según sea necesario -->
+        <div class="modal fade" id="modalModificarUsu" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modificar datos personales</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-check-label" for="inputNomUsuario">Nombre:</label>
+                        <input type="text" class="form-control" placeholder="Nombre de usuario" id="inputNomUsuario" >
+                        
+                        <label class="form-check-label" for="inputPrimerApellido">Primer apellido:</label>
+                        <input type="text" class="form-control" placeholder="Primer apellido" id="inputPrimerApellido" >
+
+                        <label class="form-check-label" for="inputSegundoApellido">Segundo apellido:</label>
+                        <input type="text" class="form-control" placeholder="Segundo apellido" id="inputSegundoApellido" >
+
+                        <label class="form-check-label" for="inputCorreo">Correo electrónico:</label>
+                        <input type="email" class="form-control" placeholder="Correo electrónico" id="inputCorreo" >
+
+                        <label class="form-check-label" for="inputContraseña">Contraseña:</label>
+                        <input type="password" class="form-control" placeholder="Contraseña" id="inputContraseña" >
+                    </div>
+                    
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="eleccion" id="fabrica" value="fabrica">
+                        <label class="form-check-label" for="fabrica">FÃ¡brica</label>
+                    </div><br>
+
+                    <button type="button" class="btn btn-success" id="btnSiguiente">Guardar</button>
+                    
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
          

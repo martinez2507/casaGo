@@ -7,6 +7,10 @@
     display: flex;
 }
 
+body {
+    padding-top: 100px; /* El alto de tu menú + el espacio extra que quieras */
+}
+
 .sidebar{
     margin-left: 10%;
     background-color: rgb(206, 206, 206) !important;
