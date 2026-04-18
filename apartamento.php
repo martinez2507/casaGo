@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$consulta = "SELECT * FROM apartamentos  WHERE id_apartamento = '$idApartamento'";
+$consulta = "SELECT * FROM apartamentos  WHERE id_apartamento = '$idApartamento' AND activo = 0";
 
 $datos = $conn->query($consulta);
 

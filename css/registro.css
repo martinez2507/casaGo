@@ -1,15 +1,15 @@
+/* --- CONFIGURACIÓN GENERAL --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f7f6;
 }
 
-/* El contenedor que envuelve todo (fondoForm) */
 .fondoForm {
     min-height: 100vh;
     display: flex;
@@ -18,7 +18,7 @@ body {
     padding: 20px;
 }
 
-/* La caja blanca (contLogin) ahora es el "box" de pantalla partida */
+/* --- CONTENEDOR PRINCIPAL --- */
 .contLogin {
     display: flex;
     width: 1000px;
@@ -30,13 +30,25 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
-/* El lado izquierdo/derecho del formulario (contF) */
+/* Esta clase la usas en registrarse.php: <div class="contLogin registro-modo"> */
+.registro-modo {
+    flex-direction: row-reverse;
+}
+
+/* --- SECCIÓN DEL FORMULARIO --- */
 .contF {
     flex: 1;
     padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.contF img {
+    margin-bottom: 10px;
+    object-fit: contain;
 }
 
 .contF h1 {
@@ -46,8 +58,13 @@ body {
     font-weight: 700;
 }
 
+.contF form {
+    width: 100%;
+}
+
 .contF form label {
     display: block;
+    text-align: left; /* Las etiquetas alineadas a la izquierda quedan mejor */
     margin-top: 15px;
     margin-bottom: 8px;
     font-weight: 600;
@@ -68,7 +85,7 @@ body {
     outline: none;
 }
 
-/* Los botones (formu) */
+/* --- BOTÓN Y ENLACES --- */
 .formu {
     width: 100%;
     padding: 14px;
@@ -80,18 +97,18 @@ body {
     font-weight: 700;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .formu:hover {
     background-color: #1565C0;
     transform: translateY(-2px);
 }
-
-/* Para el enlace de registrarse/login */
+.contF img {
+    margin-bottom: 5px;
+}
 .contF a {
-    display: block;
-    text-align: center;
+    display: inline-block;
     margin-top: 15px;
     color: #ff5a3d; /* Tu Naranja */
     text-decoration: none;
@@ -102,10 +119,11 @@ body {
     text-decoration: underline;
 }
 
-/* Lado de la imagen (lo añadimos como elemento nuevo al lado de contF) */
-.auth-imagen {
+/* --- SECCIÓN DE LA IMAGEN --- */
+.imagen {
     flex: 1.2;
-    background-image: url('../img/fondoFormulario.jpg');
+    background-image: linear-gradient(rgba(30, 136, 229, 0.2), rgba(30, 136, 229, 0.2)), 
+                      url('../img/fondoFormulario.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -113,26 +131,31 @@ body {
     padding: 40px;
 }
 
-.auth-imagen-texto {
-    background: rgba(255, 90, 61, 0.85); /* Tu Naranja con transparencia */
+.imagen-texto {
+    background: rgba(255, 90, 61, 0.85); /* Tu Naranja */
     backdrop-filter: blur(8px);
     padding: 25px;
     border-radius: 15px;
     color: white;
     width: 100%;
+    text-align: left;
 }
 
-/* Inversión para registro (opcional) */
-.registro-modo .contLogin {
-    flex-direction: row-reverse;
+.imagen-texto h2 {
+    margin-bottom: 5px;
 }
 
-@media (max-width: 900px) {
-    .auth-imagen {
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .imagen {
         display: none;
     }
     .contLogin {
-        width: 450px;
+        width: 100%;
+        max-width: 450px;
         height: auto;
+    }
+    .contF {
+        padding: 40px 20px;
     }
 }

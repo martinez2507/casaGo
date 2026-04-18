@@ -31,29 +31,27 @@ include 'cabecera.php';
 
     <?php
     include './php/conexionBD.php';
-    $sql = "SELECT * FROM apartamentos WHERE id_anfitrion = '$_SESSION[id_usuario]'";
+    $sql = "SELECT * FROM apartamentos WHERE id_anfitrion = '$_SESSION[id_usuario]' AND activo = 0";
     $consulta = $conn->query($sql);
     if($consulta->num_rows > 0) {
         while($apartamento = $consulta->fetch_assoc()) {
             ?>
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="<?= $apartamento['imagen_portada']; ?>" class="img-fluid rounded-start" alt="<?= $apartamento['nombre']; ?>" width="500" height="400">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <form action="actualizarApartamento.php" method="post">
-                                <h5 class="card-title"><?= $apartamento['nombre']; ?></h5>
-                                <p class="card-text"><?= $apartamento['descripcion']; ?></p>
-                                <button class="btn btn-primary" data-id="<?= $apartamento['id_apartamento']; ?>">Editar</button>
-                                <button class="btn btn-danger" data-id="<?= $apartamento['id_apartamento']; ?>">Eliminar</button>
-                            </form>
-                            
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="<?= $apartamento['imagen_portada']; ?>" class="img-fluid rounded-start" alt="<?= $apartamento['nombre']; ?>" width="500" height="400">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                    <h5 class="card-title"><?= $apartamento['nombre']; ?></h5>
+                                    <p class="card-text"><?= $apartamento['descripcion']; ?></p>
+                                    <button class="btn btn-primary" data-id="<?= $apartamento['id_apartamento']; ?>">Editar</button>
+                                    <button class="btn btn-danger btn-borrar" data-id="<?= $apartamento['id_apartamento']; ?>">Eliminar</button>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             <?php
         }
     } else {
@@ -87,6 +85,34 @@ include 'cabecera.php';
 </div>
 </div>
 
+        <div class="modal fade" id="modalEditar" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="eleccion" id="empleado" value="empleado" checked>
+                        <label class="form-check-label" for="empleado">Empleado</label>
+                    </div>
+                    
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="eleccion" id="fabrica" value="fabrica">
+                        <label class="form-check-label" for="fabrica">FÃ¡brica</label>
+                    </div><br>
+
+                    <button type="button" class="btn btn-success" id="btnSiguiente">Guardar</button>
+                    
+                </div>
+                </div>
+            </div>
+        </div>
+
 <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
+<script src="./librerias/alertifyjs/alertify.min.js"></script>
+<script src="./js/gestionarApartamento.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </body>
 </html>

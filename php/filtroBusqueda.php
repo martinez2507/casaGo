@@ -12,11 +12,12 @@ $salida = $_SESSION['salida'] ?? '';
 $consulta = "SELECT a.* FROM apartamentos a WHERE 1=1";
 
 if (!empty($ciudad)) {
-    $consulta .= " AND a.ciudad LIKE '%" . $conn->real_escape_string($ciudad) . "%'";
+    $consulta .= " AND (a.ciudad LIKE '%$ciudad%' OR a.direccion LIKE '%$ciudad%')";
 }
 
 $consulta .= " AND a.capacidad >= $huespedes";
 $consulta .= " AND a.precio_noche <= $precio_max";
+$consulta .= " AND a.activo = 0 ";
 
 if (!empty($llegada) && !empty($salida)) {
     $consulta .= " AND a.id_apartamento NOT IN (
@@ -28,7 +29,6 @@ if (!empty($llegada) && !empty($salida)) {
 if (!empty($extras)) {
     foreach ($extras as $id_serv) {
         $id = (int)$id_serv;
-        // Verifica si tu tabla es 'apartamentos_servicios' o 'servicios_apartamentos'
         $consulta .= " AND a.id_apartamento IN (SELECT id_apartamento FROM apartamento_servicios WHERE id_servicio = $id)";
     }
 }
