@@ -1,49 +1,77 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
+include_once("conexionBD.php");
 
-include("conexionBD.php");
-if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-$precioMax = $_GET['precio'] ?? 2000;
-$extras = $_GET['extras'] ?? []; // Esto es un array gracias a name="extras[]"
+$ciudad = $_REQUEST['ciudad'] ?? $_REQUEST['lugar'] ?? '';
+$precio_max = $_REQUEST['precio'] ?? 2000;
+$extras = $_REQUEST['extras'] ?? [];
+$huespedes = $_SESSION['huespedes'] ?? 1;
+$llegada = $_SESSION['llegada'] ?? '';
+$salida = $_SESSION['salida'] ?? '';
 
-// 3. Construir la consulta SQL dinámicamente
-$ciudad = $_GET['city'] ?? '';
-$precioMax = $_GET['precio'] ?? 2000;
+$consulta = "SELECT a.* FROM apartamentos a WHERE 1=1";
 
-$sql = "SELECT * FROM apartamentos WHERE precio <= :precio";
-$params = [':precio' => $precioMax];
-
-if ($ciudad !== '') {
-    $sql .= " AND ciudad LIKE :ciudad";
-    $params[':ciudad'] = "%$ciudad%";
+if (!empty($ciudad)) {
+    $consulta .= " AND a.ciudad LIKE '%" . $conn->real_escape_string($ciudad) . "%'";
 }
 
-// Si el usuario marcó checkboxes de extras
+$consulta .= " AND a.capacidad >= $huespedes";
+$consulta .= " AND a.precio_noche <= $precio_max";
+
+if (!empty($llegada) && !empty($salida)) {
+    $consulta .= " AND a.id_apartamento NOT IN (
+        SELECT r.id_apartamento FROM reservas r
+        WHERE NOT (r.fecha_fin < '$llegada' OR r.fecha_inicio > '$salida')
+    )";
+}
+
 if (!empty($extras)) {
-    foreach ($extras as $indice => $extra) {
-        // Suponiendo que en tu DB los extras son columnas booleanas (0 o 1)
-        // O podrías usar una tabla relacional, pero para este ejemplo:
-        $sql .= " AND $extra = 1"; 
+    foreach ($extras as $id_serv) {
+        $id = (int)$id_serv;
+        // Verifica si tu tabla es 'apartamentos_servicios' o 'servicios_apartamentos'
+        $consulta .= " AND a.id_apartamento IN (SELECT id_apartamento FROM apartamento_servicios WHERE id_servicio = $id)";
     }
 }
 
-// 4. Ejecutar y devolver JSON
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$resultados = $stmt->fetchAll();
+$datos = $conn->query($consulta);
+$filas_count = $datos->num_rows;
 
-// Importante: Decirle al navegador que esto es JSON
-header('Content-Type: application/json');
-
-// IMPORTANTE: Si tus "extras" en la DB no son un array, 
-// puedes "simularlo" antes de enviar para que el JS no falle
-foreach ($resultados as &$apt) {
-    // Ejemplo: convertimos columnas de la DB a un array para el JS
-    $apt['extras'] = [];
-    if (isset($apt['wifi']) && $apt['wifi']) $apt['extras'][] = 'WiFi';
-    if (isset($apt['piscina']) && $apt['piscina']) $apt['extras'][] = 'Piscina';
-    if (isset($apt['parking']) && $apt['parking']) $apt['extras'][] = 'Parking';
+if ($ciudad == '') {
+    echo "<h2>Hay un total de $filas_count apartamentos en España.</h2>";
+} else {
+    echo "<h2>Hay un total de $filas_count apartamentos en $ciudad.</h2>";
 }
 
-echo json_encode($resultados);
+if ($filas_count > 0) {
+    while ($apto = $datos->fetch_assoc()) {
+        $resVal = $conn->query("SELECT ROUND(IFNULL(AVG(puntuacion), 0), 1) as media FROM valoraciones WHERE id_apartamento = {$apto['id_apartamento']}");
+        $puntuacion = $resVal->fetch_assoc()['media'] ?? 0;
+        ?>
+        <form action="apartamento.php" method="POST" target="_blank">
+            <div class="apartamento">
+                <input type="hidden" name="id_apartamento" value="<?=$apto['id_apartamento']?>">
+                <div class="nomImg">
+                    <img class="imgApt" src="<?=$apto['imagen_portada']?>">
+                    <div class="desc">
+                        <div class="titVal">
+                            <button type="submit">
+                                <h4><?=$apto['nombre']?></h4>
+                            </button>
+                            <?= $puntuacion > 0 ? "<span class='valoracion'>$puntuacion ⭐</span>" : "<span class='nuevo'>Nuevo</span>" ?>
+                        </div>
+                        <div class="detalles"><p><?=$apto['descripcion']?></p></div>
+                        <div><h5><?=$apto['precio_noche']?>€</h5></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <?php
+    }
+} else {
+   echo "
+    <div class='sin-resultados'>
+        <img src='./img/sinResultados.png' alt='Sin resultados'>
+        <p>No hemos encontrado apartamentos que coincidan con tus filtros.</p>
+        <button type='button' onclick='window.location.reload();'>Limpiar filtros</button>
+    </div>";
+}

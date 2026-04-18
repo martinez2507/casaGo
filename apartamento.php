@@ -90,7 +90,7 @@ if ($datos && $datos->num_rows > 0) {
                     }
                     ?>
                 </div>
-                <div class="valoracion fila">
+                <div class="valoracion">
                     <h4>Valoración de este apartamento</h4>
                     
                     <?php

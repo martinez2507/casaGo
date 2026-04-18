@@ -3,29 +3,80 @@
     margin: 0;
 }
 
+body {
+    padding-top: 100px;
+}
+
 .main-container {
     display: flex;
+    align-items: flex-start;
+    padding: 20px 40px;
+    gap: 40px;
+    background-color: #f9f9f9;
 }
 
-body {
-    padding-top: 100px; /* El alto de tu menú + el espacio extra que quieras */
+.sidebar {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    border: 1px solid #efefef;
+    width: 350px; 
+    min-width: 350px;
+    margin-left: 30px; 
+    position: sticky;
+    top: 100px; 
+    z-index: 10;
 }
 
-.sidebar{
-    margin-left: 10%;
-    background-color: rgb(206, 206, 206) !important;
-    flex-direction: column;
-    flex-grow: 1;
-    border:  1px solid black;
-    padding: 15px;
-    margin-top: 5%;
-    height: 20%;
-    border-radius: 15px;
+.sidebar h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 25px;
+    font-weight: 800;
 }
 
-#filtros {
-    border: 1px solid black;
+input[type="range"] {
+    margin: 15px 0;
+    cursor: grab;
+}
+
+.filtro-serv {
+    max-height: 350px;
+    /* para el scroll */
+    overflow-y: auto;
+    padding-right: 15px;
     margin-top: 15px;
+}
+
+.filtro-serv label {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 1rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.filtro-serv input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    accent-color: #ff5a5f;
+}
+
+.filtro-serv::-webkit-scrollbar {
+    width: 5px;
+}
+
+.filtro-serv::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.filtro-serv::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
 }
 .apartamentos {
     display: flex;
@@ -118,4 +169,42 @@ body {
     border: 1px solid rgb(179, 179, 179);
     border-radius: 10px;
     padding: 25px;
+}
+
+.sin-resultados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    text-align: center;
+    width: 100%;
+    color: #888; /* Tono gris para el texto */
+}
+
+.sin-resultados img {
+    max-width: 200px; /* Ajusta el tamaño a tu gusto */
+    height: auto;
+    margin-bottom: 20px;
+    filter: grayscale(100%); /* Esto hace que cualquier imagen sea gris */
+    opacity: 0.6; /* Le da un toque más suave */
+}
+
+.sin-resultados p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.sin-resultados button {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: #666;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sin-resultados button:hover {
+    background-color: #ddd;
 }

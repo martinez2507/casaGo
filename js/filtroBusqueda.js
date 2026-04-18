@@ -1,72 +1,45 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Seleccionamos los elementos del DOM
-    const formulario = document.querySelector('#filtros');
-    const contenedorResultados = document.querySelector('#resultadosApar');
-    const inputPrecio = document.querySelector('#precio');
-    const displayPrecio = document.querySelector('#precioS'); // El span que muestra el número
+document.addEventListener("DOMContentLoaded", () => {
+    const formFiltros = document.getElementById("filtros");
+    const contenedor = document.getElementById("resultadosApar");
+    const precio = document.getElementById('precio');
 
-    /**
-     * Función principal para obtener datos mediante AJAX (Fetch API)
-     */
-    const buscarApartamentos = () => {
-        // Creamos los parámetros de búsqueda desde el formulario
-        const datos = new FormData(formulario);
-        const queryParams = new URLSearchParams(datos);
+    // Evitar envío por defecto (si hubiera botón submit)
+    formFiltros.addEventListener("submit", (e) => e.preventDefault());
 
-        // Feedback visual: bajamos la opacidad mientras carga
-        contenedorResultados.style.opacity = '0.5';
+    const cargarApartamentos = () => {
+        const formData = new FormData(formFiltros);
+        const params = new URLSearchParams(formData).toString();
 
-        // Petición al servidor
-        fetch(`../php/filtroBusqueda.php?${queryParams.toString()}`)
-            .then(response => {
-                if (!response.ok) throw new Error('Error en la respuesta del servidor');
-                return response.json();
-            })
-            .then(apartamentos => {
-                renderizarApartamentos(apartamentos);
+        contenedor.style.opacity = "0.5";
+
+        fetch("./php/filtroBusqueda.php?" + params)
+            .then(response => response.text())
+            .then(html => {
+                contenedor.innerHTML = html;
+                contenedor.style.opacity = "1";
             })
             .catch(error => {
-                console.error('Error:', error);
-                contenedorResultados.innerHTML = '<p>Error al cargar los apartamentos.</p>';
-            })
-            .finally(() => {
-                contenedorResultados.style.opacity = '1';
+                console.error("Error al filtrar:", error);
+                contenedor.style.opacity = "1";
             });
     };
 
-    const renderizarApartamentos = (lista) => {
-        // Si no hay resultados
-        if (lista.length === 0) {
-            contenedorResultados.innerHTML = '<p>No se han encontrado apartamentos con esos filtros.</p>';
-            return;
-        }
-
-        contenedorResultados.innerHTML = lista.map(apt => `
-            <article class="apartamento-card">
-                <img src="${apt.imagen}" alt="${apt.titulo}" class="apt-img">
-                <div class="apt-info">
-                    <h4>${apt.titulo}</h4>
-                    <p class="precio-tag">${apt.precio}€ / mes</p>
-                    <p>📍 ${apt.ciudad}</p>
-                    <div class="servicios-tags">
-                        ${apt.extras.map(ext => `<span class="tag">${ext}</span>`).join('')}
-                    </div>
-                </div>
-            </article>
-        `).join('');
-    };
-
-    // 1. Detectar cambios en checkboxes y slider de precio
-    formulario.addEventListener('change', () => {
-        buscarApartamentos();
+    // Cambios inmediatos
+    formFiltros.addEventListener("change", cargarApartamentos);
+    
+    // Ciudad: filtrar mientras escribes (opcional, si prefieres esperar a perder el foco usa 'change')
+    document.getElementById("ciudad").addEventListener("input", cargarApartamentos);
+    
+    // Slider de precio
+    const slider = document.getElementById("precio");
+    slider.addEventListener("input", () => {
+        document.getElementById("precioS").innerText = slider.value;
+        // Opcional: cargarApartamentos() aquí si quieres que filtre mientras arrastras
     });
-
-    // 2. Actualizar el texto del precio dinámicamente mientras arrastras el slider
-    inputPrecio.addEventListener('input', (e) => {
-        displayPrecio.textContent = e.target.value;
-        // Opcional: si quieres que filtre mientras arrastras (muchas peticiones), llama a buscarApartamentos() aquí
-    });
-
-    // 3. Carga inicial al entrar en la página
-    buscarApartamentos();
 });
+
+precio.addEventListener("change", function(){
+    let precioActual = precio.value;
+
+    precioS.innerHTML = precioActual;
+})

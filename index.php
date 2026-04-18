@@ -41,7 +41,7 @@
 
     <div class="dentroBuscador">
         <h1>Reserva unas vacaciones de ensueño</h1>
-        <form action="busqueda.php" method="POST" id="formulario">
+        <form action="busqueda.php" method="REQUEST" id="formulario">
             <div class="search-bar">
                 <div class="field">
                     <label>¿A dónde vas?</label>
