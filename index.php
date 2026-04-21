@@ -64,58 +64,11 @@
         </form>
     </div>
 </div>
-        <!-- <div class="buscador">
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="./img/playaTarragona.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./img/cudillero2.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./img/galicia.jpeg" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-            </div>
-            <div class="dentroBuscador">
-                <h1>Reserva unas vacaciones de ensueño</h1>
-                <form action="busqueda.php" method="POST" id="formulario">
-                    <div class="search-bar">
-                    
-                    <div class="field">
-                        <label>¿A dónde vas?</label>
-                        <input type="text" placeholder="Destino" name="lugar">
-                    </div>
-
-                    <div class="field">
-                        <label>Llegada</label>
-                        <input type="date" name="llegada">
-                    </div>
-
-                    <div class="field">
-                        <label>Salida</label>
-                        <input type="date" name="salida">
-                    </div>
-
-                    <div class="field">
-                        <label>Huéspedes</label>
-                        <input type="number" min="1" placeholder="Personas" name="huespedes" >
-                    </div>
-
-                    <button class="btn-buscar">Buscar</button>
-
-                </div>
-                </form>
-                
-            </div>
-            
-        </div> -->
         <div class="destinosDestacados">
-            <form class="destPopForm"action="./busquedaPopular.php" method="POST">
+            <form class="destPopForm"action="./busqueda.php" method="POST">
                 <h3>Destinos populares</h3>
                 <div class="cartas">
-                    <button type="submit" name="destino" value="Asturias" class="card-btn">
+                    <button type="submit" name="lugar" value="Asturias" class="card-btn">
                         <div class="card " style="width: 18rem;">
                             <img src="./img/cudillero2.jpg" class="card-img-top" alt="Cudillero" height="200">
                         <div class="card-body">
@@ -123,7 +76,7 @@
                         </div>
                         </div>
                     </button>
-                    <button type="submit" name="destino" value="Galicia" class="card-btn">
+                    <button type="submit" name="lugar" value="Galicia" class="card-btn">
                     <div class="card card1" style="width: 18rem;">
                         <a href="./apartamento.php"><img src="./img/galicia.jpeg" class="card-img-top" alt="Galicia" height="200"></a>
                     <div class="card-body">
@@ -131,7 +84,7 @@
                     </div>
                     </div>
                     </button>
-                    <button type="submit" name="destino" value="Cataluña" class="card-btn">
+                    <button type="submit" name="lugar" value="Cataluña" class="card-btn">
                     <div class="card" style="width: 18rem;" >
                         <img src="./img/valdaran3.jpg" class="card-img-top" alt="Val d ´Aran" height="200">
                     <div class="card-body">
@@ -139,7 +92,7 @@
                     </div>
                     </div>
                     </button>
-                    <button type="submit" name="destino" value="Huesca" class="card-btn">
+                    <button type="submit" name="lugar" value="Huesca" class="card-btn">
                     <div class="card card1" style="width: 18rem;">
                         <img src="./img/huesca.jpg" class="card-img-top" alt="Huesca" height="200"> 
                     <div class="card-body">
@@ -159,7 +112,7 @@
             <div class="cartas">
                 <?php
                 include("php/conexionBD.php");
-                $consulta = "SELECT * FROM apartamentos ORDER BY id_apartamento DESC LIMIT 4";
+                $consulta = "SELECT * FROM apartamentos where activo = '0' ORDER BY id_apartamento DESC LIMIT 4 ";
                 $resultado = mysqli_query($conn, $consulta);
                 while ($apartamento = mysqli_fetch_assoc($resultado)) {
 

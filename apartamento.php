@@ -30,6 +30,7 @@ if ($datos && $datos->num_rows > 0) {
     <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
 
     <link rel="stylesheet" href="./css/apartamento.css">
     <link rel="stylesheet" href="./css/styles.css">
@@ -62,7 +63,6 @@ if ($datos && $datos->num_rows > 0) {
         <?php
         
             $noches = (strtotime($_SESSION['salida'] ?? '') - strtotime($_SESSION['llegada'] ?? '')) / 86400;
-            $total = ($noches * $fila['precio_noche']);
 
 
         ?>
@@ -148,39 +148,39 @@ if ($datos && $datos->num_rows > 0) {
             </div>
             <div class="reservar">
                 <div class="fondoForm">
-                    <form action="./php/reservar.php" method="POST">
-                        <h4>
-                            <?php
-                            if($total <= 0) {
-                                $total = "Añade fechas de instancia";
-                                
-                            } else {
-                                $total = $total . "€ en total";
-                            }
-                            echo $total;
-                            ?>
-                        </h4>
+                    <form action="./hacerReserva.php" method="POST" id="formReserva">
+                        <?php
+
+                            $totalNumerico = ($noches > 0) ? ($noches * $fila['precio_noche']) : 0;
+
+                            $textoMostrar = ($totalNumerico <= 0) ? "Añade fechas de instancia" : $totalNumerico . "€ en total";
+                        ?>
+                        <h4 id="totalPrecio"><?php echo $textoMostrar; ?></h4>
                         <div class="fechas">
                             <div class="field" id="llegadaCampo">
                                 <label>Llegada</label>
-                                <input type="date" name="llegada" value="<?=$_SESSION['llegada'] ?? ''; ?>">
+                                <input type="date" name="llegada" id="fechaLlegada" value="<?=$_SESSION['llegada'] ?? ''; ?>">
                             </div>
 
                             <div class="field">
                                 <label>Salida</label>
-                                <input type="date" name="salida" value="<?=$_SESSION['salida'] ?? ''; ?>">
+                                <input type="date" name="salida" id="fechaSalida" value="<?=$_SESSION['salida'] ?? ''; ?>">
                             </div>
                         </div>
                         
                         <div class="viajeros">
                             <div class="field">
                                 <label>Viajeros</label>
-                                <input type="number" placeholder="Número de viajeros" name="viajeros" min="1" value="<?=$_SESSION['huespedes'] ?? '1'; ?>">
+                                <input id="viajeros" type="number" placeholder="Número de viajeros" name="viajeros" min="1" value="<?=$_SESSION['huespedes'] ?? '1'; ?>">
                             </div>
                         </div>
-                        <input type="hidden" name="precioT" value="<?=$total?>">
+                        
+                        <input type="hidden" name="precioT" value="<?=$totalNumerico?>">
+                        <input type="hidden" name="precioNoche" value="<?=$fila['precio_noche']?>">
+                        <input type="hidden" name="idApartamento" value="<?=$idApartamento?>">
+                        <input type="hidden" name="noches" value="<?=$noches?>">
                         <div class="boton">
-                            <button type="submit" class="btnFormu">Reservar</button>
+                            <button type="submit" class="btnFormu" id="btnReservar">Reservar</button>
                         </div>
                     </form>
                 </div>
@@ -194,3 +194,5 @@ if ($datos && $datos->num_rows > 0) {
         <img class="modal-contenido" id="imgGrande">
     </div>
     <script src="./js/modalImagenes.js"></script>
+    <script src="./js/apartamento.js"></script>
+    <script src="./librerias/alertifyjs/alertify.min.js"></script>

@@ -19,7 +19,7 @@
         <div class="contLogin registro-modo">
             
             <div class="contF">
-                <img src="./img/logoCasaGo.png" alt="logoCasaGo" class="logo-registro" width= "200px" height="200px">
+                <img src="./img/logoCasaGo.png" alt="logoCasaGo" class="logo-registro" width= "150px" height="150px">
                 <h1>Crea tu cuenta</h1>
                 
                 <form action="./php/mandarCorreo.php" method="post">
@@ -30,7 +30,8 @@
                     <input type="email" name="correo" id="correo" placeholder="correo@ejemplo.com" required>
                     
                     <label>Contraseña</label>
-                    <input type="password" name="contraseña" id="contraseña" placeholder="Mínimo 8 caracteres" required>
+                    <input type="password" name="contraseña" id="contraseña" placeholder="Mínimo 8 caracteres" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+                    <small>La contraseña debe incluir una minúscula, una mayúscula, un número y un caracter especial</small>
                     
                     <button type="submit" class="formu">Unirse ahora</button>
                 </form>
@@ -52,10 +53,10 @@
 
     <script src="./librerias/alertifyjs/alertify.min.js"></script>
     <?php
-    // Mantengo tus scripts de Alertify y mensajes de sesión igual
     if(isset($_SESSION['usuario'])) {
         echo "<h1 style='position:fixed; bottom:10px; left:10px; font-size:1rem;'>Usuario: " .$_SESSION['usuario'] . "</h1>";
     }
+
 
     if (isset($_SESSION['mensaje'])) {
         $mensaje = $_SESSION['mensaje'];

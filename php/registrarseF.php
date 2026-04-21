@@ -9,7 +9,7 @@ include('cabecera.html');
 
 
     if($codigo == $_SESSION['reg_codigo']) {
-        $servidor = "localhost";
+    $servidor = "localhost";
     $username= "casago";
     $contraseña = "casago";
     $database ="casago";
@@ -34,7 +34,7 @@ include('cabecera.html');
 
         echo "<h1>Usuario $nombreUsu, registrado correctamente</h1>";
 
-        // cogemos id, ya que al ser autoincrementado no lo asignamos a la variable de sesion id_usuario, esto nos vale para que al registrarlo se inicie sesion auitomaticamente y puede añadir eventos  favoritos
+        // cogemos id, ya que al ser autoincrementado no lo asignamos a la variable de sesion id_usuario, esto nos vale para que al registrarlo se inicie sesion auitomaticamente
         $cogerId = "SELECT id from usuarios where correo_electronico = '$correoUsu'";
         $consultaId = $conn->query($sql);
         $filas = $consultaId->fetch_assoc();
@@ -43,6 +43,8 @@ include('cabecera.html');
         $_SESSION['usuario'] = $nombreUsu;
         $_SESSION['id_usuario'] = $filas['id_usuario'];
         header('Location: ../index.php');
+        $_SESSION['tipo'] = "success";
+        $_SESSION['mensaje'] = "Bienvenido a CasaGo";
     }
 
 $conn->close();

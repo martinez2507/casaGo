@@ -176,6 +176,10 @@
     width: 80%;
 }
 
+.btnFormu:hover {
+    background-color: #FF7043;
+}
+
 /* MODAL */
 .modal {
     display: none;

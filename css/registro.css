@@ -22,7 +22,7 @@ body {
 .contLogin {
     display: flex;
     width: 1000px;
-    height: 600px;
+    min-height: 600px;
     max-width: 100%;
     background: #fff;
     border-radius: 20px;
@@ -38,7 +38,7 @@ body {
 /* --- SECCIÓN DEL FORMULARIO --- */
 .contF {
     flex: 1;
-    padding: 50px;
+    padding: 30px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -143,6 +143,16 @@ body {
 
 .imagen-texto h2 {
     margin-bottom: 5px;
+}
+
+small {
+    display: block;
+    text-align: left;
+    color: #666; /* Un gris más suave queda más profesional */
+    font-weight: normal;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    line-height: 1.2;
 }
 
 /* --- RESPONSIVE --- */
