@@ -51,7 +51,7 @@ if ($filas_count > 0) {
             <div class="apartamento">
                 <input type="hidden" name="id_apartamento" value="<?=$apto['id_apartamento']?>">
                 <div class="nomImg">
-                    <img class="imgApt" src="<?=$apto['imagen_portada']?>">
+                    <button type="submit"><img class="imgApt" src="<?=$apto['imagen_portada']?>"></button>
                     <div class="desc">
                         <div class="titVal">
                             <button type="submit">

@@ -188,11 +188,6 @@ if ($datos && $datos->num_rows > 0) {
         </div>
         
     </div>
-
-    <div id="modal" class="modal">
-        <span class="cerrar">&times;</span>
-        <img class="modal-contenido" id="imgGrande">
-    </div>
     <script src="./js/modalImagenes.js"></script>
     <script src="./js/apartamento.js"></script>
     <script src="./librerias/alertifyjs/alertify.min.js"></script>

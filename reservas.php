@@ -102,7 +102,7 @@ $id_usuario_logueado = $_SESSION['id_usuario'];
                                                 <button type="submit" class="btn btn-outline-primary">Ver alojamiento</button>
                                             </form>
 
-                                            <form action="nueva_resena.php" method="POST">
+                                            <form action="añadirReseña.php" method="POST">
                                                 <input type="hidden" name="id_apartamento" value="<?php echo $res['id_apartamento']; ?>">
                                                 <input type="hidden" name="id_reserva" value="<?php echo $res['id_reserva']; ?>">
                                                 <button type="submit" class="btn btn-warning">

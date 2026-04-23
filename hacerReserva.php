@@ -89,7 +89,7 @@
     
     $consulta2 = "SELECT * FROM datos_bancarios where id_usuario = '$idUsuario'";
     $resultado2 = mysqli_query($conn, $consulta2);
-    $tarjeta = mysqli_fetch_assoc($resultado2);
+    $row = mysqli_fetch_assoc($resultado2);
     ?>
     <div class="pagos">
         <h3>Datos de pago</h3>
@@ -129,8 +129,9 @@
         </div>
 
         <div class="botones">
-            <button class="boton-guardar" id="btn-guardar">Guardar Datos de pago</button>
             <button class="boton-pagar" id ="btn-pagar">Pagar</button>
+            <button class='boton-guardar' id='btn-guardar'>Guardar Datos de pago</button>
+
         </div>
         
         

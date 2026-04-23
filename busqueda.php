@@ -7,9 +7,11 @@ include_once("./php/conexionBD.php");
 // Recoger datos iniciales para la sesión
 if(isset($_REQUEST['llegada'])) $_SESSION['llegada'] = $_REQUEST['llegada'];
 if(isset($_REQUEST['salida'])) $_SESSION['salida'] = $_REQUEST['salida'];
-if(isset($_REQUEST['huespedes'])) $_SESSION['huespedes'] = (int)$_REQUEST['huespedes'];
 
-if($_SESSION['huespedes'] == 0){
+if(isset($_REQUEST['huespedes'])) {
+    $_SESSION['huespedes'] = (int)$_REQUEST['huespedes'];
+}
+if(!isset($_SESSION['huespedes']) || $_SESSION['huespedes'] == 0){
     $_SESSION['huespedes'] = 1;
 }
 

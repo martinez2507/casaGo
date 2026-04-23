@@ -12,29 +12,40 @@ if ($metodo === 'GET') {
 
     $sql = "SELECT * FROM apartamentos WHERE id_apartamento = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param( $_SESSION['id_usuario']); 
+    $stmt->bind_param("i", $idApartamento); 
     $stmt->execute();
 
 
     $resultado = $stmt->get_result();
 
-    $apartamentos = [];
-
-    if ($resultado) { 
-        while ($fila = $resultado->fetch_assoc()) { 
-            $apartamentos[] = $fila;
-        }
-    }
+    $apartamento = $resultado->fetch_assoc();
 
     header('Content-Type: application/json');
-    echo json_encode($apartamentos);
+    echo json_encode($apartamento);
+    exit;
+
 } else  if($metodo === 'POST') {
 
     $idApartamento = $_POST['idApartamento'];
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+    $precioNoche = $_POST['precioNoche'];
+    $ciudad = $_POST['ciudad'];
+    $direccion = $_POST['direccion'];
+    $capacidad = $_POST['capacidad'];
     
     if ($_POST['motivo'] == "guardar"){
 
-    
+        $sql = "UPDATE apartamentos SET nombre = ?,descripcion = ?, precio_noche = ?, ciudad = ?, direccion = ?, capacidad = ? WHERE id_apartamento = ?";
+        $stmt = $conn->prepare($sql);
+
+        $activo = 1;
+        $stmt->bind_param("ssissii",$nombre,$descripcion,$precioNoche,$ciudad,$direccion,$capacidad,$idApartamento); 
+        if ($stmt->execute()) {
+            echo "Éxito";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
 
     } else if ($_POST['motivo'] == "borrar"){
 

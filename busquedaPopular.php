@@ -11,7 +11,11 @@ if (!empty($ciudad)) {
     $ciudad_safe = $conn->real_escape_string($ciudad);
     $consulta .= " AND a.ciudad LIKE '%$ciudad_safe%'";
 }
+if(isset($_REQUEST['huespedes'])) $_SESSION['huespedes'] = (int)$_REQUEST['huespedes'];
 
+if($_SESSION['huespedes'] == 0){
+    $_SESSION['huespedes'] = 1;
+}
 // echo $consulta;
 // exit;
 $datos = $conn->query($consulta);

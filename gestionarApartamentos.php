@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/apartamento.css">
-    <link rel="stylesheet" href="./css/responsivoIndex.css">
     <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
     
 
@@ -21,6 +20,10 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
+
+if (!isset($_SESSION['usuario'])){
+    header("Location: ./login.php");
 }
 include 'cabecera.php';
 ?>
@@ -89,30 +92,42 @@ include 'cabecera.php';
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"></h5>
+                    <h5 class="modal-title">Editar Apartamento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="eleccion" id="empleado" value="empleado" checked>
-                        <label class="form-check-label" for="empleado">Empleado</label>
-                    </div>
+                   <b><label>Nombre del Apartamento</label></b>
+                    <input type="text" id="nombre" class="form-control">
                     
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="eleccion" id="fabrica" value="fabrica">
-                        <label class="form-check-label" for="fabrica">FÃ¡brica</label>
-                    </div><br>
+                    <b><label>Descripción</label></b>
+                    <textarea id="descripcion" class="form-control" rows="4"></textarea>
 
-                    <button type="button" class="btn btn-success" id="btnSiguiente">Guardar</button>
+                    <b><label for="precioNoche">Precio x Noche:</label></b>
+                    <input type="number" id="precioNoche" class="form-control">
+
+                    <b><label for="ciudad">Ciudad:</label></b>
+                    <input type="text" id="ciudad" class="form-control">
+
+                    <b><label for="direccion">Dirección:</label></b>
+                    <input type="text" id="direccion" class="form-control">
+
+                    <b><label for="capacidad">Capacidad:</label></b>
+                    <input type="number" id="capacidad" class="form-control">
+
+                    <br>
+                    <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
                     
                 </div>
+                
                 </div>
             </div>
         </div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="./librerias/bootstrap5.3.8/js/bootstrap.bundle.min.js"></script>
 <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
 <script src="./librerias/alertifyjs/alertify.min.js"></script>
 <script src="./js/gestionarApartamento.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 </body>
 </html>

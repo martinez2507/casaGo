@@ -1,18 +1,83 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
+/* Configuración General */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.contenedor {
-    margin-top: 150px;
-}
-.contenedorAcor {
-    margin: 0 auto;
-    max-width: 1200px;    
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+.ayuda-container {
+    padding-top: 80px; 
+    min-height: 80vh;
+    background-color: #f8f9fa;
 }
 
-.accordion-item{
-    border: 1px solid black;
+.ayuda-header {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    color: white;
+    padding: 60px 0;
+    margin-bottom: -40px; 
+}
+
+.ayuda-header h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+
+.card {
+   box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+.accordion-item {
+    border: none;
+    border-bottom: 1px solid #eee !important;
+}
+
+.accordion-item:hover {
+    border: none;
+    background-color: #dcdcdc;
+    border-bottom: 1px solid #eee !important;
+}
+.accordion-item:last-child {
+    border-bottom: none !important;
+}
+
+.accordion-button {
+    font-weight: 600;
+    color: #444;
+    padding: 20px 15px;
+    transition: all 0.3s ease;
+}
+.accordion-button:hover {
+    background-color: transparent !important; /* Mantiene el fondo original */
+    filter: none !important;                 /* Evita brillos o cambios de escala */
+    transform: none !important;              /* Evita que se mueva o agrande */
+}
+.accordion-button:not(.collapsed) {
+    background-color: #f0f7ff;
+    color: #0d6efd;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(13, 110, 253, 0.1);
+}
+
+.accordion-body {
+    background-color: #fcfcfc;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Iconos dentro de los botones */
+.accordion-button i {
+    width: 25px;
+    font-size: 1.1rem;
+}
+
+/* Efecto hover en los botones del acordeón */
+.accordion-button:hover {
+    background-color: #f8f9fa;
 }
