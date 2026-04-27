@@ -1,4 +1,3 @@
-
 const imagenes = document.querySelectorAll('.item img');
 const modal = document.getElementById('modal');
 const imgGrande = document.getElementById('imgGrande');

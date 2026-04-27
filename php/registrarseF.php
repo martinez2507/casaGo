@@ -35,13 +35,15 @@ include('cabecera.html');
         echo "<h1>Usuario $nombreUsu, registrado correctamente</h1>";
 
         // cogemos id, ya que al ser autoincrementado no lo asignamos a la variable de sesion id_usuario, esto nos vale para que al registrarlo se inicie sesion auitomaticamente
-        $cogerId = "SELECT id from usuarios where correo_electronico = '$correoUsu'";
-        $consultaId = $conn->query($sql);
+        $cogerId = "SELECT id_usuario, rol,correo_electronico from usuarios where correo_electronico = '$correoUsu'";
+        $consultaId = $conn->query($cogerId);
         $filas = $consultaId->fetch_assoc();
 
         $_SESSION['credenciales_correctas'] = true;
         $_SESSION['usuario'] = $nombreUsu;
+        $_SESSION['email'] = $filas['correo_electronico'];
         $_SESSION['id_usuario'] = $filas['id_usuario'];
+        $_SESSION['rol'] = $filas['rol'];
         header('Location: ../index.php');
         $_SESSION['tipo'] = "success";
         $_SESSION['mensaje'] = "Bienvenido a CasaGo";

@@ -174,10 +174,15 @@ if ($datos && $datos->num_rows > 0) {
                                 <input id="viajeros" type="number" placeholder="Número de viajeros" name="viajeros" min="1" value="<?=$_SESSION['huespedes'] ?? '1'; ?>">
                             </div>
                         </div>
+
+                        <div id="modal" class="modal-personalizado" style="display:none; position:fixed; z-index:1000; left:0; top:50; width:100%; height:100%; background-color:rgba(0,0,0,0.9); text-align:center; padding-top:50px;">
+                            <span class="cerrar" style="position:absolute; top:20px; right:35px; color:white; fontSize:40px; cursor:pointer;">&times;</span>
+                            <img id="imgGrande" style="max-width:80%; max-height:80%; margin:auto; display:block;">
+                        </div>
                         
                         <input type="hidden" name="precioT" value="<?=$totalNumerico?>">
                         <input type="hidden" name="precioNoche" value="<?=$fila['precio_noche']?>">
-                        <input type="hidden" name="idApartamento" value="<?=$idApartamento?>">
+                        <input type="hidden" id="idApartamento" name="idApartamento" value="<?=$idApartamento?>">
                         <input type="hidden" name="noches" value="<?=$noches?>">
                         <div class="boton">
                             <button type="submit" class="btnFormu" id="btnReservar">Reservar</button>
@@ -188,6 +193,7 @@ if ($datos && $datos->num_rows > 0) {
         </div>
         
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="./js/modalImagenes.js"></script>
     <script src="./js/apartamento.js"></script>
     <script src="./librerias/alertifyjs/alertify.min.js"></script>

@@ -104,7 +104,6 @@ $id_usuario_logueado = $_SESSION['id_usuario'];
 
                                             <form action="añadirReseña.php" method="POST">
                                                 <input type="hidden" name="id_apartamento" value="<?php echo $res['id_apartamento']; ?>">
-                                                <input type="hidden" name="id_reserva" value="<?php echo $res['id_reserva']; ?>">
                                                 <button type="submit" class="btn btn-warning">
                                                     ⭐ Añadir reseña
                                                 </button>

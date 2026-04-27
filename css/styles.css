@@ -9,6 +9,7 @@
 html, body {
     height: 100%;
     margin: 0;
+    overflow-x: hidden
 }
 
  a {
@@ -104,19 +105,22 @@ header.scrolled .yaIniciado:hover {
     display: block;
 
 }
+.buscador {
+    position: relative;
+    width: 100vw; /* 100% del ancho de la ventana visual */
+    margin-left: 50%;
+    transform: translateX(-50%);
+    height: 80vh; 
+    overflow: hidden;
+}
 
-.buscador{
-    display: flex;
-    height: 60vh;
-    width: 100%;
-    z-index: 1;
-    /* background-image: url("../img/playaTarragona2.jpg"); */
-    background-size: cover;
-    background-position: center;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    
+/* Muy importante para las imágenes dentro */
+.carousel-inner, 
+.carousel-item, 
+.carousel-item img {
+    width: 100vw !important; /* Forzamos el ancho de la ventana */
+    height: 80vh !important;
+    object-fit: cover; /* Mantiene la proporción sin estirar */
 }
 /* ORMULARIO FECHA */ 
 

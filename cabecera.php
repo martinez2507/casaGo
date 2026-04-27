@@ -10,7 +10,7 @@
         }
         if(isset($_SESSION['usuario']) ) {
             if($_SESSION['rol'] !== 'anfitrion' && $_SESSION['rol'] !== 'admin') {
-                echo "<a href='./anfitrion.php'><button class='btn btn-primary yaIniciado'>Hazte anfitrión</button></a>";
+                echo "<a href='./hazteAnfitrion.php'><button class='btn btn-primary yaIniciado'>Hazte anfitrión</button></a>";
             }  
             
             echo '<a href="./preguntasFrecuentes.php"><i class="fa-regular fa-circle-question"></i></a>';
