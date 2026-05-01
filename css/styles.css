@@ -9,7 +9,8 @@
 html, body {
     height: 100%;
     margin: 0;
-    overflow-x: hidden
+    overflow-x: hidden !important;
+    padding: 0;
 }
 
  a {
@@ -20,16 +21,12 @@ html, body {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 80px; /* FUERZA una altura fija igual al padding del body */
+    height: 80px;
     padding: 0 20px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 5;
-    background-color: #FF7043;
-    color: white;
-
-    /* background: transparent; */
+    z-index: 30;
     background-color: #FF7043;
     color: white;
     transition: background 0.3s ease;
@@ -107,20 +104,19 @@ header.scrolled .yaIniciado:hover {
 }
 .buscador {
     position: relative;
-    width: 100vw; /* 100% del ancho de la ventana visual */
-    margin-left: 50%;
-    transform: translateX(-50%);
-    height: 80vh; 
+    width: 100%;
+    transform: none;
+    height: auto; 
     overflow: hidden;
+    overflow-x: hidden;
 }
 
-/* Muy importante para las imágenes dentro */
 .carousel-inner, 
 .carousel-item, 
 .carousel-item img {
-    width: 100vw !important; /* Forzamos el ancho de la ventana */
-    height: 80vh !important;
-    object-fit: cover; /* Mantiene la proporción sin estirar */
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
 }
 /* ORMULARIO FECHA */ 
 
@@ -166,17 +162,21 @@ header.scrolled .yaIniciado:hover {
     margin: 20px auto;
 }
 
-.destinosDestacados{
-  /* margin-top: 30px; */
-  display: block;
-  text-align: center;
-  background-color: #ededed;
+.destinosDestacados {
+    display: block;
+    text-align: center;
+    background-color: #ededed;
+    margin-top: 0 !important;
+    padding: 60px 20px;
+    border-top: none;
 }
 
 .cartas {
-    margin-top: 100px;
+    margin-top: 40px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
 
@@ -279,34 +279,46 @@ footer{
     width: 100%;
 }
 
-/* Contenedor principal */
-.buscador {
-    position: relative;
-    width: 100%;
-    height: 80vh; 
-    overflow: hidden;
-}
-.carousel-inner, .carousel-item, .carousel-item img {
-    height: 100%;
-    object-fit: cover; 
-}
-
 .carousel-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* object-position: center 0% !important; */
 }
 
-/* Superposición del formulario */
 .dentroBuscador {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centra el contenido exacto */
+    transform: translate(-50%, -50%);
     z-index: 10;
     width: 90%;
     max-width: 1000px;
     color: white;
-    /* text-shadow: 2px 2px 4px rgba(0,0,0,0.5); Sombra para que el texto se lea */
+}
+
+@media (max-width: 768px) {
+    /* Ajuste de altura para que el formulario vertical quepa bien */
+    .buscador {
+        height: 80vh; 
+    }
+
+    .search-bar {
+        flex-direction: column;
+        border-radius: 15px;
+    }
+
+    .field {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .btn-buscar {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .dentroBuscador h1 {
+        font-size: 1.6rem;
+    }
 }

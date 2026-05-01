@@ -23,13 +23,28 @@
         }
     include 'cabecera.php'; 
 
+    if (!isset($_SESSION['id_usuario'])) {
+        $_SESSION['datos_reserva'] = $_POST;
+        $_SESSION['url_previa'] = "hacerReserva.php";
+        
+        header("Location: login.php");
+        exit();
+    }
+
+    if (isset($_SESSION['datos_reserva'])) {
+        $datos = $_SESSION['datos_reserva'];
+        unset($_SESSION['datos_reserva']);
+    } else {
+        $datos = $_POST;
+    }
+
     $idUsuario = $_SESSION['id_usuario'];
-    $idApartamento = $_POST['idApartamento'];
-    $precioNoche = $_POST['precioNoche'];
-    $viajeros = $_POST['viajeros'];
+    $idApartamento = $datos['idApartamento'];
+    $precioNoche = $datos['precioNoche'];
+    $viajeros = $datos['viajeros'];
     // aqui las cogemos para enviarlas a la hora de hacer la reserva
-    $llegada = date("d-m-Y", strtotime($_POST['llegada']));
-    $salida  = date("d-m-Y", strtotime($_POST['salida']));
+    $llegada = date("d-m-Y", strtotime($datos['llegada']));
+    $salida  = date("d-m-Y", strtotime($datos['salida']));
 
     // lo pasamos a segundos y asi podremos saber cuanras noches son
     $f_llegada = strtotime($llegada);
@@ -37,7 +52,7 @@
     $noches = ($f_salida - $f_llegada) / 86400;
 
     // Si el precio total que viene es 0 o no existe, lo calculamos
-    $total = $_POST['precioT'];
+    $total = $datos['precioT'];
     if($total <= 0){
         $total = ($noches * $precioNoche);
     }

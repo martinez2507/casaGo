@@ -21,7 +21,7 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
                     <li><a href="reservas.php">Mis Reservas</a></li>
                 <?php endif; ?>
                 <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="mailto:casagoof@gmail.com">Contacto</a></li>
+                <li><a href='https://mail.google.com/mail/?view=cm&fs=1&to=casagoof@gmail.com' target='_blank' title='Mandar correo a soporte'>Contacto</a></li>
             </ul>
         </div>
 

@@ -5,7 +5,7 @@
 }
 
 body {
-    padding-top: 100px;
+    padding-top: 80px;
 }
 
 .main-container {
@@ -26,7 +26,10 @@ body {
     min-width: 350px;
     margin-left: 30px; 
     position: sticky;
-    top: 100px; 
+    align-self: flex-start;
+    top: 10px; 
+    bottom: 10px;
+    margin-top: 0;
     z-index: 10;
 }
 
@@ -84,9 +87,10 @@ input[type="range"] {
     flex-wrap: wrap;
     gap: 20px;
     padding: 15px;
-    margin-top: 5%;
+    margin-top: 0;
     margin-right: 50px;
     max-width: 1200px;
+    flex-grow: 1;
 }
 
 .apartamento {
@@ -133,7 +137,7 @@ input[type="range"] {
 .desc {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Esto empuja el contenido para llenar el espacio */
+    flex-grow: 1;
     justify-content: space-between;
 }
 
@@ -161,12 +165,12 @@ input[type="range"] {
 }
 
 #resultadosApar form {
-    width: 100%; /* El formulario debe ocupar todo el ancho del contenedor */
+    width: 100%;
 }
 
 .apartamento {
     display: flex;
-    width: 100%; /* La tarjeta ocupa todo el ancho del form */
+    width: 100%;
     border: 1px solid rgb(179, 179, 179);
     border-radius: 10px;
     padding: 25px;
@@ -180,15 +184,15 @@ input[type="range"] {
     padding: 50px 20px;
     text-align: center;
     width: 100%;
-    color: #888; /* Tono gris para el texto */
+    color: #888;
 }
 
 .sin-resultados img {
-    max-width: 200px; /* Ajusta el tamaño a tu gusto */
+    max-width: 200px;
     height: auto;
     margin-bottom: 20px;
-    filter: grayscale(100%); /* Esto hace que cualquier imagen sea gris */
-    opacity: 0.6; /* Le da un toque más suave */
+    filter: grayscale(100%);
+    opacity: 0.6;
 }
 
 .sin-resultados p {

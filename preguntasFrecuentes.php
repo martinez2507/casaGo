@@ -81,7 +81,7 @@ include 'cabecera.php';
 
                 <div class="text-center mt-5">
                     <p class="text-muted">¿No encuentras lo que buscas?</p>
-                    <a href="mailto:casagoof@gmail.com?subject=Consulta desde el Centro de Ayuda" class="btn btn-outline-primary px-4 rounded-pill">
+                    <a href='https://mail.google.com/mail/?view=cm&fs=1&to=casagoof@gmail.com' target='_blank' title='Mandar correo a soporte' class="btn btn-outline-primary">
                         Contactar con soporte
                     </a>
                     <br>

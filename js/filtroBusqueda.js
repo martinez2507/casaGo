@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.getElementById("resultadosApar");
     const precio = document.getElementById('precio');
 
-    // Evitar envío por defecto (si hubiera botón submit)
     formFiltros.addEventListener("submit", (e) => e.preventDefault());
 
     const cargarApartamentos = () => {
@@ -24,17 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     };
 
-    // Cambios inmediatos
     formFiltros.addEventListener("change", cargarApartamentos);
-    
-    // Ciudad: filtrar mientras escribes (opcional, si prefieres esperar a perder el foco usa 'change')
-    document.getElementById("ciudad").addEventListener("input", cargarApartamentos);
     
     // Slider de precio
     const slider = document.getElementById("precio");
     slider.addEventListener("input", () => {
         document.getElementById("precioS").innerText = slider.value;
-        // Opcional: cargarApartamentos() aquí si quieres que filtre mientras arrastras
     });
 });
 

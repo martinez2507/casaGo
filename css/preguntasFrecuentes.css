@@ -15,6 +15,13 @@ body {
     color: white;
     padding: 60px 0;
     margin-bottom: -40px; 
+    position: relative;
+    z-index: 1;
+}
+
+.ayuda-container .container {
+    position: relative;
+    z-index: 2; 
 }
 
 .ayuda-header h1 {

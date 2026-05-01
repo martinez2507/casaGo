@@ -52,8 +52,16 @@ include('../cabecera.php');
         
     } else {
         $_SESSION['usuario'] = $filas['nombre'];
-        header("Location: ../index.php");
-        exit();
+
+        if (isset($_SESSION['url_previa'])) {
+            $destino = $_SESSION['url_previa'];
+            unset($_SESSION['url_previa']);
+            
+            header("Location: ../" . $destino); 
+        } else {
+            header("Location: ../index.php");
+    }
+    exit();
 
     }
 $conn->close();

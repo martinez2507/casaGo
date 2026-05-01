@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
     <link rel="stylesheet" href="./librerias/alertifyjs/css/themes/default.min.css">
 </head>
-<body>
+<body>  
     <?php 
     if (session_status() === PHP_SESSION_NONE) { session_start(); }
     ?>
