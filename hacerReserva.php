@@ -18,54 +18,66 @@
 </head>
 <body>
     <?php
-     if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     include 'cabecera.php'; 
 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
+        $_SESSION['datos_reserva_activa'] = $_POST;
+
+        header("Location: hacerReserva.php");
+        exit();
+    }
+
+
+    if (isset($_SESSION['datos_reserva_activa'])) {
+        $datos = $_SESSION['datos_reserva_activa'];
+    } else {
+
+        header("Location: index.php");
+        exit();
+    }
+
     if (!isset($_SESSION['id_usuario'])) {
-        $_SESSION['datos_reserva'] = $_POST;
         $_SESSION['url_previa'] = "hacerReserva.php";
-        
         header("Location: login.php");
         exit();
     }
 
-    if (isset($_SESSION['datos_reserva'])) {
-        $datos = $_SESSION['datos_reserva'];
-        unset($_SESSION['datos_reserva']);
-    } else {
-        $datos = $_POST;
-    }
-
     $idUsuario = $_SESSION['id_usuario'];
-    $idApartamento = $datos['idApartamento'];
-    $precioNoche = $datos['precioNoche'];
-    $viajeros = $datos['viajeros'];
-    // aqui las cogemos para enviarlas a la hora de hacer la reserva
-    $llegada = date("d-m-Y", strtotime($datos['llegada']));
-    $salida  = date("d-m-Y", strtotime($datos['salida']));
+    $idApartamento = $datos['idApartamento'] ?? null;
+    $precioNoche = $datos['precioNoche'] ?? 0;
+    $viajeros = $datos['viajeros'] ?? 1;
 
-    // lo pasamos a segundos y asi podremos saber cuanras noches son
+    // Procesamos fechas con seguridad
+    $llegada_raw = $datos['llegada'] ?? 'today';
+    $salida_raw  = $datos['salida'] ?? 'today';
+
+    $llegada = date("d-m-Y", strtotime($llegada_raw));
+    $salida  = date("d-m-Y", strtotime($salida_raw));
+
     $f_llegada = strtotime($llegada);
     $f_salida = strtotime($salida);
     $noches = ($f_salida - $f_llegada) / 86400;
 
-    // Si el precio total que viene es 0 o no existe, lo calculamos
-    $total = $datos['precioT'];
-    if($total <= 0){
-        $total = ($noches * $precioNoche);
-    }
+    $total = (isset($datos['precioT']) && $datos['precioT'] > 0) ? $datos['precioT'] : ($noches * $precioNoche);
 
     include("php/conexionBD.php");
     $consulta = "SELECT * FROM apartamentos where id_apartamento = '$idApartamento'";
     $resultado = mysqli_query($conn, $consulta);
     $apartamento = mysqli_fetch_assoc($resultado);
-
     ?>
     <main>
+       
     <div class="resumen">
-        <h3>Resumen de la reserva</h3>
+        <div class="cabecera-resumen">
+            <h3>Resumen de la reserva</h3>
+            <!-- <a href="apartamento.php"><button class="btn-volver">Volver a apartamento</button></a> -->
+            <a href="apartamento.php??id=<?= $idApartamento ?>&llegada=<?= $datos['llegada'] ?>&salida=<?= $datos['salida'] ?>&viajeros=<?= $viajeros ?>" class="btn-volver-link">
+                 &larr; Volver al apartamento
+            </a>
+        </div>
         <div class="dentroResumen">
             <img src="<?= $apartamento['imagen_portada']?>" alt="Imagen Apartamento">
             <h3><?=$apartamento['nombre']?></h3>

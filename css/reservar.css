@@ -5,9 +5,18 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 body {
     background-color: #f4f7f6;
-    margin-top: 100px !important;
+    padding-top: 100px; 
+    display: flex;
+    flex-direction: column;
 }
 
 main {
@@ -148,4 +157,40 @@ input[type="checkbox"] {
     width: 18px;
     height: 18px;
     cursor: pointer;
+}
+
+.cabecera-resumen {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.cabecera-resumen h3 {
+    margin: 0;
+}
+
+.btn-volver-link {
+    font-size: 0.85rem;
+    color: #666;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background: #fdfdfd;
+    margin-bottom: 20px;
+}
+
+.btn-volver-link:hover {
+    background-color: #f0f0f0;
+    color: #333;
+    border-color: #bbb;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Ajuste extra para el precio total para que destaque */
+#precioT {
+    color: #FF7043; /* Usando tu naranja para el precio final */
+    font-size: 1.3rem !important;
 }

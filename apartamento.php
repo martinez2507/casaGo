@@ -1,21 +1,43 @@
 <?php
 include("./php/conexionBD.php");
 include("cabecera.php");
-$idApartamento = $_POST['id_apartamento'];
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+if (isset($_GET['id'])) {
+    $idApartamento = $_GET['id'];
+} elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_apartamento'])) {
+    $idApartamento = $_POST['id_apartamento'];
+} else {
+    $idApartamento = $_SESSION['id_apartamento_actual'] ?? null;
+}
 
-$consulta = "SELECT * FROM apartamentos  WHERE id_apartamento = '$idApartamento' AND activo = 0";
+$_SESSION['id_apartamento_actual'] = $idApartamento;
 
+// 2. CAPTURAR DATOS DE VUELTA (GET) O DE SESIÓN EXISTENTE
+$fechaLlegada = $_GET['llegada']  ?? ($_SESSION['llegada'] ?? '');
+$fechaSalida  = $_GET['salida']   ?? ($_SESSION['salida'] ?? '');
+$viajeros     = $_GET['viajeros'] ?? ($_SESSION['huespedes'] ?? '1');
+
+// Actualizamos sesión para que el formulario los use
+$_SESSION['llegada'] = $fechaLlegada;
+$_SESSION['salida'] = $fechaSalida;
+$_SESSION['huespedes'] = $viajeros;
+
+$consulta = "SELECT * FROM apartamentos WHERE id_apartamento = '$idApartamento' AND activo = 0";
 $datos = $conn->query($consulta);
 
-$filas = $datos->num_rows;
 if ($datos && $datos->num_rows > 0) {
     $fila = $datos->fetch_assoc();
 } else {
     header("Location: ./php/errorApartamento.php");
+    exit();
+}
+
+// Calcular noches para el precio inicial
+$noches = 0;
+if (!empty($fechaLlegada) && !empty($fechaSalida)) {
+    $noches = (strtotime($fechaSalida) - strtotime($fechaLlegada)) / 86400;
 }
 ?>
 <!DOCTYPE html>

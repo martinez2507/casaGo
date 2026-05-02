@@ -68,6 +68,16 @@ include 'cabecera.php';
             <h2>Reservas</h2>
             <a href="./reservas.php"><div class="subApartamento">Consulta tus reservas <i class="fa-solid fa-arrow-right"></i></div></a>
         </div>
+        <?php
+        if($_SESSION['rol'] === 'admin') {
+            ?>
+                <div class="cajaPerfil">
+                    <h2>Panel de administración</h2>
+                    <a href="./admin.php"><div class="subApartamento">Acceder al panel de administración <i class="fa-solid fa-arrow-right"></i></div></a>
+                </div>
+            <?php
+        }
+        ?>
 
         <div class="modal fade" id="modalModificarUsu" tabindex="-1">
             <div class="modal-dialog">
