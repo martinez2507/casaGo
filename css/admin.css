@@ -1,0 +1,74 @@
+html {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    margin: 0;
+    padding-top: 80px;
+    min-height: calc(100vh - 80px);
+    background-color: #f4f7f6;
+}
+
+.contenedor {
+    background-color: pink;
+    display: flex !important;
+    flex: 1 !important;
+    align-items: stretch !important;
+    width: 100%;
+}
+
+.contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+section.container-fluid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.card-indicador {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid;
+    transition: 0.3s;
+}
+.card-indicador.activo { border-left-color: #198754; }
+.card-indicador.pendiente { border-left-color: #ffc107; }
+
+.icon-box {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+/* barra lateral */
+.menuIzq {
+    width: 240px;
+    min-width: 240px;
+    background-color: #333 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 20px !important;
+    height: 100%;
+    align-self: stretch !important;
+}

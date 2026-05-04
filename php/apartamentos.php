@@ -11,6 +11,13 @@ if ($resultado) {
         
         $id = $row['id_apartamento'];
         
+        if($row['activo'] == 1){
+            
+        } else if($row['activo'] == 2){
+
+        } else {
+        }
+           
         $btnAcciones = "<div class='botones-tabla'>";
         $btnAcciones .= "<button class='btn-aprobar' onclick='gestionarApartamento($id, 1)' title='Aprobar'><i class='fa-solid fa-check'></i></button>";
         $btnAcciones .= "<button class='btn-rechazar' onclick='gestionarApartamento($id, 2)' title='Rechazar'><i class='fa-solid fa-xmark'></i></button>";
