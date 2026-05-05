@@ -1,0 +1,31 @@
+{
+    "decimal": ",",
+    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+
+    "infoFiltered": "(filtrados un total de _MAX_ registros)",
+    "infoPostFix": "",
+    "thousands": ".",
+    "lengthMenu": "Mostrar _MENU_ registros",
+    "loadingRecords": "Cargando...",
+    "processing": "",
+    "search": "Buscar:",
+    "zeroRecords": "No se han encontrado registros",
+    "paginate": {
+        "first": "<i class='fa-solid fa-backward-step'></i> Primera página",
+        "last": "Última página <i class='fa-solid fa-forward-step'></i>",
+        "next": "Siguiente <i class='fa-solid fa-caret-right'></i>",
+        "previous": "<i class='fa-solid fa-caret-left'></i> Anterior"
+    },
+    "aria": {
+        "orderable": ": Ordenar esta columna",
+        "orderableReverse": ": Ordenar esta columna en orden inverso"
+    },
+    "buttons": {
+        "copy": "<i class='fa-solid fa-copy'></i> Copiar",
+        "print": "<i class='fa-solid fa-print'></i> Imprimir",
+        "pdf": "<i class='fa-solid fa-file-pdf'></i> PDF",
+        "csv": "<i class='fa-solid fa-file-csv'></i> CSV",
+        "excel": "<i class='fa-solid fa-file-excel'></i> EXCEL"
+    }
+}

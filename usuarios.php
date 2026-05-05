@@ -4,13 +4,13 @@
     <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
-    <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
+    <script src="./librerias/fontawesome/css/all.min.css" crossorigin="anonymous"></script>
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
     <link rel="stylesheet" href="./librerias/alertifyjs/css/themes/default.min.css">
-    <link rel="stylesheet" href="./css/usuarios.css">
+    <link rel="stylesheet" href="./css/tablas.css">
 </head>
 <?php
 if (session_status() === PHP_SESSION_NONE) {
@@ -23,7 +23,7 @@ include 'cabecera.php';
             <h2>Usuarios Registrados</h2>
     
             <div class="mx-auto w-75">
-                <table id="tablaUsu" class="table table-striped align-middle shadow-sm">
+                <table id="tablaUsu" class="table tablas table-striped align-middle shadow-sm">
                     <thead>
                         <tr>
                             <th class="text-center">ID Usuario</th>
@@ -38,7 +38,7 @@ include 'cabecera.php';
                 </table>
             </div>
         </section>
- <div class="modal fade" id="modalElegir" tabindex="-1">
+        <div class="modal fade" id="modalDeshabUsu" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -46,11 +46,32 @@ include 'cabecera.php';
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Esta acción se puede deshacer en cualquier momento.</p>
+                    <p>Escribe un motivo para deshabilitar al usuario.</p>
+                    <textarea class="form-control" id="motivoDes" placeholder="Motivo de deshabilitación"></textarea>
 
+                    <br>
                     <button type="button" class="btn btn-success" id="btnDeshabilitar">Deshabilitar</button>
                     
                 </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalHabUsu" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¿Seguro que quieres habilitar a este usuario?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Escribe un motivo para habilitar al usuario.</p>
+                    <textarea class="form-control" id="motivoHab" placeholder="Motivo de habilitación"></textarea>
+
+                    <br>
+                    <button type="button" class="btn btn-success" id="btnHabilitar">Habilitar</button>
+                </div>
+                
                 </div>
             </div>
         </div>
@@ -59,6 +80,7 @@ include 'cabecera.php';
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js"></script>
+    <script src="./js/admin.js"></script>
 <script>
  $(document).ready(() => {
             $("#tablaUsu").DataTable({

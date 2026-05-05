@@ -1,0 +1,58 @@
+.tablas {
+    background-color: #F1F5F9;
+    border-radius: 15px;
+}
+
+.table > thead > tr {
+    background-color:  #334155!important;
+    border-radius: 15px;
+}
+
+.table > thead tr > th{
+    color: white !important;
+}
+
+.dt-buttons > .btn,
+.dt-paging > ul > li > a {
+    padding: 0.5rem 1rem !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    color: #334155 !important;
+    font-weight: bold !important;
+
+    border: white !important;
+    background-color: #F1F5F9 !important;
+
+}
+
+.dt-paging > ul > li.active > a {
+    color: #F1F5F9 !important;
+
+    background-color: #334155 !important;
+}
+
+.dt-buttons > .btn:hover,
+.dt-paging > ul > li > a:hover {
+    color: #F1F5F9 !important;
+
+    background-color: #264268  !important;
+}
+
+.dt-paging > ul > li.disabled > a {
+    color: #9e9e9e !important;
+
+    background-color: #F1F5F9 !important;
+}
+
+
+button {
+    border: none;
+    background-color: transparent;
+    color: #334155;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
