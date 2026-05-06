@@ -27,8 +27,13 @@ include('../cabecera.php');
         $_SESSION['tipo'] = "error";
         $_SESSION['mensaje'] = "Usuario no encontrado";
     } else {
-
         $filas = $consultaUsu->fetch_assoc();
+        if ($filas['activo'] == 1) {
+            $_SESSION['credenciales_correctas'] = false;
+            $_SESSION['tipo'] = "error";
+            $_SESSION['mensaje'] = "Tu cuenta está desactivada. Contacta al soporte.";
+        } else {
+            
         if(password_verify($contraseñaUsu,$filas['contraseña'])) {
             $_SESSION['credenciales_correctas'] = true;
             $_SESSION['usuario'] = $filas['nombre'];
@@ -41,6 +46,7 @@ include('../cabecera.php');
             $_SESSION['credenciales_correctas'] = false;
             $_SESSION['tipo'] = "error";
             $_SESSION['mensaje'] = "Contraseña incorrecta";
+        }
         }
 
     }

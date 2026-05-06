@@ -1,8 +1,11 @@
+$(document).ready(function() {
+
 const btnHabUsu = document.getElementById('btnHabilitar');
 const btnDeshabUsu = document.getElementById('btnDeshabilitar');
-
 let idUsu = "";
 
+
+// MODALES USUARIOS
 $('#tablaUsu').on('click', '.btn-habilitar', function() {
     idUsu = $(this).attr('data-id');
 
@@ -15,6 +18,8 @@ $('#tablaUsu').on('click', '.btn-deshabilitar', function() {
     $('#modalDeshabUsu').modal('show');
 
 });
+
+
 
 btnHabUsu.addEventListener('click', function(){
 
@@ -70,4 +75,6 @@ btnDeshabUsu.addEventListener('click', function(){
             }, 3000);
         }
     });
+});
+
 });

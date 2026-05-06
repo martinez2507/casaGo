@@ -88,6 +88,11 @@ if ($metodo === 'GET') {
                 </div>
             </div>";
 
+            $sqlApar = "UPDATE apartamentos SET activo = 1 WHERE id_anfitrion = ?";
+            $stmtApar = mysqli_prepare($conn, $sqlApar);
+            mysqli_stmt_bind_param($stmtApar, "i", $idUsuario);
+            mysqli_stmt_execute($stmtApar);
+
     } else if ($accion === 'habilitar') {
         $sql = "UPDATE usuarios SET activo = 0 WHERE id_usuario = ?";
         $asunto = "Cuenta habilitada";
@@ -117,6 +122,10 @@ if ($metodo === 'GET') {
 
         </div>
     </div>";
+    $sqlApar = "UPDATE apartamentos SET activo = 0 WHERE id_anfitrion = ?";
+            $stmtApar = mysqli_prepare($conn, $sqlApar);
+            mysqli_stmt_bind_param($stmtApar, "i", $idUsuario);
+            mysqli_stmt_execute($stmtApar);
     } else {
         echo json_encode(["status" => "error", "message" => "Acción no válida"]);
         exit();

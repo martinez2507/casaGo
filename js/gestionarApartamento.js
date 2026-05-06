@@ -40,18 +40,17 @@ $(document).ready(function () {
     });
 
 
-    // BORRAR
-    $('.container.mt-5').on('click', '.btn-borrar', function () {
+    $('.container.mt-5').on('click', '.btn-borrar', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
 
         let id = $(this).data('id');
         let tarjeta = $(this).closest('.card');
 
         alertify.confirm(
             "¿Eliminar?",
-            "Esta acción no se puede deshacer.",
-
+            "Esta acción no se puede deshacer.", 
             function () {
-
                 $.ajax({
                     url: "./php/gestionarUnApartamento.php",
                     type: "POST",
@@ -59,14 +58,21 @@ $(document).ready(function () {
                         idApartamento: id,
                         motivo: "borrar"
                     },
-
-                    success: function () {
+                    success: function (response) {
                         alertify.success("Eliminado correctamente");
-                        tarjeta.fadeOut();
+                        tarjeta.fadeOut(500, function() {
+                            $(this).remove();
+                        });
+                    },
+                    error: function() {
+                        alertify.error("Error al conectar con el servidor");
                     }
                 });
-
             },
+            function () {
+                console.log("Usuario canceló la acción.");
+                alertify.error("Acción cancelada");
+            }
         );
 
     });
