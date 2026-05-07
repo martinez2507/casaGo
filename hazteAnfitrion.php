@@ -3,100 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hazte Anfitrión - CasaGo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/hazteAnfitrion.css">
+    <title>CasaGo - Hazte Anfitrión</title>
+    <style>
+        :root {
+            --naranja: #FF5722;
+            --azul: #2196F3;   
+            --fondo: #f8f9fa;
+            --texto: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            margin-top: 80px;
+        }
+
+        
+        header {
+            background-color: var(--naranja);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .contenedor {
+            margin-top: 80px;
+        }
+
+        
+        .hero {
+            background-color: var(--azul);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+       
+        .container {
+            max-width: 1000px;
+            margin: -40px auto 40px;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--azul);
+            margin-top: 0;
+        }
+
+        
+        .cta-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .btn-anfitrion {
+            background-color: var(--naranja);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-anfitrion:hover {
+            background-color: #e64a19;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+    <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
+    
+
+    <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
+    <link rel="stylesheet" href="./librerias/alertifyjs/css/themes/default.min.css">
 </head>
 <body>
 
-<section class="anfitrion-hero text-white text-center d-flex align-items-center">
-    <div class="container">
-        <h1 class="display-3 fw-bold">Tu casa puede ser tu próxima gran inversión</h1>
-        <p class="lead">Únete a miles de personas que ya ganan dinero con CasaGo.</p>
-        <a href="subirApartamento.php" class="btn btn-lg btn-light fw-bold px-5 py-3 mt-3">Empezar a publicar</a>
-    </div>
-</section>
+    <?php include 'cabecera.php'; ?>
+    <div class="contenedor">
+    <section class="hero">
+        <h1>Gana dinero compartiendo tu espacio</h1>
+        <p>Únete a nuestra comunidad de anfitriones y empieza a recibir huéspedes.</p>
+    </section>
 
-<section class="container my-5 py-5">
-    <div class="row align-items-center bg-white shadow rounded-4 p-4 p-md-5">
-        <div class="col-lg-6">
-            <h2 class="fw-bold mb-4">¿Cuánto podrías ganar?</h2>
-            <p class="text-muted">Ajusta los controles para ver una estimación de tus ingresos mensuales basados en el mercado actual.</p>
-            
-            <div class="mb-4">
-                <label class="form-label fw-bold">Noches al mes: <span id="nochesValor" class="text-danger">15</span></label>
-                <input type="range" class="form-range" min="1" max="30" value="15" id="rangoNoches">
+    <main class="container">
+        <div class="grid">
+            <div class="card">
+                <h3>Tú tienes el control</h3>
+                <p>Elige tus propios horarios, precios y requisitos para los huéspedes.</p>
             </div>
 
-            <div class="mb-4">
-                <label class="form-label fw-bold">Precio por noche estimado (€)</label>
-                <input type="number" class="form-control" id="precioNoche" value="80">
+            <div class="card">
+                <h3>Pagos seguros</h3>
+                <p>Recibe tu dinero de forma rápida y transparente tras cada estancia.</p>
+            </div>
+
+            <div class="card">
+                <h3>Soporte 24/7</h3>
+                <p>Estamos aquí para ayudarte en cada paso del camino, de día o de noche.</p>
             </div>
         </div>
-        
-        <div class="col-lg-6 text-center border-start">
-            <h3 class="text-muted">Ganancia estimada al mes</h3>
-            <div class="display-2 fw-bold text-danger">
-                <span id="resultadoGanancia">1200</span>€
-            </div>
-            <p class="text-secondary small">*Basado en una ocupación del <span id="porcentajeOcupacion">50</span>%</p>
-            <a href="subirApartamento.php" class="btn btn-outline-danger mt-3">Publicar ahora</a>
-        </div>
-    </div>
-</section>
 
-<section class="bg-light py-5">
-    <div class="container text-center">
-        <h2 class="mb-5 fw-bold">¿Por qué ser anfitrión en CasaGo?</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="p-3">
-                    <div class="fs-1 mb-3">🛡️</div>
-                    <h4>Protección total</h4>
-                    <p class="text-muted">Cuidamos tu hogar con seguros de daños incluidos en cada reserva.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="p-3">
-                    <div class="fs-1 mb-3">📞</div>
-                    <h4>Soporte 24/7</h4>
-                    <p class="text-muted">Nuestro equipo está disponible para ayudarte con cualquier duda o problema.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="p-3">
-                    <div class="fs-1 mb-3">⚡</div>
-                    <h4>Pagos rápidos</h4>
-                    <p class="text-muted">Recibe tu dinero 24 horas después de que el huésped llegue a tu casa.</p>
-                </div>
-            </div>
+        <div class="cta-section">
+            <a href="#" class="btn-anfitrion" id="btn-empezar" data-id="<?php echo $_SESSION['id_usuario']; ?>">¡Empezar ahora!</a>
         </div>
-    </div>
-</section>
-
+    </main>
+</div>
+    <?php include 'footer.php'; ?>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./librerias/bootstrap5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
+    <script src="./librerias/alertifyjs/alertify.min.js"></script>
 <script>
-const rangoNoches = document.getElementById('rangoNoches');
-const nochesValor = document.getElementById('nochesValor');
-const precioNoche = document.getElementById('precioNoche');
-const resultadoGanancia = document.getElementById('resultadoGanancia');
-const porcentajeOcupacion = document.getElementById('porcentajeOcupacion');
+    const btnEmpezar = document.getElementById('btn-empezar');
 
-function calcular() {
-    const noches = parseInt(rangoNoches.value);
-    const precio = parseFloat(precioNoche.value) || 0;
-    const total = noches * precio;
-    const ocupacion = Math.round((noches / 30) * 100);
+    btnEmpezar.addEventListener('click', (e) => {
+        e.preventDefault();
+        const userId = btnEmpezar.getAttribute('data-id');
+        
+        let datosEnviar = {
+            id: userId,
+            accion: "solicitar"
+        };
 
-    nochesValor.innerText = noches;
-    resultadoGanancia.innerText = total.toLocaleString();
-    porcentajeOcupacion.innerText = ocupacion;
-}
+        btnEmpezar.innerText = "Enviando...";
+        btnEmpezar.style.pointerEvents = "none";
+        btnEmpezar.style.opacity = "0.7";
 
-rangoNoches.addEventListener('input', calcular);
-precioNoche.addEventListener('input', calcular);    
-
-
+        $.ajax({
+            url: './php/hacerAnfitrion.php',
+            type: 'POST',
+            data: datosEnviar,
+            success: function(response) {
+                alertify.success('Solicitud de anfitrión enviada. Nuestro equipo la revisará pronto.');
+                // setTimeout(function(){
+                //     location.reload();
+                // }, 3000);
+            },
+                error: function() {
+                    alertify.error('Hubo un error al enviar la solicitud.');
+                    btnEmpezar.innerText = "¡Empezar ahora!";
+                    btnEmpezar.style.pointerEvents = "auto";
+                }
+        });
+    });
 </script>
-
 </body>
+
 </html>

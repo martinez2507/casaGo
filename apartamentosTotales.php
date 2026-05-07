@@ -193,7 +193,7 @@ include './php/sidebar.php';
                 // Traducciones
                 language: {
                     url: "./lang/es_ES.json",
-                    "emptyTable": "No hay apartamentos libres",
+                    "emptyTable": "No hay apartamentos pendientes de aprobar",
                 },
                 // Opciones
                 fixedColumns: true,

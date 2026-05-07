@@ -34,7 +34,7 @@ include 'cabecera.php';
 
     <?php
     include './php/conexionBD.php';
-    $sql = "SELECT * FROM apartamentos WHERE id_anfitrion = '$_SESSION[id_usuario]' AND activo = 0";
+    $sql = "SELECT * FROM apartamentos WHERE id_anfitrion = '$_SESSION[id_usuario]' AND activo NOT LIKE 1";
     $consulta = $conn->query($sql);
     if($consulta->num_rows > 0) {
         while($apartamento = $consulta->fetch_assoc()) {
@@ -45,6 +45,15 @@ include 'cabecera.php';
                             <img src="<?= $apartamento['imagen_portada']; ?>" class="img-fluid rounded-start" alt="<?= $apartamento['nombre']; ?>" width="500" height="400">
                         </div>
                         <div class="col-md-8">
+                            <?php if($apartamento['activo'] == 0): ?>
+                                <span class="badge bg-success">Habilitado</span>
+                            <?php elseif($apartamento['activo'] == 1): ?>
+                                <span class="badge bg-danger">Deshabilitado</span>
+                            <?php elseif($apartamento['activo'] == 2): ?>
+                                <span class="badge bg-warning">Pendiente de aprobación</span>
+                            <?php elseif($apartamento['activo'] == 3): ?>
+                                <span class="badge bg-danger">Rechazado</span>
+                            <?php endif; ?>
                             <div class="card-body">
                                     <h5 class="card-title"><?= $apartamento['nombre']; ?></h5>
                                     <p class="card-text"><?= $apartamento['descripcion']; ?></p>

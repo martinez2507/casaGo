@@ -32,7 +32,9 @@ if ($metodo === 'GET') {
                 $btnAcciones = "<button class='btn-deshabilitarApar' data-id='$id' title='Deshabilitar'><i class='fa-solid fa-toggle-on text-success'></i></button>";
             } else if($row['activo'] == 1){
                 $btnAcciones = "<button class='btn-habilitarApar' data-id='$id' title='Habilitar'><i class='fa-solid fa-toggle-off text-danger'></i></button>";
-            } 
+            } else if($row['activo'] == 3){
+                 $btnAcciones = "<span class='text-danger'>Apartamento rechazado</span>";
+            }
 
             $item = array(
                 'ID_APARTAMENTO' => $id,

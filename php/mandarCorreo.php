@@ -38,7 +38,7 @@ try {
     $codigo = $_SESSION["reg_codigo"];
     // Contenido
     $mail->isHTML(true);
-    $mail->Subject = 'Confirme su dirección de correo';
+    $mail->Subject = 'Confirme su direccion de correo';
     $mail->Body    = 'Hola,<br>
 
                         Hemos recibido una solicitud para verificar tu cuenta.<br>

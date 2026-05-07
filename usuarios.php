@@ -34,6 +34,27 @@ include './php/sidebar.php';
                         <div class="row mb-4">
                             <div class="col-12">
                                 <section class="rowT">
+                                        <h2>Solicitudes de Anfitrión</h2>
+                                
+                                        <div class="mx-auto w-75">
+                                            <table id="tablaSolicitudes" class="table tablas table-striped align-middle shadow-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">ID Usuario</th>
+                                                        <th class="text-center">Nombre</th>
+                                                        <th class="text-center">Correo</th>
+                                                        <th class="text-center">Rol</th>
+                                                        <th class="text-center">Aprobar</th>
+                                                        <th class="text-center">Rechazar</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+
+                                    <section class="rowT">
                                         <h2>Usuarios Registrados</h2>
                                 
                                         <div class="mx-auto w-75">
@@ -89,6 +110,41 @@ include './php/sidebar.php';
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="modalConfAceptar" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">¿Seguro que quieres aceptar la solicitud de anfitrión de este usuario?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Pulsa el botón para confirmar la aceptación de la solicitud.</p>
+                            <br>
+                            <button type="button" class="btn btn-success" id="btnAceptarSol">Aceptar</button>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modalConfRechazar" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">¿Seguro que quieres rechazar la solicitud del usuario?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+
+                        <p>Pulsa el botón para confirmar el rechazo de la solicitud.</p>
+                            <br>
+                            <button type="button" class="btn btn-danger" id="btnRechazarSol">Rechazar</button>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         </div>
@@ -100,8 +156,8 @@ include './php/sidebar.php';
     <script src="./js/admin.js"></script>
 <script>
  $(document).ready(() => {
-            $("#tablaUsu").DataTable({
-                // DistribuciÃ³n
+            $("#tablaSolicitudes").DataTable({
+                // Distribución
                 layout: {
                     topN: null,
                     topNStart: null,
@@ -112,7 +168,7 @@ include './php/sidebar.php';
                     topStart: "pageLength",
                     topEnd: {
                         search: {
-                            placeholder: "Realizar bÃºsqueda...",
+                            placeholder: "Realizar búsqueda...",
                         },
                     },
                     bottom: null,
@@ -133,7 +189,96 @@ include './php/sidebar.php';
                 // Traducciones
                 language: {
                     url: "./lang/es_ES.json",
-                    "emptyTable": "No hay telÃ©fonos libres",
+                    "emptyTable": "No hay solicitudes de anfitrión pendientes",
+                },
+                // Opciones
+                fixedColumns: true,
+                // Consulta
+                ajax: {
+                    url: "./php/solicitudesAnfitrion.php",
+                    type: "GET",
+                    deferRender: true,
+                    dataSrc: function(data) {
+                        if (data.data.error) {
+                            notificarError("Error cargando datos, " + data.data.motivoError);
+                            return [];
+                        } else {
+                            return data.data;
+                        }
+                    },
+                },
+                columns: [{
+                        data: "ID_USUARIO",
+                        className: "text-center",
+                    },
+                    {
+                        data: "NOMBRE",
+                        width: "300px",
+                        className: "text-center",
+                    },
+                    {
+                        data: "CORREO",
+                        width: "300px",
+                        className: "text-center",
+                    },
+                    {
+                        data: "ROL",
+                        width: "300px",
+                        className: "text-center",
+                    },
+                    {
+                        data: "APROBAR",
+                        width: "300px",
+                        className: "text-center",
+                    },
+                    {
+                        data: "RECHAZAR",
+                        width: "300px",
+                        className: "text-center",
+                    },
+                ],
+                order: [0, "desc"],
+                initComplete: function() {
+                    $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
+                },
+            });
+        });
+
+        $(document).ready(() => {
+            $("#tablaUsu").DataTable({
+                // Distribución
+                layout: {
+                    topN: null,
+                    topNStart: null,
+                    topNEnd: null,
+                    top2: null,
+                    top2Start: null,
+                    top2End: null,
+                    topStart: "pageLength",
+                    topEnd: {
+                        search: {
+                            placeholder: "Realizar búsqueda...",
+                        },
+                    },
+                    bottom: null,
+                    bottomStart: "info",
+                    bottomEnd: {
+                        paging: {
+                            type: "full_numbers",
+                            numbers: 3,
+                        },
+                    },
+                    bottom2: null,
+                    bottom2Start: null,
+                    bottom2End: null,
+                    bottomN: null,
+                    bottomNStart: null,
+                    bottomNEnd: null,
+                },
+                // Traducciones
+                language: {
+                    url: "./lang/es_ES.json",
+                    "emptyTable": "No hay usuarios en la base de datos",
                 },
                 // Opciones
                 fixedColumns: true,
