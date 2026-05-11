@@ -1,4 +1,4 @@
-
+document.addEventListener('DOMContentLoaded', function() {
 // scroll para el header
 window.addEventListener("scroll", function() {
     const header = document.getElementById("header");
@@ -25,3 +25,4 @@ document.getElementById("formulario").addEventListener("submit", function(e) {
             }
         }
     });
+});

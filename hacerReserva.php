@@ -167,3 +167,4 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="./js/reservar.js"></script>
 <script src="./librerias/alertifyjs/alertify.min.js"></script>
+<?php include 'footer.php';  ?>

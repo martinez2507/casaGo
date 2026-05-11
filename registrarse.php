@@ -69,5 +69,6 @@
         unset($_SESSION['tipo']);
     }
     ?>
+    <?php include 'footer.php';  ?>
 </body>
 </html>

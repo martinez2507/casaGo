@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-
+    <?php include 'footer.php';  ?>
     <script src="./librerias/alertifyjs/alertify.min.js"></script>
     <?php
     if (isset($_SESSION['mensaje'])) {

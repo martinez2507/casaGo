@@ -137,6 +137,7 @@ include 'cabecera.php';
 <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
 <script src="./librerias/alertifyjs/alertify.min.js"></script>
 <script src="./js/gestionarApartamento.js"></script>
+<?php include 'footer.php';  ?>
 
 </body>
 </html>

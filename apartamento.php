@@ -219,3 +219,4 @@ if (!empty($fechaLlegada) && !empty($fechaSalida)) {
     <script src="./js/modalImagenes.js"></script>
     <script src="./js/apartamento.js"></script>
     <script src="./librerias/alertifyjs/alertify.min.js"></script>
+    <?php include 'footer.php';  ?>

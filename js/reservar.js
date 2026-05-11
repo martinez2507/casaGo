@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             success: function(respuesta){
                 if (respuesta) {
                     $("#titularCuenta").val(respuesta.titular);
-                    $("#numTarjeta").val(respuesta.num_tarjeta);
+                    $("#numTarjeta").val(respuesta.id_dato);
                     $("#CCV").val(respuesta.numero_encriptado);
 
                     let mesAño = respuesta.fecha_expiracion.substring(0, 7);

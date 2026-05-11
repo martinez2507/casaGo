@@ -17,6 +17,10 @@ html, body {
     text-decoration: none;
     color: white;
 }
+
+.logoVert {
+    display: none;
+}
 #header {
     position: fixed;
     top: 0;
@@ -27,8 +31,9 @@ html, body {
     justify-content: space-between;
     align-items: center;
     z-index: 30;
-    background-color: #FF7043;
-    color: white;
+    background-color: white;
+    color: #FF7043;
+    border-top: 4px solid #FF7043;
     transition: background 0.3s ease;
 }
 
@@ -45,7 +50,11 @@ html, body {
 }
 
 .fas {
-    color: white !important;
+    color: #FF7043 !important;
+}
+
+.fas:hover {
+    color: #1E88E5 !important;
 }
 
 .user-menu {
@@ -81,8 +90,8 @@ html, body {
 }
 
 .iniciarSesion:hover, .registrarse:hover, .yaIniciado:hover {
-    background-color: #ffffff;
-    color: rgb(5, 0, 0);
+    background-color: #FF7043;
+    color: rgb(255, 255, 255);
 }
 
 header.scrolled .iniciarSesion,
@@ -149,6 +158,7 @@ header.scrolled .yaIniciado:hover {
     font-weight: bold;
 }
 
+
 /* título */
 /* formulario */
 .search-bar {
@@ -160,6 +170,7 @@ header.scrolled .yaIniciado:hover {
     width: 100%;
     max-width: 1800px;     
     margin: 20px auto;
+    overflow: visible !important;
 }
 
 .destinosDestacados {
@@ -297,6 +308,14 @@ footer{
 }
 
 @media (max-width: 768px) {
+
+    .logoVert {
+        display: block;
+    }
+
+    .logo{
+        display: none;
+    }
     /* Ajuste de altura para que el formulario vertical quepa bien */
     .buscador {
         height: 80vh; 
@@ -321,4 +340,44 @@ footer{
     .dentroBuscador h1 {
         font-size: 1.6rem;
     }
+}
+
+header{
+    background: white;
+    border-bottom: 1px solid #eaeaea;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* línea de color */
+header::after{
+    display: block;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        #2d8cff,
+        #32c7c7,
+        #7bcf5b,
+        #ff9d00
+    );
+}
+
+body{
+    background: #f6f7f9;
+}
+
+.card{
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.btn-principal{
+    background: #ff7a3d;
+    color: white;
+}
+
+.btn-principal:hover{
+    background: #eb682d;
 }

@@ -11,7 +11,7 @@ if ($metodo === 'GET') {
 
     $idUsuario = $_GET['idUsuario'];
 
-    $sql = "SELECT * FROM datos_bancarios WHERE id_usuario = ? LIMIT 1";
+    $sql = "SELECT * FROM datos_bancarios WHERE id_usuario = ? order by fecha_guardado desc LIMIT 1 ";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $idUsuario);
     $stmt->execute();
@@ -31,12 +31,14 @@ if ($metodo === 'GET') {
     $ccv = $_POST['ccv'];
     $caducidad_raw = $_POST['caducidad']; 
     $caducidad = $caducidad_raw . "-01";
+    $hoy = date("Y-m-d");
 
-    $sql = "INSERT INTO datos_bancarios (id_usuario,titular,numero_encriptado,fecha_expiracion,num_tarjeta) VALUES (?,?,?,?,?)";
+
+    $sql = "INSERT INTO datos_bancarios (id_dato,id_usuario,titular,numero_encriptado,fecha_expiracion,fecha_guardado) VALUES (?,?,?,?,?,?)";
     $stmt = $conn->prepare($sql);
 
     $activo = 1;
-    $stmt->bind_param("isiss",$idUsuario,$titular,$ccv,$caducidad,$numTarjeta); 
+    $stmt->bind_param("sisiss",$numTarjeta,$idUsuario,$titular,$ccv,$caducidad,$hoy); 
     if ($stmt->execute()) {
         echo "Datos guardados correctamente";
     } else {

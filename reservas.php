@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
     
-    <link rel="stylesheet" href="./css/responsivoIndex.css">
     <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
@@ -28,7 +27,7 @@ include './php/conexionBD.php';
 
 $id_usuario_logueado = $_SESSION['id_usuario'];
 ?>
-
+<main>
 <div class="container mt-5">
     <h2 class="mb-4">Mis Reservas</h2>
     
@@ -123,8 +122,10 @@ $id_usuario_logueado = $_SESSION['id_usuario'];
             </div>
         <?php endif; ?>
     </div>
-
+</div>
+</main>
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.bundle.min.js"></script>
 </body>
+<?php include 'footer.php';  ?>
 </html>
     

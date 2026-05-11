@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
     <link rel="stylesheet" href="./librerias/alertifyjs/css/themes/default.min.css">
     <link rel="stylesheet" href="./css/perfil.css">
+    <title>Perfil de usuario</title>
 </head>
 <?php
 if (session_status() === PHP_SESSION_NONE) {
@@ -58,11 +59,11 @@ include 'cabecera.php';
             } 
         ?>
 
-        <div class="cajaPerfil">
+        <!-- <div class="cajaPerfil">
             <h2>Configuración</h2>
             <a href="#" data-bs-toggle="modal" data-bs-target="#modalModificarUsu">
             <div class="subApartamento" id="editarPerfil">Edita tu perfil <i class="fa-solid fa-arrow-right"></i></div>
-        </div>
+        </div> -->
 
         <div class="cajaPerfil">
             <h2>Reservas</h2>

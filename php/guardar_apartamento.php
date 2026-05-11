@@ -17,16 +17,16 @@ $id_anfitrion = $_SESSION['id_usuario'];
 
 $servicios_seleccionados = isset($_POST['servicios']) ? $_POST['servicios'] : [];
 
-$sql = "INSERT INTO apartamentos (nombre, descripcion, precio_noche, ciudad, direccion, capacidad, id_anfitrion,activo) 
+$sql = "INSERT INTO apartamentos (nombre,id_anfitrion, descripcion, precio_noche, ciudad, direccion, capacidad,activo) 
         VALUES (?, ?, ?, ?, ?, ?, ?,?)";
 $stmt = $conn->prepare($sql);
-
-$stmt->bind_param("ssdssii", $nombre, $descripcion, $precio, $ciudad, $direccion, $capacidad, $id_anfitrion,2);
+$activo = 2; // 0 = activo, 2 = pendiente revisión
+$stmt->bind_param("sisdssii", $nombre, $id_anfitrion, $descripcion, $precio, $ciudad, $direccion, $capacidad, $activo);
 $stmt->execute();
 
 $id_apartamento = $conn->insert_id;
 
-// 3. INSERTAR LOS SERVICIOS (Tabla intermedia)
+// INSERTAR LOS SERVICIOS (Tabla intermedia)
 if (!empty($servicios_seleccionados)) {
     $sql_serv = "INSERT INTO apartamento_servicios (id_apartamento, id_servicio) VALUES (?, ?)";
     $stmt_serv = $conn->prepare($sql_serv);
@@ -37,7 +37,7 @@ if (!empty($servicios_seleccionados)) {
     }
 }
 
-// 4. SUBIDA DE FOTOS
+// SUBIDA DE FOTOS
 if (isset($_FILES['fotos'])) {
     $fotos = $_FILES['fotos'];
     $total = count($fotos['name']);

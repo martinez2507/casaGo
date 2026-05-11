@@ -59,17 +59,37 @@
                 <input type="number" name="capacidad" class="form-control" required>
             </div>
 
-            <div class="mb-3">
+            <!-- <div class="mb-3"> -->
                 <?php
-                $res = mysqli_query($conn, "SELECT * FROM servicios");
-                while ($serv = mysqli_fetch_assoc($res)) {
-                    echo '<label>';
-                    // El nombre debe ser un array: servicios[]
-                    echo '<input type="checkbox" name="servicios[]" value="' . $serv['id_servicio'] . '"> ';
-                    echo $serv['nombre_servicio'];
-                    echo '</label><br>';
-                }?>
-            </div>
+                // $res = mysqli_query($conn, "SELECT * FROM servicios");
+                // while ($serv = mysqli_fetch_assoc($res)) {
+                    
+                //     echo '<div class="col-6 mb-2">';
+                //     echo '  <div class="form-check">';
+                //     echo '<label>';
+                //     // El nombre debe ser un array: servicios[]
+                //     echo '<input type="checkbox" name="servicios[]" value="' . $serv['id_servicio'] . '"> ';
+                //     echo $serv['nombre_servicio'];
+                //     echo '</label><br>';
+                //     echo '  </div>';
+                //     echo '</div>';
+                // }
+                ?>
+
+                <div class="mb-3">
+    <label>Servicios:</label>
+    <div class="row"> <?php
+        $res = mysqli_query($conn, "SELECT * FROM servicios");
+        while ($serv = mysqli_fetch_assoc($res)) {
+            echo '<div class="col-6 mb-1">'; // Aquí definimos las 2 columnas
+            echo '  <label>';
+            echo '    <input type="checkbox" name="servicios[]" value="' . $serv['id_servicio'] . '"> ';
+            echo      $serv['nombre_servicio'];
+            echo '  </label>';
+            echo '</div>';
+        }
+        ?>
+    </div> </div>
 
             <div class="mb-3">
                 <label>Selecciona varias fotos:</label>

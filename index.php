@@ -43,9 +43,9 @@
                 <h1>Reserva unas vacaciones de ensueño</h1>
                 <form action="busqueda.php" method="REQUEST" id="formulario">
                     <div class="search-bar">
-                        <div class="field">
+                        <div class="field" style="position: relative;">
                             <label>¿A dónde vas?</label>
-                            <input type="text" placeholder="Destino" name="lugar">
+                            <input type="text" placeholder="Destino" name="lugar" id="input-destino" autocomplete="off">
                         </div>
                         <div class="field">
                             <label>Llegada</label>

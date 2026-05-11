@@ -1,7 +1,12 @@
 
 <header id="header">
     <a href="./index.php">
-        <div class="logo">CasaGo</div>
+        <div class="logo">
+            <img src="./img/logoHorizontalcasaGo.png" alt="Logo horizontal casaGo" height="150">
+        </div>
+        <div class="logoVert">
+            <img src="./img/logocasaGo.png" alt="Logo horizontal casaGo" height="100">
+        </div>
     </a>
     <nav class="user-menu">
         <?php
@@ -13,7 +18,7 @@
                 echo "<a href='./hazteAnfitrion.php'><button class='btn btn-primary yaIniciado'>Hazte anfitrión</button></a>";
             }  
             
-            echo '<a href="./preguntasFrecuentes.php"><i class="fa-regular fa-circle-question"></i></a>';
+            echo '<a href="./preguntasFrecuentes.php"><i class="fas fa-regular fa-circle-question"></i></a>';
             echo "<a href='./perfil.php'><i class='fas fa-user'></i></a>";
             echo "<span class='user-name'> ". $_SESSION['usuario'] . " </span>";
             echo '<a href="./php/cerrarSesion.php"><i class="fas fa-sign-out-alt"></i></a>';
