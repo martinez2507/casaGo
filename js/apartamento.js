@@ -5,45 +5,53 @@ const precioNocheInput = document.getElementsByName('precioNoche')[0];
 const precioTotalInput = document.getElementsByName('precioT')[0]; 
 const visualTotal = document.querySelector('#totalPrecio'); 
 
-formulario.addEventListener('submit', function(event) {
+const btnReservar = document.getElementById('btnReservar');
 
+btnReservar.addEventListener('click', function(event) {
+    // 1. Paramos todo
     event.preventDefault();
+    event.stopPropagation(); 
 
-    let fechaSalida = document.getElementById('fechaSalida');
-    let fechaLlegada = document.getElementById('fechaLlegada');
-    let id = document.getElementById('idApartamento');
+    // 2. Obtener valores
+    let fSalida = document.getElementById('fechaSalida').value;
+    let fLlegada = document.getElementById('fechaLlegada').value;
+    let viajeros = document.getElementById('viajeros').value;
+    let id = document.getElementById('idApartamento').value;
+    let precioNoche = document.getElementsByName('precioNoche')[0].value;
+    // IMPORTANTE: precioT también es útil enviarlo para evitar recálculos
+    let precioT = document.getElementsByName('precioT')[0].value;
 
-    if (fechaLlegada.value === "" || fechaSalida.value === "") {
+    if (fLlegada === "" || fSalida === "") {
         alertify.error("Debes rellenar las fechas");
         return; 
-    } else if(new Date(fechaLlegada.value) >= new Date(fechaSalida.value)) {
-        alertify.error("La fecha de salida debe ser posterior");
-        return;
     }
 
-
+    // 3. AJAX
     $.ajax({
-            url: "./php/verDisponibilidadApartamento.php",
-            type: "POST",
-
-            data: {
-                idApartamento: id.value,
-                fechaEntrada: fechaLlegada.value,
-                fechaSalida: fechaSalida.value,
-            },
-
-            success: function (data) {
-
-                if(data.trim() === "ocupado") {
-                    alertify.error("El apartamento no está disponible en esas fechas");
-                } else if(data.trim() === "libre") {
-
-                    setTimeout(() => {
-                        formulario.submit(); 
-                    }, 1000);
-                } 
+        url: "./php/verDisponibilidadApartamento.php",
+        type: "GET",
+        data: {
+            idApartamento: id,
+            fechaEntrada: fLlegada,
+            fechaSalida: fSalida 
+        },
+        success: function (data) {
+            if(data.trim() === "libre") {
+                // Construimos la URL con el precio total ya calculado en el JS
+                const url = `./hacerReserva.php?llegada=${fLlegada}&salida=${fSalida}&viajeros=${viajeros}&idApartamento=${id}&precioNoche=${precioNoche}&precioT=${precioT}`;
+                
+                alertify.success("¡Disponible! Redirigiendo...");
+                
+                // Usamos replace en lugar de href si quieres que el usuario 
+                // no pueda "volver" al estado de carga, pero href suele ser mejor:
+                setTimeout(() => {
+                    window.location.href = url; 
+                }, 800);
+            } else {
+                alertify.error("El apartamento no está disponible");
             }
-        });
+        }
+    });
 });
 
 

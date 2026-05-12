@@ -47,9 +47,9 @@ if ($filas_count > 0) {
         $resVal = $conn->query("SELECT ROUND(IFNULL(AVG(puntuacion), 0), 1) as media FROM valoraciones WHERE id_apartamento = {$apto['id_apartamento']}");
         $puntuacion = $resVal->fetch_assoc()['media'] ?? 0;
         ?>
-        <form action="apartamento.php" method="POST" target="_blank">
+        <form action="apartamento.php" method="GET" target="_blank">
             <div class="apartamento">
-                <input type="hidden" name="id_apartamento" value="<?=$apto['id_apartamento']?>">
+                <input type="hidden" name="id" value="<?=$apto['id_apartamento']?>">
                 <div class="nomImg">
                     <button type="submit"><img class="imgApt" src="<?=$apto['imagen_portada']?>"></button>
                     <div class="desc">

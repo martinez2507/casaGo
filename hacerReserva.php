@@ -23,18 +23,15 @@
     }
     include 'cabecera.php'; 
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
-        $_SESSION['datos_reserva_activa'] = $_POST;
-
-        header("Location: hacerReserva.php");
-        exit();
-    }
-
-
-    if (isset($_SESSION['datos_reserva_activa'])) {
+    if (!empty($_GET)) {
+        $_SESSION['datos_reserva_activa'] = $_GET;
+        $datos = $_GET; 
+    } 
+    // Si no hay GET pero hay sesión, usamos la sesión
+    elseif (isset($_SESSION['datos_reserva_activa'])) {
         $datos = $_SESSION['datos_reserva_activa'];
-    } else {
-
+    } 
+    else {
         header("Location: index.php");
         exit();
     }

@@ -181,9 +181,9 @@
             data: datosEnviar,
             success: function(response) {
                 alertify.success('Solicitud de anfitrión enviada. Nuestro equipo la revisará pronto.');
-                // setTimeout(function(){
-                //     location.reload();
-                // }, 3000);
+                setTimeout(function(){
+                    location.reload();
+                }, 3000);
             },
                 error: function() {
                     alertify.error('Hubo un error al enviar la solicitud.');

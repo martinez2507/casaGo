@@ -4,12 +4,12 @@ include("cabecera.php");
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-if (isset($_GET['id'])) {
-    $idApartamento = $_GET['id'];
-} elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_apartamento'])) {
-    $idApartamento = $_POST['id_apartamento'];
-} else {
-    $idApartamento = $_SESSION['id_apartamento_actual'] ?? null;
+
+$idApartamento = $_GET['id'] ?? $_GET['id_apartamento'] ?? $_POST['id_apartamento'] ?? $_SESSION['id_apartamento_actual'] ?? null;
+
+if (!$idApartamento) {
+    header("Location: index.php");
+    exit();
 }
 
 $_SESSION['id_apartamento_actual'] = $idApartamento;
@@ -49,7 +49,7 @@ if (!empty($fechaLlegada) && !empty($fechaSalida)) {
 
     <link rel="stylesheet" href="./librerias/bootstrap5.3.8/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/apartamento.css">
-    <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/logoCasaGo.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
@@ -170,12 +170,12 @@ if (!empty($fechaLlegada) && !empty($fechaSalida)) {
             </div>
             <div class="reservar">
                 <div class="fondoForm">
-                    <form action="./hacerReserva.php" method="POST" id="formReserva">
+                    <form onsubmit="return false;" id="formReserva">
                         <?php
 
                             $totalNumerico = ($noches > 0) ? ($noches * $fila['precio_noche']) : 0;
 
-                            $textoMostrar = ($totalNumerico <= 0) ? "Añade fechas de instancia" : $totalNumerico . "€ en total";
+                            $textoMostrar = ($totalNumerico <= 0) ? "Precio por noche: " . $fila['precio_noche'] . "€" : $totalNumerico . "€ en total";
                         ?>
                         <h4 id="totalPrecio"><?php echo $textoMostrar; ?></h4>
                         <div class="fechas">
@@ -206,11 +206,14 @@ if (!empty($fechaLlegada) && !empty($fechaSalida)) {
                         <input type="hidden" name="precioNoche" value="<?=$fila['precio_noche']?>">
                         <input type="hidden" id="idApartamento" name="idApartamento" value="<?=$idApartamento?>">
                         <input type="hidden" name="noches" value="<?=$noches?>">
+
                         <div class="boton">
-                            <button type="submit" class="btnFormu" id="btnReservar">Reservar</button>
+                            <button type="button" class="btnFormu" id="btnReservar">Reservar</button>
+                        </div>
+                            <small style="text-align: center; display: block; margin-top: 10px;">Aún no se te cobrará nada</small>
                         </div>
                     </form>
-                </div>
+                    
             </div>
         </div>
         

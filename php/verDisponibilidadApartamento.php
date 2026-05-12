@@ -1,14 +1,14 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 include("conexionBD.php");
 
-$idApartamento = $_POST['idApartamento'];
-$fechaEntrada = $_POST['fechaEntrada'];
-$fechaSalida = $_POST['fechaSalida'];
+$idApartamento = $_GET['idApartamento'] ?? null;
+$fechaEntrada  = $_GET['fechaEntrada']  ?? null;
+$fechaSalida   = $_GET['fechaSalida']   ?? null;
 
+if (!$idApartamento || !$fechaEntrada || !$fechaSalida) {
+    echo "error_datos";
+    exit();
+}
 
 $sql = "SELECT id_reserva 
         FROM reservas 

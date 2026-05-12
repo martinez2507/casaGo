@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="destinosDestacados">
-            <form class="destPopForm"action="./busqueda.php" method="POST">
+            <form class="destPopForm"action="./busqueda.php" method="GET">
                 <h3>Destinos populares</h3>
                 <div class="cartas">
                     <button type="submit" name="lugar" value="Asturias" class="card-btn">
@@ -117,8 +117,8 @@
                 while ($apartamento = mysqli_fetch_assoc($resultado)) {
 
                     echo '<div class="card" style="width: 18rem;">';
-                    echo '<form action="./apartamento.php" method="POST">';
-                    echo '<input type="hidden" name="id_apartamento" value="' . $apartamento['id_apartamento'] . '">';
+                    echo '<form action="./apartamento.php" method="GET">';
+                    echo '<input type="hidden" name="id" value="' . $apartamento['id_apartamento'] . '">';
                     echo '<input type="image" src="' . $apartamento['imagen_portada'] . '" class="card-img-top" alt="' . $apartamento['nombre'] . '" height="200" style="display:block;">';
                     echo '<div class="card-body">';
                     echo '<p class="card-text">' . $apartamento['nombre'] . '</p>';

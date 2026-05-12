@@ -85,9 +85,9 @@ $filas = $datos->num_rows;
 
         while ($filas = $datos->fetch_assoc()) {
     ?>
-    <form action="apartamento.php" method="POST" target="_blank">
+    <form action="apartamento.php" method="GET" target="_blank">
         <div class="apartamento">
-            <input type="hidden" name="id_apartamento" value="<?=$filas['id_apartamento']?>">
+            <input type="hidden" name="id" value="<?=$filas['id_apartamento']?>">
 
             <div class="nomImg">
 
