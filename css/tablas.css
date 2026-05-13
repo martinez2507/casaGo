@@ -1,58 +1,84 @@
+/* Contenedor principal */
 .tablas {
-    background-color: #F1F5F9;
+    background-color: #F8FAFC; /* Un gris más ligero para que resalten los colores */
     border-radius: 15px;
+    padding: 10px;
 }
 
+/* Cabecera de la tabla - Usamos el Azul Principal */
 .table > thead > tr {
-    background-color:  #334155!important;
-    border-radius: 15px;
+    background-color: #1E88E5 !important; 
 }
 
-.table > thead tr > th{
+.table > thead tr > th {
     color: white !important;
+    border: none !important;
+    padding: 12px !important;
 }
 
+/* Botones de Exportación y Paginación */
 .dt-buttons > .btn,
 .dt-paging > ul > li > a {
     padding: 0.5rem 1rem !important;
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
 
-    color: #334155 !important;
+    color: #1E88E5 !important; /* Texto en azul */
     font-weight: bold !important;
-
-    border: white !important;
-    background-color: #F1F5F9 !important;
-
+    border: 1px solid #e2e8f0 !important;
+    background-color: white !important;
+    transition: all 0.3s ease;
 }
 
+/* Botón de página Activa - Azul Principal */
 .dt-paging > ul > li.active > a {
-    color: #F1F5F9 !important;
-
-    background-color: #334155 !important;
+    color: white !important;
+    background-color: #1E88E5 !important;
+    border-color: #1E88E5 !important;
 }
 
+/* Hover - Cambiamos al Naranja para que destaque la interacción */
 .dt-buttons > .btn:hover,
 .dt-paging > ul > li > a:hover {
-    color: #F1F5F9 !important;
-
-    background-color: #264268  !important;
+    color: white !important;
+    background-color: #FF7043 !important; /* Naranja de tu app */
+    border-color: #FF7043 !important;
+    transform: translateY(-1px); /* Pequeño efecto de elevación */
 }
 
+/* Estado deshabilitado */
 .dt-paging > ul > li.disabled > a {
-    color: #9e9e9e !important;
-
-    background-color: #F1F5F9 !important;
+    color: #cbd5e1 !important;
+    background-color: #f1f5f9 !important;
+    border-color: #e2e8f0 !important;
+    cursor: not-allowed;
 }
 
-
+/* Ajuste para los botones generales (iconos de acción dentro de la tabla) */
 button {
     border: none;
     background-color: transparent;
-    color: #334155;
+    color: #1E88E5; /* Azul por defecto */
     font-size: 1.2rem;
     cursor: pointer;
+    transition: color 0.2s;
+}
+
+button:hover {
+    color: #FF7043; /* Naranja al pasar el ratón */
+}
+
+/* Extra: Estilo para el input de búsqueda de Datatables */
+.dataTables_filter input {
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.dataTables_filter input:focus {
+    border-color: #1E88E5;
+    box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
 }

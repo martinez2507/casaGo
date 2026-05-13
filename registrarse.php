@@ -7,6 +7,7 @@
     <link rel='stylesheet' type='text/css' media='screen' href='./css/registro.css'>
     <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
     <link rel="stylesheet" href="./librerias/alertifyjs/css/themes/default.min.css">
+    <link rel="shortcut icon" href="./img/logoCasaGo.png" type="image/x-icon">
 </head>
 <body>
     <?php
@@ -29,10 +30,16 @@
                     <label>Correo electrónico</label>
                     <input type="email" name="correo" id="correo" placeholder="correo@ejemplo.com" required>
                     
-                    <label>Contraseña</label>
-                    <input type="password" name="contraseña" id="contraseña" placeholder="Mínimo 8 caracteres" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
-                    <small>La contraseña debe incluir una minúscula, una mayúscula, un número y un caracter especial</small>
-                    
+                    <div class="contraseña">
+                        <label>Contraseña</label>
+                        <div class="input-group">
+                            <input type="password" name="contraseña" id="contraseña" placeholder="Mínimo 8 caracteres" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+
+                            <button type="button" id="mostrarContrasenha"><i class="fas fa-eye"></i></button>
+                        </div>
+                        <small>La contraseña debe incluir una minúscula, una mayúscula, un número y un caracter especial</small>
+                    </div>
+
                     <button type="submit" class="formu">Unirse ahora</button>
                 </form>
 
@@ -70,5 +77,28 @@
     }
     ?>
     <?php include 'footer.php';  ?>
+    <script>
+
+        const btnContrasenha = document.getElementById("mostrarContrasenha");
+        btnContrasenha.addEventListener("mousedown", () => {
+            hacerVisibleContrasenha("contraseña");
+            console.log("Se esta mostrando la contra");
+        });
+
+        btnContrasenha.addEventListener("mouseup", () => {
+            ocultarContrasenha("contraseña");
+            console.log("No se ve la contra");
+        });
+
+        function hacerVisibleContrasenha(objetivo) {
+            let $campo = document.getElementById(objetivo);
+            $campo.type = "text";
+        }
+
+        function ocultarContrasenha(objetivo) {
+            let $campo = document.getElementById(objetivo);
+            $campo.type = "password";
+        }
+    </script>
 </body>
 </html>

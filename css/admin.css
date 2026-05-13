@@ -1,3 +1,11 @@
+:root {
+            --gold-light: #ffdf7e;
+            --gold-main: #ffb400;
+            --gold-dark: #cc9000;
+            --primary: #ff385c;
+            --dark: #222222;
+        }
+
 html, body {
     height: 100%;
     margin: 0;
@@ -39,7 +47,7 @@ body {
     flex-direction: column;
     flex: 1;
     min-width: 0;
-    background-color: pink
+    padding-top: 50px;
 }
 
 /* FOOTER */
@@ -81,3 +89,126 @@ section.container-fluid {
     justify-content: center;
     font-size: 1.2rem;
 }
+
+/* anfitiron */
+
+        .award-card {
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 3rem 2rem;
+            width: 320px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(255, 180, 0, 0.2);
+        }
+
+        /* --- LA MEDALLA CSS --- */
+        .medal-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Cintas de la medalla */
+        .medal-ribbon {
+            position: absolute;
+            top: -10px;
+            width: 40px;
+            height: 80px;
+            background: var(--primary);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 85%, 0% 100%);
+            box-shadow: inset 0 -10px 10px rgba(0,0,0,0.1);
+        }
+
+        /* El círculo de oro */
+        .medal-circle {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold-main), var(--gold-dark));
+            border-radius: 50%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 15px rgba(204, 144, 0, 0.4);
+            border: 4px solid var(--gold-light);
+        }
+
+        .medal-circle i {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Destello de la medalla */
+        .medal-circle::after {
+            content: "";
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%);
+            border-radius: 50%;
+        }
+
+        /* --- TEXTOS Y STATS --- */
+        h1 {
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin: 0.5rem 0;
+        }
+
+        .title-label {
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .stats-container {
+            border-top: 1px solid #eee;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .stat-box {
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .stat-desc {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        /* Animación de entrada */
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .award-card {
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }

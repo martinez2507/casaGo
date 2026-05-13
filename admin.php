@@ -68,7 +68,7 @@ $valoresFinales = array_values($datosVentas);
                                     <div class="d-flex align-items-center">
                                         <div class="icon-box bg-success text-white"><i class="fa-solid fa-house-circle-check"></i></div>
                                         <div class="ms-3">
-                                            <p class="text-muted mb-0">Activos</p>
+                                            <p class="text-muted mb-0">Apartamentos Activos</p>
                                             <h3 class="fw-bold mb-0"><?php $res = mysqli_query($conn, $consultaActivos); echo mysqli_fetch_assoc($res)['totalAct']; ?></h3>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@ $valoresFinales = array_values($datosVentas);
                                     <div class="d-flex align-items-center">
                                         <div class="icon-box bg-warning text-white"><i class="fa-solid fa-clock"></i></div>
                                         <div class="ms-3">
-                                            <p class="text-muted mb-0">Pendientes</p>
+                                            <p class="text-muted mb-0">Apartamentos Pendientes</p>
                                             <h3 class="fw-bold mb-0"><?php $resP = mysqli_query($conn, $consultaPendientes); echo mysqli_fetch_assoc($resP)['totalPend']; ?></h3>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@ $valoresFinales = array_values($datosVentas);
 
                         <div class="row mb-5">
                             <div class="col-12">
-                                <div class="card shadow-sm p-4 border-0">
+                                <div class="shadow-sm p-4 border-0" style="background-color: #fff; border-radius: 8px;">
                                     <h5 class="fw-bold mb-4"><i class="fa-solid fa-chart-line me-2 text-primary"></i>Reservas por Mes</h5>
                                     <div class="chart-container">
                                         <canvas id="graficoReservas"></canvas>
@@ -97,6 +97,67 @@ $valoresFinales = array_values($datosVentas);
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <?php
+                            $sqlTopAnfitrion = "SELECT a.nombre, COUNT(r.id_reserva) AS total_reservas
+                                                FROM usuarios a
+                                                JOIN apartamentos ap ON a.id_usuario = ap.id_anfitrion
+                                                JOIN reservas r ON ap.id_apartamento = r.id_apartamento
+                                                WHERE MONTH(r.fecha_inicio) = MONTH(CURDATE()) AND YEAR(r.fecha_inicio) = YEAR(CURDATE())
+                                                GROUP BY a.id_usuario
+                                                ORDER BY total_reservas DESC
+                                                LIMIT 1";
+                            $resultTopAnfitrion = mysqli_query($conn, $sqlTopAnfitrion);
+                            $topAnfitrion = mysqli_fetch_assoc($resultTopAnfitrion);
+                            ?>
+                            <h3>Mejor Anfitrión</h3>
+                            <div class="award-card">
+                                
+                                <div class="medal-container">
+                                    <div class="medal-ribbon"></div>
+                                    <div class="medal-circle">
+                                        <i class="fa-solid fa-trophy fa-2x" style="color: #876109;"></i>
+                                    </div>
+                                </div>
+                                <h1><?php echo $topAnfitrion['nombre']; ?></h1>
+                                <p style="color: #666; font-size: 0.9rem;">El anfitrión con mayor número de reservas</p>
+
+                                <div class="stats-container">
+                                    <div class="stat-box">
+                                        <span class="stat-number"><?php echo $topAnfitrion['total_reservas']; ?></span>
+                                        <span class="stat-desc">Reservas</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                            $sqlTopReservador = "SELECT u.nombre, COUNT(r.id_reserva) AS total_reservas
+                                                FROM usuarios u
+                                                JOIN reservas r ON u.id_usuario = r.id_usuario
+                                                GROUP BY u.id_usuario, u.nombre
+                                                ORDER BY total_reservas DESC
+                                                LIMIT 1";
+                            $resultTopReservador = mysqli_query($conn, $sqlTopReservador);
+                            $topReservador = mysqli_fetch_assoc($resultTopReservador);
+                            ?>
+                            <div class="award-card">
+                                <div class="medal-container">
+                                    <div class="medal-ribbon"></div>
+                                    <div class="medal-circle">
+                                        <i class="fa-solid fa-trophy fa-2x" style="color: #876109;"></i>
+                                    </div>
+                                </div>
+                                <h1><?php echo $topReservador['nombre']; ?></h1>
+                                <p style="color: #666; font-size: 0.9rem;">El usuario con mayor número de reservas</p>
+
+                                <div class="stats-container">
+                                    <div class="stat-box">
+                                        <span class="stat-number"><?php echo $topReservador['total_reservas']; ?></span>
+                                        <span class="stat-desc">Reservas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </section>
                 </div>
             </main>
