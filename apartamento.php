@@ -53,6 +53,7 @@ if (!empty($fechaLlegada) && !empty($fechaSalida)) {
     <script src="https://kit.fontawesome.com/3b89af0a27.js" crossorigin="anonymous"></script>
     <script src="./librerias/bootstrap5.3.8/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
+    <link rel="stylesheet" href="./librerias/alertifyjs/css/themes/default.min.css">
 
     <link rel="stylesheet" href="./css/apartamento.css">
     <link rel="stylesheet" href="./css/styles.css">
@@ -219,7 +220,8 @@ if (!empty($fechaLlegada) && !empty($fechaSalida)) {
         
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./librerias/alertifyjs/alertify.min.js"></script>
     <script src="./js/modalImagenes.js"></script>
     <script src="./js/apartamento.js"></script>
-    <script src="./librerias/alertifyjs/alertify.min.js"></script>
+    
     <?php include 'footer.php';  ?>

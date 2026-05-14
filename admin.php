@@ -103,7 +103,6 @@ $valoresFinales = array_values($datosVentas);
                                                 FROM usuarios a
                                                 JOIN apartamentos ap ON a.id_usuario = ap.id_anfitrion
                                                 JOIN reservas r ON ap.id_apartamento = r.id_apartamento
-                                                WHERE MONTH(r.fecha_inicio) = MONTH(CURDATE()) AND YEAR(r.fecha_inicio) = YEAR(CURDATE())
                                                 GROUP BY a.id_usuario
                                                 ORDER BY total_reservas DESC
                                                 LIMIT 1";
@@ -147,7 +146,7 @@ $valoresFinales = array_values($datosVentas);
                                     </div>
                                 </div>
                                 <h1><?php echo $topReservador['nombre']; ?></h1>
-                                <p style="color: #666; font-size: 0.9rem;">El usuario con mayor número de reservas</p>
+                                <p style="color: #666; font-size: 0.9rem;">El usuario con mayor número de reservas hechas</p>
 
                                 <div class="stats-container">
                                     <div class="stat-box">

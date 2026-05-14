@@ -88,3 +88,7 @@ body {
 .accordion-button:hover {
     background-color: #f8f9fa;
 }
+
+.fas {
+    color: #ff5a3d;
+}

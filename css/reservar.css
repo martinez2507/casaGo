@@ -133,7 +133,7 @@ input[type="month"] {
 }
 
 .boton-guardar {
-    background-color: #FF7043;
+    background-color:  #1E88E5;
     color: white;
     border: none;
     padding: 8px 25px;
@@ -149,7 +149,7 @@ input[type="month"] {
 }
 
 .boton-guardar:hover {
-    background-color: #1E88E5;
+    background-color: #FF7043;
 }
 
 /* Ajuste para el checkbox */

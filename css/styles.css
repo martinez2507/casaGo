@@ -156,6 +156,7 @@ header.scrolled .yaIniciado:hover {
     padding: 20px 25px;
     cursor: pointer;
     font-weight: bold;
+    border-radius: 8px;
 }
 
 

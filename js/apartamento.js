@@ -20,10 +20,20 @@ btnReservar.addEventListener('click', function(event) {
     let precioNoche = document.getElementsByName('precioNoche')[0].value;
     // IMPORTANTE: precioT también es útil enviarlo para evitar recálculos
     let precioT = document.getElementsByName('precioT')[0].value;
-
+    alertify.set('notifier','position', 'top-right');
     if (fLlegada === "" || fSalida === "") {
         alertify.error("Debes rellenar las fechas");
         return; 
+    }
+
+    if (fSalida <= fLlegada) {
+        alertify.error("La fecha de salida debe ser posterior a la de llegada");
+        return;
+    };
+
+    if(fLlegada < new Date().toISOString().split('T')[0]) {
+        alertify.error("La fecha de llegada no puede ser en el pasado");
+        return;
     }
 
     // 3. AJAX

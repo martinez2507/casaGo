@@ -26,6 +26,7 @@ include 'cabecera.php';
 include './php/conexionBD.php';
 
 $id_usuario_logueado = $_SESSION['id_usuario'];
+
 ?>
 <main>
 <div class="container mt-5">

@@ -77,7 +77,7 @@ if ($metodo === 'POST') {
                                 <p>Puedes contactar con el huésped a través de la plataforma para organizar la llegada.</p>
                             </div>
                             <div style='background: #eee; padding: 10px; text-align: center; font-size: 12px; color: #777;'>
-                                © 2026 CasaGo - Gestión de Alojamientos Turísticos
+                                2026 CasaGo - Gestión de Alojamientos Turísticos
                             </div>
                         </div>
                     </div>";
@@ -109,7 +109,7 @@ if ($metodo === 'POST') {
                                         <p style='margin-top: 30px; font-size: 14px;'>Si tienes alguna duda, responde a este correo o contacta con el anfitrión.</p>
                                     </div>
                                     <div style='background: #eee; padding: 10px; text-align: center; font-size: 12px; color: #777;'>
-                                        CasaGo - ¡Disfruta de tu estancia!
+                                        2026 CasaGo - Gestión de Alojamientos Turísticos
                                     </div>
                                 </div>
                             </div>";

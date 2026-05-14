@@ -23,6 +23,18 @@ document.getElementById("formulario").addEventListener("submit", function(e) {
 
                 alertify.error("La fecha de salida debe ser posterior a la de llegada");
             }
+
+            if (llegada < new Date().toISOString().split('T')[0]) {
+                    e.preventDefault();
+
+                alertify.error("La fecha de llegada no puede ser en el pasado");
+            }
+        } else {
+            e.preventDefault();
+
+            alertify.error("Debes rellenar las fechas");
         }
+
+        
     });
 });

@@ -38,7 +38,7 @@ include 'cabecera.php';
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-1">
-                                        <i class="fa-solid fa-euro-sign text-secondary"></i>
+                                        <i class="fas fa-solid fa-euro-sign text-secondary"></i>
                                         ¿Si cancelo mi reserva me devuelven el dinero?
                                     </button>
                                 </h2>
@@ -52,7 +52,7 @@ include 'cabecera.php';
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-2">
-                                        <i class="fa-solid fa-house-medical me-3 text-secondary"></i>
+                                        <i class="fas fa-solid fa-house-medical me-3 text-secondary"></i>
                                         ¿Cuesta dinero subir un apartamento?
                                     </button>
                                 </h2>
@@ -66,7 +66,7 @@ include 'cabecera.php';
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-3">
-                                        <i class="fa-solid fa-comments me-3 text-secondary"></i>
+                                        <i class=" fas fa-solid fa-comments me-3 text-secondary"></i>
                                         ¿Los apartamentos incluyen sábanas y toallas?
                                     </button>
                                 </h2>

@@ -317,6 +317,7 @@
     }
 }
 
-.fondoForm{
-    background: white;
+small {
+    color: #FF7043;
+    font-weight: bold;
 }

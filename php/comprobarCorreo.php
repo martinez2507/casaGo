@@ -14,7 +14,7 @@ if (!isset($_SESSION['reg_email'])) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Verifica tu cuenta | Airbnb Clone</title>
+    <title>Verifica tu cuenta | CasaGo </title>
     <link rel="stylesheet" href="../css/comprobarCorreo.css">
 </head>
 <body>
