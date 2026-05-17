@@ -33,8 +33,15 @@
     height: 200px;
     object-fit: cover;
     transition: transform 0.3s ease;
+    border-radius: 12px;
 }
 
+#imgGrande {
+    position: relative;
+    top: 40px;
+    object-fit: cover;
+    border-radius: 12px;
+}
 .item:hover img {
     transform: scale(1.1);
 }
@@ -47,6 +54,7 @@
     display: flex;
     gap: 40px;
     align-items: flex-start;
+    margin-top: 30px;
 }
 
 .izquierda {
@@ -113,9 +121,11 @@
 .reservar{
     width: 425px;
     position: sticky;
-    top: 110px; /* Esto lo mantiene separado del header naranja al bajar */
+    top: 130px;
     margin-left: 20px;
     z-index: 1;
+    /* background-color: white; */
+    padding-right: 50px;
 }
 
 .fechas {
@@ -133,10 +143,12 @@
 
 .fondoForm{
     position: relative;
-    right: 10%;
+    /* right: 10%; */
     padding: 15px;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+     background-color: white;
+     /* top: 50px; */
 }
 
 .field {

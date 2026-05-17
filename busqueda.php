@@ -54,9 +54,12 @@ if (!empty($_SESSION['llegada']) && !empty($_SESSION['salida'])) {
                 <input type="hidden" name="huespedes" value="<?php echo $_SESSION['huespedes'] ?? 1; ?>">
                 <input type="hidden" name="ciudad" value="<?php echo $ciudad; ?>">
                 
-                <h4>Precio Máximo:</h4>
-                <input type="range" id="precio" name="precio" min="0" max="500" step="10" value="100">
-                <span id="precioS">100</span>€
+                <div class="precio-header">
+                    <h4>Precio Máximo:</h4>
+                    <input type="range" id="precio" name="precio" min="0" max="500" step="10" value="100">
+                    <span id="precioS">100</span>€
+                </div>
+                
 
                 <h4>Servicios:</h4>
                 <div class="filtro-serv">

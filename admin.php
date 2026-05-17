@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./librerias/alertifyjs/css/alertify.min.css">
     <link rel="stylesheet" href="./librerias/alertifyjs/css/themes/default.min.css">
     <link rel="stylesheet" href="./css/admin.css">
+    <title>Panel de administración - CasaGo</title>
 </head>
 <?php
 if (session_status() === PHP_SESSION_NONE) {

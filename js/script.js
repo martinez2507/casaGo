@@ -29,10 +29,6 @@ document.getElementById("formulario").addEventListener("submit", function(e) {
 
                 alertify.error("La fecha de llegada no puede ser en el pasado");
             }
-        } else {
-            e.preventDefault();
-
-            alertify.error("Debes rellenar las fechas");
         }
 
         

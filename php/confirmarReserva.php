@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include './conexionBD.php';
+
 $metodo = $_SERVER['REQUEST_METHOD'];
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -12,6 +12,7 @@ require '../librerias/PHPMailer-master/src/Exception.php';
 require '../librerias/PHPMailer-master/src/PHPMailer.php';
 require '../librerias/PHPMailer-master/src/SMTP.php';
 include("../php/conexionBD.php");
+$conn->set_charset("utf8mb4");
 
 if ($metodo === 'POST') {
 

@@ -10,6 +10,7 @@ require '../librerias/PHPMailer-master/src/Exception.php';
 require '../librerias/PHPMailer-master/src/PHPMailer.php';
 require '../librerias/PHPMailer-master/src/SMTP.php';
 include("../php/conexionBD.php");
+$conn->set_charset("utf8mb4");
 
 $idApartamento = $_POST['idApartamento'];
 $nombreHuesped = $_SESSION['usuario'];

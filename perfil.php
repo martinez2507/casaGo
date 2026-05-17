@@ -38,11 +38,13 @@ include 'cabecera.php';
             <?php
             if($_SESSION['rol'] === 'anfitrion' || $_SESSION['rol'] === 'admin') {
                 echo "<form action='subirApartamento.php' method='post'>";
+                echo "<button type='submit' class='subApartamento'>Sube tu apartamento y deja que otros lo disfruten <i class='fa-solid fa-arrow-right'></i></button>
+        </form>";
             } else {
                 echo "<form action='hazteAnfitrion.php' method='post'>";
+                echo "<button type='submit' class='subApartamento'>Hazte anfitrión y empieza a ganar dinero con tu apartamento <i class='fa-solid fa-arrow-right'></i></button>";
             }?>
-            <button type="submit" class="subApartamento">Sube tu apartamento y deja que otros lo disfruten <i class="fa-solid fa-arrow-right"></i></button>
-        </form>
+            
         </div>
 
         <?php

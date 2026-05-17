@@ -92,7 +92,7 @@
                     </div>
                     </div>
                     </button>
-                    <button type="submit" name="lugar" value="Huesca" class="card-btn">
+                    <button type="submit" name="lugar" value="Aragón    " class="card-btn">
                     <div class="card card1" style="width: 18rem;">
                         <img src="./img/huesca.jpg" class="card-img-top" alt="Huesca" height="200"> 
                     <div class="card-body">

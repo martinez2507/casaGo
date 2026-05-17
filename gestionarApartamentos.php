@@ -42,7 +42,9 @@ include 'cabecera.php';
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="<?= $apartamento['imagen_portada']; ?>" class="img-fluid rounded-start" alt="<?= $apartamento['nombre']; ?>" width="500" height="400">
+                            <a href="./apartamento.php?id=<?= $apartamento['id_apartamento'] ?>">
+                                <img src="<?= $apartamento['imagen_portada']; ?>" class="img-fluid rounded-start" alt="<?= $apartamento['nombre']; ?>" width="500" height="400">
+                            </a>
                         </div>
                         <div class="col-md-8">
                             <?php if($apartamento['activo'] == 0): ?>

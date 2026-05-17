@@ -105,7 +105,7 @@ $filas = $datos->num_rows;
 
                         $puntuacion = 0;
                         if ($datos && $datosVal->num_rows > 0) {
-                            $fila = $datosVal->fetch_assoc();
+                            $fila = $datosVal->fetch_assoc();   
                             $puntuacion = $fila['media'] ?? 0;
                         } else {
                             $puntuacion = 0;
@@ -117,7 +117,10 @@ $filas = $datos->num_rows;
                     <div class="detalles">
                         <p><?=$filas['descripcion']?></p>
                     </div>
-                    <div><h5><?=$filas['precio_noche']?>€</h5></div>
+                    <div class="precio-reserva">
+                        <h5><?=$filas['precio_noche']?>€</h5>
+                    </div>
+                    
             </div>
 
                 

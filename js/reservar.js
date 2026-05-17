@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnGuardar = document.getElementById('btn-guardar');
     const btnPagar = document.getElementById('btn-pagar');
 
+    btnPagar.disabled = false;
     // document.ready rellenamos campos de input tarjeta con un get al ichero del ajax
     let idUsuario = document.getElementById('idUsuario').value;
 
@@ -73,18 +74,33 @@ document.addEventListener('DOMContentLoaded', function() {
         let salida = document.getElementById('salida').innerText.trim();
         let idApartamento = document.getElementById('idApartamento').innerText.trim();
 
+        let titular = document.getElementById('titularCuenta').value;
+        let numTarjeta = document.getElementById('numTarjeta').value;
+        let ccv = document.getElementById('CCV').value;
+        let caducidad = document.getElementById('caducidad').value;
+
+        if(idUsuario == "" || titular == "" || numTarjeta =="" || ccv == ""|| caducidad == "") {
+            alertify.error("Debes rellenar todos los campos");
+            return;
+        }
+
         if(!check) {
             alertify.error("Debes aceptar los términos y las condiciones.");
             return;
         }
+
+        btnPagar.disabled = true;
+        btnPagar.innerText = "Procesando...";
+
         let datosEnviar = {
             idUsuario: idUsuario,
             precioT: precioT,
             numPersonas: numPersonas,
             llegada:llegada,
             salida:salida,
-            idApartamento,idApartamento
+            idApartamento:idApartamento
         }
+
         
         $.ajax({
             url: "./php/confirmarReserva.php",
@@ -92,9 +108,13 @@ document.addEventListener('DOMContentLoaded', function() {
             data: datosEnviar,
             success: function(){
                 alertify.success("Reserva realizada con éxito");
+                setTimeout(function(){
+                    window.location.href = `reservas.php`; 
+                }, 3000);
             },
             error: function() {
                 alertify.error("Error al realizar la reserva");
+                btnPagar.disabled = false;
             }
         });
     });

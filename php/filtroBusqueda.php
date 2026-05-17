@@ -60,7 +60,9 @@ if ($filas_count > 0) {
                             <?= $puntuacion > 0 ? "<span class='valoracion'>$puntuacion ⭐</span>" : "<span class='nuevo'>Nuevo</span>" ?>
                         </div>
                         <div class="detalles"><p><?=$apto['descripcion']?></p></div>
-                        <div><h5><?=$apto['precio_noche']?>€</h5></div>
+                        <div class="precio-reserva">
+                            <h5><?=$apto['precio_noche']?>€</h5>
+                        </div>
                     </div>
                 </div>
             </div>
